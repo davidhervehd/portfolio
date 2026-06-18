@@ -1,0 +1,230 @@
+/* Ensure there is no margin or padding for body and html */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Header styles */
+header {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Header image styles */
+.header-image {
+    width: 100%;
+    max-height: 400px;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+}
+
+/* Content styles */
+.content {
+    padding-top: 20px;
+    text-align: center;
+    flex: 1; /* Ensure content takes available space */
+}
+
+/* Info box styles */
+.info-box-es {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -200px;
+    margin-bottom: 40px;
+    padding-top: 13px;
+    padding-bottom: 35px;
+    padding-left: 45px;
+    padding-right: 45px;
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+    text-align: left;
+}
+
+/* Title box info styles */
+.titleboxinfo-es {
+    font-weight: 600 !important;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+/* Text box info styles */
+.textboxinfo {
+    font-size: 1.2em;
+}
+
+/* Main content styles */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the main content takes full viewport height */
+}
+
+/* Footer styles */
+footer {
+    background-color: #f1f1f1;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+/* Role analysis box styles */
+.role-analysis-box-es {
+    background-color: #D90917;
+    color: white;
+    width: 100%;
+    padding: 50px 0;
+    box-sizing: border-box;
+    margin: 0; /* Remove any margin */
+    display: flex;
+    justify-content: center;
+}
+
+/* Role content styles */
+.role-content {
+    width: 950px;
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+/* Role title styles */
+.role-title {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Role description styles */
+.role-description {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+/* Role columns container styles */
+.role-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Individual role column styles */
+.role-column {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+/* Role column title styles */
+.role-column-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+    position: relative;
+    padding-left: 20px;
+    font-size: 1.2em;
+}
+
+.role-column-title::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em; /* Adjust size if necessary */
+    color: white; /* Ensure the color matches the text */
+}
+
+
+/* Role column text styles */
+.role-column-text {
+    font-size: 1em;
+    text-align: left;
+}
+
+.model_adoption{
+    width: 950px;
+    margin-top: 20px;
+}
+
+.bullet {
+    font-style: italic;
+    position: relative; /* This allows the ::before element to position itself relative to the paragraph */
+    padding-left: 20px
+}
+
+.bullet::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 25%;
+    transform: translateY(-50%);
+    font-size: 1em; /* Adjust size if necessary */
+    color: rgb(0, 0, 0); /* Ensure the color matches the text */
+}
+
+.bullet2 {
+    font-style: italic;
+    position: relative; /* This allows the ::before element to position itself relative to the paragraph */
+    padding-left: 20px
+}
+
+.bullet2::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em; /* Adjust size if necessary */
+    color: rgb(0, 0, 0); /* Ensure the color matches the text */
+}
+
+.bullet3 {
+    font-style: italic;
+    position: relative; /* This allows the ::before element to position itself relative to the paragraph */
+    padding-left: 20px
+}
+
+.bullet3::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    transform: translateY(-50%);
+    font-size: 1em; /* Adjust size if necessary */
+    color: rgb(0, 0, 0); /* Ensure the color matches the text */
+}
+
+.boldtitle{
+    font-weight: 600;
+}
+
+.white-space2 {
+    background-color: white;
+  height: 20px; /* Ajuste la hauteur selon tes besoins */
+  width: 100%; /* Assure que la div prend toute la largeur */
+}
+
+.padding {
+    padding-top: 0px;
+}
+
+.comment-axes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 100% !important;
+}
+

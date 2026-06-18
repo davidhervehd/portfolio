@@ -8,13 +8,13 @@ export default function Herosection({ scrollToRef }) { // Accept the ref as a pr
   };
 
   return (
-    <section className="hero">
-      <div className="hero-content">
-        <div className="hero-text">
+  <section className="hero">
+    <div className="hero-content">
+          <div className="hero-text">
           <div className="welcome-text">
             <h2 className="welcome-text-h2">Welcome to my UX space</h2>
           </div>
-          <h1>Hey! I'm David Hervé,</h1>
+        <h1>Hey! I'm David Hervé,</h1>
           <p className="subtext">Senior UX/UI Designer and Product Designer,</p>
           <p className="subtext">crafting digital User Experience.</p>
           <button onClick={handleScrollToPortfolio} className="btn-about-me">
