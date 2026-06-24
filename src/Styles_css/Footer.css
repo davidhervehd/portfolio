@@ -1,38 +1,121 @@
 .footer-container {
   display: flex;
-  height: 300px;
+  justify-content: center;
+  min-height: 300px;
   background-color: #9771e8;
-  margin-top: 20px; /* Adjust the margin-top value as needed */
+  margin-top: 20px;
+  padding: 48px 2rem 2rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 5rem;
+  margin-left: 1.75rem;
 }
 
 .footer-item {
   flex: 1;
   display: flex;
-  flex-direction: column; /* Set flex direction to column */
-  align-items: center; /* Center the items */
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   color: #ffffff;
   font-size: 18px;
-  padding: 10px; /* Add padding for better spacing */
+  font-weight: 300;
+  gap: 10px;
 }
 
 .footer-item p {
-  margin: 0; /* Remove default margin for paragraphs */
-  text-align: left; /* Left-justify the text within paragraphs */
-  font-weight: normal; /* Set font weight to normal for regular text */
+  margin: 0;
+  text-align: left;
+  font-weight: 300;
+  width: 100%;
 }
 
-.footer-item p:first-child {
-  font-weight: bold; /* Set font weight to bold for the first paragraph */
+.footer-item p.footer-heading {
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  width: 100%;
+  text-align: left;
 }
 
-.footer-item img {
-  border-radius: 50%; /* Ensure the image remains round */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add a smooth transition effect for transform and shadow */
+.footer-item p.footer-tags {
+  font-size: 15px;
+  font-weight: 200;
+  opacity: 0.8;
 }
 
-/* Add hover effect directly on the image */
-.footer-item img:hover {
-  transform: scale(1.1); /* Slightly enlarge the image on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Apply a shadow effect around the circular image */
+.footer-item p.footer-bottom {
+  margin-top: 1.5rem;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.75;
+  color: #ffffff;
+}
+
+.footer-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+.footer-connect-item,
+.footer-connect-link,
+.footer-menu-link {
+  width: 100%;
+}
+
+.footer-cv-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-cv-label {
+  margin-right: 4px;
+  font-weight: 300;
+}
+
+.footer-cv-lang {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 300;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+.footer-cv-lang:hover {
+  color: #feb868;
+  text-decoration: underline;
+}
+
+.footer-connect-link,
+.footer-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 300;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-link:hover {
+  transform: translateX(4px);
+  color: #feb868;
+}
+
+.footer-link:hover .footer-icon {
+  filter: brightness(0) saturate(100%) invert(81%) sepia(27%) saturate(749%) hue-rotate(334deg) brightness(101%) contrast(101%);
+}
+
+.footer-item-menu .footer-menu-link {
+  padding: 0;
 }

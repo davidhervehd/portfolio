@@ -12,10 +12,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 15px; /* Add some spacing from the edges */
-  width: 1600px;
+  width: 100%;
 }
 
 .hero-image-container {
@@ -24,6 +24,8 @@
   align-items: center; /* Center items horizontally */
   position: relative; /* Needed for absolute positioning of floating elements */
   margin-top: 180px;
+  transform: scale(0.9);
+  transform-origin: center top;
 }
 
 .hero-image {
@@ -92,23 +94,31 @@
 
 /* Style the hero text */
 .hero-text {
-  flex: 1; /* Take up available space */
+  flex: 1.2;
+  min-width: 720px;
   text-align: left;
   color: #fff; /* Text color is white */
-  margin-right: 50px;
+  margin-right: 30px;
   margin-top: 100px;
 }
 
 /* Style the hero text heading */
 .hero-text h1 {
-  font-size: 50px;
+  font-size: 44px;
   margin: 0;
+  max-width: 720px;
 }
 
 /* Style the subtext */
 .subtext {
   font-size: 25px;
   margin: 3px 0; /* Add some spacing between text elements */
+}
+
+.subtext-light {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 10px;
 }
 
 /* Style the About Me button */

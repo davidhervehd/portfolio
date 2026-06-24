@@ -12,13 +12,13 @@ export default function Herosection({ scrollToRef }) { // Accept the ref as a pr
     <div className="hero-content">
           <div className="hero-text">
           <div className="welcome-text">
-            <h2 className="welcome-text-h2">Welcome to my UX space</h2>
+            <h2 className="welcome-text-h2">Product Design Portfolio</h2>
           </div>
-        <h1>Hey! I'm David Hervé,</h1>
-          <p className="subtext">Senior UX/UI Designer and Product Designer,</p>
-          <p className="subtext">crafting digital User Experience.</p>
+        <h1>Transforming complexity into<br />intuitive digital products</h1>
+          <p className="subtext">Designing digital experiences people understand,<br />trust and enjoy using.</p>
+          <p className="subtext subtext-light">SaaS • Smart Home • Digital Health</p>
           <button onClick={handleScrollToPortfolio} className="btn-about-me">
-            See My UX Portfolio
+            View Case Studies
           </button>
         </div>
         <div className="hero-image-container">

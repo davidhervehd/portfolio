@@ -17,6 +17,7 @@ function BackButton() {
     const currentPath = location.pathname;
 
     const routes = [
+      '/vertriebsportal',
       '/digital_strom',
       '/esmart',
       '/pet_health_data',

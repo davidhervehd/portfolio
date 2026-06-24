@@ -1,29 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Footer from '../Components/Footer'; // Import the Footer component
-
+import Footer from '../Components/Footer';
 
 export default function Contact() {
   return (
-    <section>
-      <NavLink to="/home" className="active">
-        Home
-      </NavLink>
-      <NavLink to="/portfolio" className="active">
-        Portfolio
-      </NavLink>
-      <NavLink to="/about_me" className="active">
-        About me
-      </NavLink>
-      <NavLink to="/contact" className="active">
-        Contact
-      </NavLink>
-
-      {/* Include the Footer component at the end of the page */}
+    <div>
+      <section className="contact-page" style={{ padding: '120px 2rem 4rem', maxWidth: '800px', margin: '0 auto' }}>
+        <h1>Contact</h1>
+        <p>Feel free to reach out — I&apos;d love to hear from you.</p>
+        <p><strong>Email:</strong> info@davidherve.ch</p>
+        <p><strong>Phone:</strong> 076 320 55 55</p>
+        <p><strong>Location:</strong> Eichbühlstrasse 25, 8004 Zürich</p>
+      </section>
       <Footer />
-    </section>
+    </div>
   );
 }
-
-
-

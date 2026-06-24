@@ -14,12 +14,24 @@
   background-color: #ffffff;
   border-radius: 18px;
   box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 300ms ease-out;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
   max-width: 1080px; /* Ensure all blocks have the same max-width */
   width: 100%; /* Set width to 100% for consistency */
   position: relative; /* Required for the coming soon overlay */
+}
+
+.content-block.is-hovered {
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    0 40px 64px rgba(0, 0, 0, 0.06);
+}
+
+.content-block:not(.is-coming-soon) {
+  cursor: pointer;
 }
 
 .block-image-container {
@@ -115,7 +127,8 @@ p.large-text {
   font-weight: 300;
 }
 
-.read-more-button:hover {
+.read-more-button:hover,
+.content-block.is-hovered .read-more-button:not(:disabled) {
   background-color: #FFC47F; /* Change the background color on hover */
 }
 

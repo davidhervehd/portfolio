@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTransform, motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../Styles_css/HomeContent.css';
 
 export default function Homecontent({ blockNumber, scrollY }) {
+  const navigate = useNavigate();
   // State to manage hover effect
   const [isHovered, setIsHovered] = useState(false);
 
@@ -22,34 +23,46 @@ export default function Homecontent({ blockNumber, scrollY }) {
   );
 
   // Content configuration based on block number
-  let topRightText, largeText, subTitle, linkTo, isComingSoon;
+  let topRightText, largeText, subTitle, linkTo, imageSrc, isComingSoon;
   switch (blockNumber) {
     case 1:
-      topRightText = 'Digital Strom';
+      topRightText = 'Vertriebsportal';
       largeText = '.01';
-      subTitle = 'Thematic Analysis';
-      linkTo = '/digital_strom';
+      subTitle = 'Simplifying complex sales processes';
+      linkTo = '/vertriebsportal';
+      imageSrc = '/img/visualcase_quatico.jpg';
       isComingSoon = false;
       break;
     case 2:
-      topRightText = 'eSmart';
+      topRightText = 'Digital Strom';
       largeText = '.02';
-      subTitle = 'Make the energy tangible';
-      linkTo = '/esmart';
+      subTitle = 'Making smart home control intuitive';
+      linkTo = '/digital_strom';
+      imageSrc = '/img/visualcase1.jpg';
       isComingSoon = false;
       break;
     case 3:
-      topRightText = 'Pet Health Data';
+      topRightText = 'eSmart';
       largeText = '.03';
-      subTitle = 'Design Thinking methodology';
-      linkTo = '/pet_health_data';
+      subTitle = 'Make the energy tangible';
+      linkTo = '/esmart';
+      imageSrc = '/img/visualcase2.jpg';
       isComingSoon = false;
       break;
     case 4:
-      topRightText = 'Meine Impfungen';
+      topRightText = 'Pet Health Data';
       largeText = '.04';
-      subTitle = 'Customer journey Map';
+      subTitle = 'Smarter pet health experience';
+      linkTo = '/pet_health_data';
+      imageSrc = '/img/visualcase3.jpg';
+      isComingSoon = false;
+      break;
+    case 5:
+      topRightText = 'Meine Impfungen';
+      largeText = '.05';
+      subTitle = 'Simplifying vaccination management';
       linkTo = '/meine_impfungen';
+      imageSrc = '/img/visualcase4.jpg';
       isComingSoon = true; // Mark this block as "Coming Soon"
       break;
     default:
@@ -57,12 +70,22 @@ export default function Homecontent({ blockNumber, scrollY }) {
       largeText = '';
       subTitle = '';
       linkTo = '/';
+      imageSrc = '';
       isComingSoon = false;
   }
 
+  const handleCardClick = () => {
+    if (!isComingSoon) {
+      navigate(linkTo);
+    }
+  };
+
   return (
     <motion.div
-      className="content-block"
+      className={`content-block${isHovered ? ' is-hovered' : ''}${isComingSoon ? ' is-coming-soon' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={handleCardClick}
       style={{
         opacity,
         scale,
@@ -80,7 +103,7 @@ export default function Homecontent({ blockNumber, scrollY }) {
       {/* Image Container */}
       <div className="block-image-container">
         <img
-          src={`${process.env.PUBLIC_URL}/img/visualcase${blockNumber}.jpg`}
+          src={`${process.env.PUBLIC_URL}${imageSrc}`}
           alt={`Block ${blockNumber}`}
           className={isHovered ? 'hovered' : ''}
         />
@@ -101,20 +124,13 @@ export default function Homecontent({ blockNumber, scrollY }) {
               <button
                 className="read-more-button"
                 disabled
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
               >
                 Read More
               </button>
             ) : (
-              <Link
-                to={linkTo}
-                className="read-more-button"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
+              <span className="read-more-button">
                 Read More
-              </Link>
+              </span>
             )}
           </div>
         </div>

@@ -7,8 +7,10 @@ import BackButton from './Components/BackButton';
 import Home from './pages/home';
 import AboutMe from './pages/about_me';
 import DigitalStrom from './pages/digitalStrom';
+import Vertriebsportal from './pages/vertriebsportal';
 import ESmart from './pages/eSmart';
 import PetHealthData from './pages/petHealthData';
+import Contact from './pages/contact';
 
 import './Styles_css/App.css';
 import './Styles_css/Nav.css';
@@ -25,9 +27,11 @@ function App() {
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<PageFade><Home /></PageFade>} />
           <Route path="/about_me" element={<PageFade><AboutMe /></PageFade>} />
+          <Route path="/vertriebsportal" element={<PageFade><Vertriebsportal /></PageFade>} />
           <Route path="/digital_strom" element={<PageFade><DigitalStrom /></PageFade>} />
           <Route path="/esmart" element={<PageFade><ESmart /></PageFade>} />
           <Route path="/pet_health_data" element={<PageFade><PetHealthData /></PageFade>} />
+          <Route path="/contact" element={<PageFade><Contact /></PageFade>} />
         </Routes>
       </AnimatePresence>
       {location.pathname !== '/home' && <BackButton />}

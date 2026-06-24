@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Herosection from '../Components/Herosection';
 import Homecontent from '../Components/Homecontent';
 import Footer from '../Components/Footer'; // Import the Footer component
@@ -12,6 +12,15 @@ export default function Home() {
     offset: [0, 0],
   });
 
+  useEffect(() => {
+    if (window.location.hash === '#case-studies') {
+      const timer = setTimeout(() => {
+        document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <div>
       <section className="hero">
@@ -20,7 +29,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div ref={targetRef} className="home-content">
+      <div ref={targetRef} id="case-studies" className="home-content">
         {/* Animated Div for Block 1 */}
         <div ref={firstBlockRef}> {/* Attach the ref to the first block */}
           <Homecontent blockNumber={1} scrollY={scrollY} />
@@ -34,6 +43,9 @@ export default function Home() {
 
         {/* Animated Div for Block 4 */}
         <Homecontent blockNumber={4} scrollY={scrollY} />
+
+        {/* Animated Div for Block 5 */}
+        <Homecontent blockNumber={5} scrollY={scrollY} />
       </div>
 
       {/* Include the Footer component at the end of the page */}
