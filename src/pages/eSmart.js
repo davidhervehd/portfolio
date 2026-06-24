@@ -1,48 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Footer from '../Components/Footer'; // Adjust the path according to your project structure
 import BackButton from '../Components/BackButton'; // Import the BackButton component
 import '../Styles_css/eSmart.css'; // Adjust the path according to your project structure
 
 export default function DigitalStrom() {
-  // Create refs for the elements you want to animate
-  const blockRefs = useRef([]); // This will store all refs for blocks
-
-  useEffect(() => {
-    const handleScroll = () => {
-      blockRefs.current.forEach((ref) => {
-        if (ref) {
-          const rect = ref.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          
-          // Adjusted start and end points for earlier animation start
-          const start = windowHeight * 0.85; // Start 85% from the top (earlier)
-          const end = windowHeight * 0.35;   // End at 35% from the top
-
-          // Calculate the scroll progress (0 when the element starts appearing, 1 when fully in view by the end point)
-          let progress = 1 - (rect.top - end) / (start - end);
-          progress = Math.max(0, Math.min(1, progress)); // Ensure the progress is between 0 and 1
-
-          // Apply the scroll-based animation
-          ref.style.transform = `scale(${0.5 + progress * 0.5})`; // Scale from 0.5 to 1
-          ref.style.opacity = progress; // Fade in from 0 to 1
-        }
-      });
-    };
-
-    // Attach the scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Initial scroll check
-    handleScroll();
-
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []); // Empty dependency array means this effect runs once after mount
-
   return (
-    <div className="main-content">
+    <div className="main-content case-study-page">
       <header>
         <img src={`${process.env.PUBLIC_URL}/img/visualcase2.jpg`} alt="Digital Strom Header PetHealthData" className="header-image" />
       </header>
@@ -82,7 +45,7 @@ export default function DigitalStrom() {
 
         {/* Start scroll-driven animations from here */}
         {/* Quotation_1 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -101,14 +64,14 @@ export default function DigitalStrom() {
         </div>
 
         {/* Additional text box */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p className="title">How to discover the key adoption factors - The adoption model</p>
           <p>An adoption model in marketing refers to a framework or theory that explains how and why consumers adopt new products or innovations. These models typically outline the stages or processes through which individuals progress when deciding to adopt a new product</p>
           <p><strong>How to discover the key adoption factors</strong> related to innovative products to ensure an acceptable and usable product for users. This is what this research is based on in order to highlight factors such as:</p>
         </div>
 
         {/* Additional text box with padding */}
-        <div className="additional-text-box padding block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box padding block">
           <p className='bullet'>What are the key factors of products and consumer behaviors that ensure an acceptable and usable product for users;</p>
           <p className='bullet2'>To what extent does the consumer's attitude towards innovation impact its adoption;</p>
           <p className='bullet2'>How does the use of innovation impact consumer well-being and satisfaction?</p>
@@ -119,20 +82,20 @@ export default function DigitalStrom() {
           <div className="white-space2"></div>
 
           {/* Adjusted block with animation */}
-          <div className='block' ref={(el) => blockRefs.current.push(el)}>
+          <div className='block'>
             <p><em>Concept model of adoption chosen by the researcher and on which further research is based.</em></p>
             <img className="model_adoption" src={`${process.env.PUBLIC_URL}/img/model_adoption.png`} alt="Left Quote"/>
           </div>
         </div>
 
         <div className="white-space2"></div>
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p>Once the conceptual model is established, here are the steps that were followed to generate a questionnaire and a detailed report.</p>
           <img className="model_adoption" src={`${process.env.PUBLIC_URL}/img/model_questionary.png`} alt="Left Quote"/>
         </div>
 
         <div className="white-space2"></div>
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p className="title">Conclusion</p>  
           <p>I won't go into the details of the analysis that was produced; however, here are some important points. </p> 
           <p className='bullet'>Consumer attitude towards innovation has a strong influence on adoption. A consumer with a positive attitude will facilitate the adoption of innovation.</p>
@@ -142,7 +105,7 @@ export default function DigitalStrom() {
         </div>
 
         {/* Quotation_2 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -161,16 +124,16 @@ export default function DigitalStrom() {
         </div>
 
         {/* Additional text box */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
   
   {/* Animate this section */}
-  <div className="block" ref={(el) => blockRefs.current.push(el)}>
+  <div className="block">
     <p className="title">Make abstract concepts more concrete or perceptible to users</p>
     <p><strong>In the context of energy, tangibility refers to making the abstract concept of energy more concrete or perceptible to users.</strong> This might involve providing tangible representations or physical manifestations of energy, such as visualizations, interactive displays, or tangible objects that represent energy consumption or production. The goal is to help users better understand and engage with energy-related concepts by making them more tangible and accessible.</p>
   </div>
 
   {/* Animate this section separately */}
-  <div className="block" ref={(el) => blockRefs.current.push(el)}>
+  <div className="block">
     <p><strong>The research axes to make energy more tangible to users:</strong></p>
     <p>After some further research in collaboration with the product manager and some stakeholders, I was able to establish a list of problem statements suitable for the start of the design phase...</p>
     <img src={`${process.env.PUBLIC_URL}/img/axes.png`} alt="Google Play Icon" className="comment-axes" />
@@ -179,7 +142,7 @@ export default function DigitalStrom() {
 </div>
 
         {/* Quotation_3 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -198,7 +161,7 @@ export default function DigitalStrom() {
         </div>
 
         {/* Additional text box */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p className="title">The research axes to make energy more tangible to users:</p>
           <p>After some further research in collaboration with the product manager and some stakeholders, I was able to establish a list of problem statements suitable for the start of the design phase...</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/axes_2.png`} alt="Left Quote"/>
@@ -208,7 +171,7 @@ export default function DigitalStrom() {
         </div>
 
         {/* Quotation_4 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -225,13 +188,13 @@ export default function DigitalStrom() {
         </div>
 
         {/* Additional text box */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p>Sketching in design is like brainstorming with a pencil and paper. <strong>It's quick, flexible, and helps you explore ideas visually without getting bogged down by digital tools</strong>. You can sketch out different concepts, refine details on the fly, and easily share your ideas with others. It's not just about drawing—it's about sparking creativity, collaborating effectively, and ultimately, coming up with innovative solutions faster. Sketching early in the process allows you to iterate quickly, ensuring that everyone is on the same page before diving into more detailed designs. It's a powerful tool that enhances creativity, speeds up decision-making, and leads to better user experiences.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/sketches.png`} alt="Left Quote"/>
         </div>
 
         {/* Quotation_5 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -248,12 +211,12 @@ export default function DigitalStrom() {
         </div>
 
         {/* Additional text box */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p><strong>These detailed and polished versions provide a realistic representation of the final product</strong>, enabling thorough testing and feedback. This progression from sketches to high-fidelity prototypes ensures that our designs are both innovative and practical, ready for implementation.</p>
           
           {/* Ensure images also animate correctly */}
-          <img className="theme_anal block" ref={(el) => blockRefs.current.push(el)} src={`${process.env.PUBLIC_URL}/img/meters.png`} alt="Left Quote"/>
-          <img className="theme_anal block" ref={(el) => blockRefs.current.push(el)} src={`${process.env.PUBLIC_URL}/img/analysis.png`} alt="Left Quote"/>
+          <img className="theme_anal block" src={`${process.env.PUBLIC_URL}/img/meters.png`} alt="Left Quote"/>
+          <img className="theme_anal block" src={`${process.env.PUBLIC_URL}/img/analysis.png`} alt="Left Quote"/>
 
           <p>The high-fidelity screens are now ready, <strong>allowing us to move forward with usability testing and gather detailed feedback from users</strong>. With these polished prototypes, we can also begin collaborating with developers to ensure a smooth transition to the final product implementation.</p>
           <div className="white-space"></div>

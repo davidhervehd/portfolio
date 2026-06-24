@@ -5,7 +5,7 @@
   background-color: #5113a2;
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: var(--button-radius);
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -23,7 +23,7 @@
   background-color: #5113a2;
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: var(--button-radius);
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;

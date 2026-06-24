@@ -119,3 +119,33 @@
 .footer-item-menu .footer-menu-link {
   padding: 0;
 }
+
+@media (max-width: 768px) {
+  .footer-container {
+    min-height: auto;
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .footer-item {
+    width: 100%;
+    flex: none;
+  }
+
+  .footer-connect-item,
+  .footer-connect-link,
+  .footer-menu-link {
+    max-width: 100%;
+  }
+
+  .footer-item p.footer-bottom {
+    margin-top: 1.25rem;
+    line-height: 1.45;
+  }
+}

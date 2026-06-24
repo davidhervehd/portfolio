@@ -4,11 +4,21 @@
     box-sizing: border-box;
 }
 
+:root {
+    --button-radius: 9999px;
+}
+
 html, body {
     height: 100%;
     margin: 0;
     font-family: "Poppins";
     color: #333333;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --mobile-gutter: 20px;
+    }
 }
 
 #root {
@@ -41,6 +51,13 @@ footer {
     transform: translateX(300px); /* Start 300px to the right */
     opacity: 0; /* Start fully transparent */
     transition: transform 0.2s linear, opacity 0.2s linear; /* Faster transition for more reactive effect */
+}
+
+.case-study-page .block,
+.case-study-page .block2 {
+    transform: none;
+    opacity: 1;
+    transition: none;
 }
 
 @keyframes appear {

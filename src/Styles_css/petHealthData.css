@@ -169,6 +169,11 @@ footer {
     text-align: left;
 }
 
+.white-space {
+    background-color: white;
+    height: 50px;
+    width: 100%;
+}
 
 .block {
     opacity: 0; /* Start fully transparent */

@@ -10,6 +10,8 @@ const NAV_ITEMS = [
   { key: 'contact', label: 'Contact', to: '/contact' },
 ];
 
+const MOBILE_BREAKPOINT = 768;
+
 function getActiveKey(pathname, hash) {
   if (pathname === '/contact') return 'contact';
   if (pathname === '/about_me') return 'about';
@@ -26,10 +28,13 @@ export default function Navbar() {
   const [underlineStyle, setUnderlineStyle] = useState({ width: 0, left: 0, opacity: 0 });
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const activeKey = getActiveKey(location.pathname, location.hash);
 
   const updateUnderline = (key) => {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) return;
+
     const linkEl = linkRefs.current[key];
     const containerEl = navLinksRef.current;
     if (!linkEl || !containerEl) return;
@@ -55,6 +60,30 @@ export default function Navbar() {
   }, [activeKey]);
 
   useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
@@ -78,19 +107,42 @@ export default function Navbar() {
       window.history.replaceState(null, '', `${location.pathname}#case-studies`);
     }
     updateUnderline('case-studies');
+    setMobileMenuOpen(false);
   };
 
   const handleLinkClick = (item) => {
     updateUnderline(item.key);
+    setMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((open) => !open);
   };
 
   return (
-    <nav className={`nav ${isVisible ? 'visible' : 'hidden'}`}>
-      <Link to="/home" className="site-title">
+    <nav className={`nav ${isVisible ? 'visible' : 'hidden'}${mobileMenuOpen ? ' nav-mobile-open' : ''}`}>
+      <Link to="/home" className="site-title" onClick={() => setMobileMenuOpen(false)}>
         <span className="site-title-name">David Hervé</span>
         <span className="site-title-role">Senior Product Designer (UX/UI)</span>
       </Link>
-      <div className="nav-links" ref={navLinksRef}>
+
+      <button
+        type="button"
+        className={`nav-hamburger${mobileMenuOpen ? ' nav-hamburger-open' : ''}`}
+        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={mobileMenuOpen}
+        onClick={toggleMobileMenu}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <div
+        className={`nav-links${mobileMenuOpen ? ' nav-links-open' : ''}`}
+        ref={navLinksRef}
+        aria-hidden={!mobileMenuOpen}
+      >
         <ul>
           {NAV_ITEMS.map((item) => (
             <li key={item.key}>

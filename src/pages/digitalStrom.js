@@ -1,48 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Footer from '../Components/Footer';
 import BackButton from '../Components/BackButton'; // Import the BackButton component
 import '../Styles_css/digitalStrom.css';
 
 export default function DigitalStrom() {
-  // Create refs for the elements you want to animate
-  const blockRefs = useRef([]); // This will store all refs for blocks
-
-  useEffect(() => {
-    const handleScroll = () => {
-      blockRefs.current.forEach((ref) => {
-        if (ref) {
-          const rect = ref.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          
-          // Adjusted start and end points for earlier animation start
-          const start = windowHeight * 0.85; // Start 85% from the top (earlier)
-          const end = windowHeight * 0.35;   // End at 35% from the top
-
-          // Calculate the scroll progress (0 when the element starts appearing, 1 when fully in view by the end point)
-          let progress = 1 - (rect.top - end) / (start - end);
-          progress = Math.max(0, Math.min(1, progress)); // Ensure the progress is between 0 and 1
-
-          // Apply the scroll-based animation
-          ref.style.transform = `scale(${0.5 + progress * 0.5})`; // Scale from 0.5 to 1
-          ref.style.opacity = progress; // Fade in from 0 to 1
-        }
-      });
-    };
-
-    // Attach the scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Initial scroll check
-    handleScroll();
-
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []); // Empty dependency array means this effect runs once after mount
-
   return (
-    <div className="main-content">
+    <div className="main-content case-study-page">
       <header>
         <img
           src={`${process.env.PUBLIC_URL}/img/headerDigitalStrom.jpg`}
@@ -86,7 +49,7 @@ export default function DigitalStrom() {
         {/* Start scroll-driven animations from here */}
         <div className="view">
           {/* Quotation_1 */}
-          <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="quotation-box block">
             <hr className="quotation-line"/>
             <div className="quotation">
               <div className="quotation-mark-container top-container">
@@ -105,14 +68,14 @@ export default function DigitalStrom() {
           </div>
 
           {/* Additional text box */}
-          <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box block">
             <p className="title">The Methodical Journey through Thematic Analysis</p>
             <p>Based on the project constraints and schedule, I required a method that was accessible, meaning <strong>no need for equipment</strong>, transparent so I could document my analysis and <strong>showcase my process and decision-making</strong>, and something powerful that allows for a deep understanding and discovery of underlying meanings and insights. I opted for "thematic analysis" based on the methodology developed by Braun and Clarke.</p>
             <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/theme_analysis.png`} alt="Left Quote"/>
           </div>
 
           {/* Quotation_2 */}
-          <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="quotation-box block">
             <hr className="quotation-line"/>
             <div className="quotation">
               <div className="quotation-mark-container top-container">
@@ -131,14 +94,14 @@ export default function DigitalStrom() {
           </div>
 
           {/* Additional text box */}
-          <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box block">
             <p className="title">DigitalSTROM User Group - The Heartbeat of Brand Devotion</p>
             <p>The DigitalSTROM User Group goes beyond being a simple forum; it is a focus group of our most dedicated customers and prospects. Acknowledging its potential, we take this space seriously as a communication platform, using it to showcase our expertise, pinpoint shortcomings, and gather insights for potential product innovations. This immersive engagement helps establish DigitalSTROM as a reference in our sector.</p>
             <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/facebook_figures.png`} alt="Left Quote"/>
           </div>
 
           {/* Quotation_3 */}
-          <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="quotation-box block">
             <hr className="quotation-line"/>
             <div className="quotation">
               <div className="quotation-mark-container top-container">
@@ -157,12 +120,12 @@ export default function DigitalStrom() {
           </div>
 
           {/* Additional text box */}
-          <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box block">
             <p>Our second source of qualitative data emanates from the feedback left by users on Google Play and Apple Store. These platforms offer a treasure trove of insights into user opinions on our products, providing valuable fodder for the final stages of our thematic analysis.</p>
           </div>
 
           {/* Two columns with icons and text */}
-          <div className="two-column-section block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="two-column-section block">
             <div className="column">
               <img src={`${process.env.PUBLIC_URL}/img/google-play.png`} alt="Google Play Icon" className="column-icon" />
               <p>
@@ -178,13 +141,13 @@ export default function DigitalStrom() {
           </div>
 
           {/* Additional text box */}
-          <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box block">
             <p className="title">Standpoint on App Reviews: A Concrete Source for UX Enhancement</p>
             <p>These tangible examples of user comments provide a solid foundation for our analysis. They constitute a wealth of detailed data that must be navigated with care. The analysis should go beyond mere description, avoiding getting lost in the details. This sets the stage for the next chapter, where we will break down and organize this rich data, tagging quotations with appropriate codes to uncover significant themes.</p>
           </div>
 
           {/* Quotation_4 */}
-          <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="quotation-box block">
             <hr className="quotation-line"/>
             <div className="quotation">
               <div className="quotation-mark-container top-container">
@@ -203,12 +166,12 @@ export default function DigitalStrom() {
           </div>
 
           {/* Additional text box */}
-          <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box block">
             <p className="title">Encoding the qualitative data</p>
             <p>There’s no one way to conduct a thematic analysis. I've selected a method of analysis that I believed suited the type and volume of data I've collected. The method involves encoding the qualitative data (in our case, the comments). In this context, coding refers to the process of labeling segments of text with the appropriate codes.</p>
           </div>
 
-          <div className="additional-text-box2 block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box2 block">
             <p>Codes can be:<br />
             <strong>- Descriptive:</strong> They describe what the data is about<br />
             <strong>- Interpretive:</strong> They are an analytical reading of the data, adding the researcher's interpretive lens to it.</p>
@@ -216,14 +179,14 @@ export default function DigitalStrom() {
           </div>
 
           {/* Image case */}
-          <div className="additional-image-case block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-image-case block">
             <img src={`${process.env.PUBLIC_URL}/img/Comment.png`} alt="Google Play Icon" className="comment" />
           </div>
-          <img src={`${process.env.PUBLIC_URL}/img/fleche_bas.png`} alt="Google Play Icon" className="column-icon2 block" ref={(el) => blockRefs.current.push(el)} />
+          <img src={`${process.env.PUBLIC_URL}/img/fleche_bas.png`} alt="Google Play Icon" className="column-icon2 block" />
 
           {/* Two columns with titles and text */}
-          <div className="block" ref={(el) => blockRefs.current.push(el)}>
-            <div className="two-column-section block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="block">
+            <div className="two-column-section block">
               <div className="column">
                 <div className="column-title">Descriptive Code</div>
                 <p>
@@ -239,13 +202,13 @@ export default function DigitalStrom() {
                 </p>
               </div>
             </div>
-            <div className="additional-text-box2" ref={(el) => blockRefs.current.push(el)}>
+            <div className="additional-text-box2">
               <p>What is unique about thematic analysis is that it acknowledges that analysis happens at an intuitive level. It is through the process of immersion in data and considering connections and interconnections between codes, concepts and themes that an « aha » moment happens."</p>
             </div>
           </div>
 
           {/* Quotation_5 */}
-          <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="quotation-box block">
             <hr className="quotation-line"/>
             <div className="quotation">
               <div className="quotation-mark-container top-container">
@@ -262,20 +225,20 @@ export default function DigitalStrom() {
           </div>
 
           {/* Additional text boxes */}
-          <div className="additional-text-box2 block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box2 block">
             <p>After applying the method to <strong>over 100 comments</strong>, I meticulously reviewed the data to <strong>identify recurring themes</strong>, carefully examining each piece for patterns. Through iterative analysis, I uncovered four main themes and categorized them based on their <strong>occurrence percentage</strong>. I further investigated to pinpoint sub-themes related to these main themes. This iterative approach ensured the precision and clarity of the thematic structure, providing a foundational understanding for defining requirements and tasks needed in the UX/UI landscape.</p>
           </div>
-          <div className="additional-text-box2 block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box2 block">
             <p>For the sake of confidentiality in this example, I'm not going to provide any precise figures, but rather an example of themes and sub-themes that I've found, and how they have been organized and represented.</p>
           </div>
 
           {/* Image case */}
-          <div className="additional-image-case block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-image-case block">
             <img src={`${process.env.PUBLIC_URL}/img/Tableau_analyse.png`} alt="Tableau Analyse" className="comment" />
           </div>
 
           {/* Quotation_6 */}
-          <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="quotation-box block">
             <hr className="quotation-line"/>
             <div className="quotation">
               <div className="quotation-mark-container top-container">
@@ -292,7 +255,7 @@ export default function DigitalStrom() {
           </div>
 
           {/* Additional text box */}
-          <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+          <div className="additional-text-box block">
             <p className="title">Produce the report</p>
             <p>Now that we've compiled a detailed report on the most recurring themes and established a robust understanding of customer needs, we have a solid foundation to either define a <strong>list of problem statements or a set of requirements</strong>. This compilation will serve as the starting point to guide the remainder of our design efforts.</p>
             <p>Upon completing the compilation of our requirements list, it becomes essential to <strong>prioritize the tasks</strong> ahead. This process is conducted collaboratively with stakeholders. Once priorities are established, we obtain a clear list of requirement allowing us to commence the ideation phase by creating low-fidelity wireframes, but that’s another story :)</p>

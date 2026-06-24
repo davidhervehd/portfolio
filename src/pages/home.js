@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="hero">
+      <section className="hero hero-shell">
         <div className="hero-content">
           <Herosection scrollToRef={firstBlockRef} /> {/* Pass the ref as a prop */}
         </div>

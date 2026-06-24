@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTransform, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -6,8 +6,17 @@ import '../Styles_css/HomeContent.css';
 
 export default function Homecontent({ blockNumber, scrollY }) {
   const navigate = useNavigate();
-  // State to manage hover effect
   const [isHovered, setIsHovered] = useState(false);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const updateCanHover = () => setCanHover(mediaQuery.matches);
+
+    updateCanHover();
+    mediaQuery.addEventListener('change', updateCanHover);
+    return () => mediaQuery.removeEventListener('change', updateCanHover);
+  }, []);
 
   // Hooks for opacity and scale based on scroll position
   const opacity = useTransform(
@@ -80,11 +89,24 @@ export default function Homecontent({ blockNumber, scrollY }) {
     }
   };
 
+  const handleMouseEnter = () => {
+    if (canHover) setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (canHover) setIsHovered(false);
+  };
+
+  const handleTouchStart = () => {
+    setIsHovered(false);
+  };
+
   return (
     <motion.div
       className={`content-block${isHovered ? ' is-hovered' : ''}${isComingSoon ? ' is-coming-soon' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
       onClick={handleCardClick}
       style={{
         opacity,

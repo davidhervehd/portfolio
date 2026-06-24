@@ -23,15 +23,30 @@
   position: relative; /* Required for the coming soon overlay */
 }
 
-.content-block.is-hovered {
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.08),
-    0 20px 40px rgba(0, 0, 0, 0.12),
-    0 40px 64px rgba(0, 0, 0, 0.06);
-}
-
 .content-block:not(.is-coming-soon) {
   cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .content-block.is-hovered {
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.08),
+      0 20px 40px rgba(0, 0, 0, 0.12),
+      0 40px 64px rgba(0, 0, 0, 0.06);
+  }
+
+  .block-image-container img:hover {
+    object-position: 80% 50%;
+  }
+
+  .read-more-button:hover,
+  .content-block.is-hovered .read-more-button:not(:disabled) {
+    background-color: #FFC47F;
+  }
+
+  .block-image-container img.hovered {
+    object-position: 80% 50%;
+  }
 }
 
 .block-image-container {
@@ -46,10 +61,6 @@
   object-fit: cover;
   border-radius: 18px;
   transition: object-position 0.5s ease;
-}
-
-.block-image-container img:hover {
-  object-position: 80% 50%;
 }
 
 .top-right-text {
@@ -121,15 +132,10 @@ p.large-text {
   color: #ffffff;
   padding: 12px 22px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--button-radius);
   cursor: pointer;
   font-size: 20px;
   font-weight: 300;
-}
-
-.read-more-button:hover,
-.content-block.is-hovered .read-more-button:not(:disabled) {
-  background-color: #FFC47F; /* Change the background color on hover */
 }
 
 p.sub-title {
@@ -158,9 +164,95 @@ p.sub-title {
   pointer-events: none; /* Allow clicks to pass through the overlay */
 }
 
+@media (max-width: 768px) {
+  .home-content {
+    padding: 0.5rem 1.25rem 0;
+    box-sizing: border-box;
+  }
 
-.block-image-container img.hovered {
-  object-position: 80% 50%;
-  transition: object-position 0.5s ease;
+  .content-block {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    margin-bottom: 2rem;
+  }
+
+  .block-image-container {
+    width: 100%;
+    height: 200px;
+    flex-shrink: 0;
+  }
+
+  .block-image-container img {
+    border-radius: 18px 18px 0 0;
+  }
+
+  .text-and-button {
+    width: 100%;
+    height: auto;
+    padding: 1.25rem 1rem 1.5rem;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  .top-right-text {
+    text-align: left;
+    height: auto;
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .top-right-text p {
+    font-size: 1.65rem;
+    line-height: 1.15;
+  }
+
+  p.sub-title {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .bottom-left-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 0.75rem;
+  }
+
+  .left-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .large-text {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-right: 0;
+  }
+
+  p.large-text {
+    margin-left: 0;
+  }
+
+  .button-container {
+    padding-top: 0;
+    flex-shrink: 0;
+    align-items: flex-end;
+  }
+
+  .read-more-button {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    white-space: nowrap;
+  }
+
+  .coming-soon-overlay {
+    font-size: 1.35rem;
+  }
 }
 
