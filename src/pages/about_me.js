@@ -1,19 +1,19 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Footer from '../Components/Footer'; // Import the Footer component
 import Herosection_about from '../Components/Herosection_about'; // Import the Herosection_about component
+import AboutTestimonials from '../Components/AboutTestimonials';
 import '../Styles_css/aboutme.css';
 
 export default function AboutMe() {
   return (
-    <div>
+    <div className="about-page">
       {/* Hero section for the About Me page */}
       <Herosection_about />
       {/* New Block Section */}
       <section className="about-block block">
         <div className="about-block-content">
           <div className="about-image">
-            <img src={`${process.env.PUBLIC_URL}/img/pic_HD.png`} alt="About Me" />
+            <img src={`${process.env.PUBLIC_URL}/img/pic_HD.png`} alt="About Me" className="about-portrait" />
           </div>
           <div className="about-text">
             <h2>Designing with Passion and Purpose</h2>
@@ -30,7 +30,7 @@ export default function AboutMe() {
         <hr className="quotation-line"/>
         <div className="quotation">
           <div className="quotation-mark-container top-container">
-            <img src={`${process.env.PUBLIC_URL}/img/quot_left_blue.svg`} alt="Left Quote" className="quotation-mark top-quotation" />
+            <img src={`${process.env.PUBLIC_URL}/img/quot_left_about.svg`} alt="Left Quote" className="quotation-mark top-quotation" />
           </div>
           <div className="quotation-text">
             <em>A glimpse into my last role:<br /> 
@@ -39,7 +39,7 @@ export default function AboutMe() {
             </em>
           </div>
           <div className="quotation-mark-container bottom-container">
-            <img src={`${process.env.PUBLIC_URL}/img/quote_right_blue.svg`} alt="Right Quote" className="quotation-mark bottom-quotation" />
+            <img src={`${process.env.PUBLIC_URL}/img/quote_right_about.svg`} alt="Right Quote" className="quotation-mark bottom-quotation" />
           </div>
         </div>
         <hr className="quotation-line"/>
@@ -77,93 +77,7 @@ export default function AboutMe() {
       <div className="dashed-line"></div>
 
       {/* Testimonial Section */}
-      <div className='block'>
-        <div className="additional-text-box block">
-          <p className="title">. Testimonials</p>
-        </div>
-
-        <section className="testimonial-section">
-          {/* Testimonial 1 */}
-          <a href="https://www.linkedin.com/in/davidh4/" target="_blank" rel="noopener noreferrer" className="testimonial-link">
-            <div className="testimonial-block">
-              <div className="testimonial-header">
-                <div className="testimonial-image">
-                  <img src={`${process.env.PUBLIC_URL}/img/Gökhan.png`} alt="Testimonial Avatar" />
-                </div>
-                <div className="testimonial-info">
-                  <strong>Gökhan Sari</strong>
-                  <p className="job-description">Senior Software Engineer bei Allianz</p>
-                </div>
-              </div>
-              <p className="testimonial-quote">"I enjoyed working with David when I was a software engineer 
-              at Arpage and I have to say his approach to design and 
-              problem solving was simply exceptional. He’s really good 
-              at finding solutions to problems and making things look 
-              nice and user-friendly. He understands all technical things… 
-              More on Linked-in…"</p>
-            </div>
-          </a>
-
-          {/* Testimonial 2 */}
-          <a href="https://www.linkedin.com/in/davidh4/" target="_blank" rel="noopener noreferrer" className="testimonial-link">
-            <div className="testimonial-block">
-              <div className="testimonial-header">
-                <div className="testimonial-image">
-                  <img src={`${process.env.PUBLIC_URL}/img/Peixoto.png`} alt="Testimonial Avatar" />
-                </div>
-                <div className="testimonial-info">
-                  <strong>André Peixoto</strong>
-                  <p className="job-description">Android Engineer</p>
-                </div>
-              </div>
-              <p className="testimonial-quote">"Working alongside David, I’ve witnessed his unwavering 
-              commitment to factoring in technical constraints within 
-              his UX designs. His ability to ideate innovative solutions 
-              while accommodating these constraints is truly remarkable.
-              His achievements unequivocally showcase a holistic design 
-              approach…
-              More on Linked-in…"</p>
-            </div>
-          </a>
-
-          {/* Testimonial 3 */}
-          <a href="https://www.linkedin.com/in/davidh4/" target="_blank" rel="noopener noreferrer" className="testimonial-link">
-            <div className="testimonial-block">
-              <div className="testimonial-header">
-                <div className="testimonial-image">
-                  <img src={`${process.env.PUBLIC_URL}/img/Daniel.png`} alt="Testimonial Avatar" />
-                </div>
-                <div className="testimonial-info">
-                  <strong>Daniel Jack</strong>
-                  <p className="job-description">Consultant bei Löwenfels Partner</p>
-                </div>
-              </div>
-              <p className="testimonial-quote">"Als langjähriger Vorgesetzter habe ich David stets als top 
-              motivierten Mitarbeiter erlebt. David war als Fronten & 
-              UX/UI Engineering bei der Arpage tätig. Er hat stets mit 
-              Begeisterung und viel Kreativität seine Aufgaben auf 
-              höchstem Niveau umgesetzt... 
-              More on Linked-in…"</p>
-            </div>
-          </a>
-
-          {/* Testimonial 4 */}
-          <a href="https://www.linkedin.com/in/davidh4/" target="_blank" rel="noopener noreferrer" className="testimonial-link">
-            <div className="testimonial-block">
-              <div className="testimonial-header">
-                <div className="testimonial-image">
-                  <img src={`${process.env.PUBLIC_URL}/img/Emre.png`} alt="Testimonial Avatar" />
-                </div>
-                <div className="testimonial-info">
-                  <strong>Emre Avsar</strong>
-                  <p className="job-description">Senior IT Software Engineer by UBS</p>
-                </div>
-              </div>
-              <p className="testimonial-quote">"In terms of finding the matching puzzle piece, David is the professional you‘re looking for. One cannot ignore his senior skills in UX and UI design. He‘s just bringing nice designs which match perfectly in the application out of nowhere. I‘d love to work with him again...More on Linked-in"</p>
-            </div>
-          </a>
-        </section>
-      </div>
+      <AboutTestimonials />
 
       {/* Hobbies */}
       <div className="additional-text-box block">

@@ -6,6 +6,7 @@
 
 :root {
     --button-radius: 9999px;
+    --navbar-height: 90px;
 }
 
 html, body {
@@ -18,6 +19,7 @@ html, body {
 @media (max-width: 768px) {
     :root {
         --mobile-gutter: 20px;
+        --navbar-height: 64px;
     }
 }
 

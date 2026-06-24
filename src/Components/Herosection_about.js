@@ -16,7 +16,7 @@ export default function Herosection_about() {
             
             {/* Updated link to download the CV */}
             <a 
-              href={`${process.env.PUBLIC_URL}/CV_Hervé_David_2024_EN.pdf`} 
+              href={`${process.env.PUBLIC_URL}/img/CV_Hervé_David_2026_EN.pdf`} 
               className="btn-about-me_2" 
               download
             >

@@ -50,6 +50,7 @@
   .case-study-page .info-box-ds,
   .case-study-page .info-box-es,
   .case-study-page .info-box-phd,
+  .case-study-page .info-box-vp,
   .case-study-page .quotation-box,
   .case-study-page .additional-text-box,
   .case-study-page .additional-text-box2,
@@ -66,7 +67,8 @@
 
   .case-study-page .info-box-ds,
   .case-study-page .info-box-es,
-  .case-study-page .info-box-phd {
+  .case-study-page .info-box-phd,
+  .case-study-page .info-box-vp {
     margin-top: -3.125rem;
     margin-bottom: 1.25rem;
     padding: 1rem 1.25rem 1.25rem;
@@ -78,7 +80,8 @@
 
   .case-study-page .titleboxinfo-ds,
   .case-study-page .titleboxinfo-es,
-  .case-study-page .titleboxinfo-PHD {
+  .case-study-page .titleboxinfo-PHD,
+  .case-study-page .titleboxinfo-vp {
     font-size: 1.35rem;
     line-height: 1.45;
     overflow-wrap: break-word;
@@ -118,6 +121,7 @@
   .case-study-page p,
   .case-study-page .texteboxinfo-ds,
   .case-study-page .textboxinfo,
+  .case-study-page .textboxinfo-vp,
   .case-study-page .textBoxInfo-PHD,
   .case-study-page .textBoxInfo-ds,
   .case-study-page .role-content,
@@ -217,7 +221,8 @@
 
   .case-study-page .role-analysis-box,
   .case-study-page .role-analysis-box-es,
-  .case-study-page .role-analysis-box-phd {
+  .case-study-page .role-analysis-box-phd,
+  .case-study-page .role-analysis-box-vp {
     width: calc(100% + (var(--mobile-gutter) * 2));
     max-width: calc(100% + (var(--mobile-gutter) * 2));
     margin-left: calc(-1 * var(--mobile-gutter));

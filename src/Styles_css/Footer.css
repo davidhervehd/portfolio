@@ -59,8 +59,10 @@
 }
 
 .footer-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
   flex-shrink: 0;
   object-fit: contain;
   transition: filter 0.3s ease;
