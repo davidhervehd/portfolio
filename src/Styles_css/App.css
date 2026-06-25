@@ -7,6 +7,12 @@
 :root {
     --button-radius: 9999px;
     --navbar-height: 90px;
+    --color-primary: #5113A2;
+    --color-primary-hover: #6a29c0;
+    --interaction-duration: 0.2s;
+    --interaction-ease: cubic-bezier(0.34, 1.15, 0.64, 1);
+    --shadow-primary-rest: 0 2px 8px rgba(81, 19, 162, 0.18);
+    --shadow-primary-hover: 0 8px 22px rgba(81, 19, 162, 0.32);
 }
 
 html, body {
@@ -104,4 +110,46 @@ footer {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* Primary CTA micro-interactions */
+.btn-about-me,
+.btn-about-me_2,
+.read-more-button:not(:disabled),
+.back-button.visible,
+.next-button.visible,
+.cv-modal-option {
+  box-shadow: var(--shadow-primary-rest);
+  transition:
+    background-color var(--interaction-duration) var(--interaction-ease),
+    border-color var(--interaction-duration) var(--interaction-ease),
+    transform var(--interaction-duration) var(--interaction-ease),
+    box-shadow var(--interaction-duration) var(--interaction-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-about-me:hover,
+  .btn-about-me_2:hover,
+  .read-more-button:not(:disabled):hover,
+  .content-block.is-hovered .read-more-button:not(:disabled),
+  .back-button.visible:hover,
+  .next-button.visible:hover,
+  .cv-modal-option:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: var(--shadow-primary-hover);
+  }
+}
+
+.btn-about-me:active,
+.btn-about-me_2:active,
+.read-more-button:not(:disabled):active,
+.back-button.visible:active,
+.next-button.visible:active,
+.cv-modal-option:active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: scale(0.98);
+  box-shadow: var(--shadow-primary-rest);
 }

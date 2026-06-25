@@ -1,6 +1,9 @@
 import React from 'react';
+import { useCvModal } from '../context/CvModalContext';
 
 export default function Herosection_about() {
+  const { openCvModal } = useCvModal();
+
   return (
     <>
       {/* Existing Hero Section */}
@@ -13,15 +16,14 @@ export default function Herosection_about() {
             <h1 className='title_about'>So, you wanna learn more about me?</h1>
             <p className="subtext">Interested in learning more about me?</p>
             <p className="subtext">Just scroll down the page or download my CV. Thanks!</p>
-            
-            {/* Updated link to download the CV */}
-            <a 
-              href={`${process.env.PUBLIC_URL}/img/CV_Hervé_David_2026_EN.pdf`} 
-              className="btn-about-me_2" 
-              download
+
+            <button
+              type="button"
+              className="btn-about-me_2"
+              onClick={openCvModal}
             >
               Download my CV here
-            </a>
+            </button>
           </div>
           
           <div className="hero-image-container_about">

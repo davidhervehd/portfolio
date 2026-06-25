@@ -3,6 +3,7 @@ import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './Components/Navbar';
 import BackButton from './Components/BackButton';
+import { CvModalProvider } from './context/CvModalContext';
 
 import Home from './pages/home';
 import AboutMe from './pages/about_me';
@@ -22,6 +23,7 @@ function App() {
   const location = useLocation();
 
   return (
+    <CvModalProvider>
     <div className="essai">
       <Navbar />
       <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
@@ -38,6 +40,7 @@ function App() {
       </AnimatePresence>
       {location.pathname !== '/home' && <BackButton />}
     </div>
+    </CvModalProvider>
   );
 }
 

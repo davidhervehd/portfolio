@@ -125,28 +125,21 @@
 .btn-about-me {
   display: inline-block;
   padding: 12px 22px;
-  background-color: #F79D36; /* Button background color */
-  color: #fff; /* Button text color is white */
+  background-color: var(--color-primary);
+  color: #fff;
   text-decoration: none;
   font-weight: 300;
   border-radius: var(--button-radius);
-  margin-top: 50px; /* Add a 50px top margin to move the button down */
+  margin-top: 50px;
   font-size: 20px;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added transform transition */
-  outline: none; /* Remove default outline */
-  border: none; /* Remove any border */
-}
-
-.btn-about-me:hover {
-  background-color: #ffb662; /* New hover color */
-  transform: scale(1.05); /* Slightly increase size on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow on hover */
-}
-
-.btn-about-me:focus,
-.btn-about-me:active {
   outline: none;
   border: none;
+  cursor: pointer;
+}
+
+.btn-about-me:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 

@@ -105,21 +105,23 @@
   }
   
   .btn-about-me_2 {
-    background-color: #5113A2; /* Button color */
+    background-color: var(--color-primary);
     display: inline-block;
     padding: 12px 22px;
-    
-    color: #fff; /* Button text color is white */
+    border: none;
+    color: #fff;
     text-decoration: none;
     font-weight: 300;
-    border-radius: var(--button-radius); /* Rounded corners */
-    margin-top: 50px; /* Add a 50px top margin to move the button down */
+    font-family: inherit;
     font-size: 20px;
-    transition: background-color 0.5s ease;
+    cursor: pointer;
+    border-radius: var(--button-radius);
+    margin-top: 50px;
   }
-  
-  .btn-about-me_2:hover {
-    background-color: #6a29c0; /* Hover effect color */
+
+  .btn-about-me_2:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
   
   /* Scroll Down Button */

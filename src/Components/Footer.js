@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useCvModal } from '../context/CvModalContext';
 import '../Styles_css/Footer.css';
 
 const publicUrl = process.env.PUBLIC_URL;
 
 export default function Footer() {
   const location = useLocation();
+  const { openCvModal } = useCvModal();
 
   const handleCaseStudiesClick = (e) => {
     if (location.pathname === '/home') {
@@ -28,26 +30,21 @@ export default function Footer() {
       <div className="footer-item footer-item-center">
         <p className="footer-heading">Let&apos;s Connect</p>
 
-        <div className="footer-connect-item footer-cv-row">
-          <img src={`${publicUrl}/img/download.svg`} alt="" className="footer-icon" aria-hidden="true" />
-          <span className="footer-cv-label">Download CV</span>
-          <a
-            href={`${publicUrl}/img/CV_Hervé_David_2026_DE.pdf`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-cv-lang"
-          >
-            DE
-          </a>
-          <a
-            href={`${publicUrl}/img/CV_Hervé_David_2026_EN.pdf`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-cv-lang"
-          >
-            EN
-          </a>
-        </div>
+        <button
+          type="button"
+          className="footer-connect-link footer-link footer-cv-trigger"
+          onClick={openCvModal}
+        >
+          <span
+            className="footer-icon footer-icon-download"
+            style={{
+              WebkitMaskImage: `url(${publicUrl}/img/download.svg)`,
+              maskImage: `url(${publicUrl}/img/download.svg)`,
+            }}
+            aria-hidden="true"
+          />
+          Download CV
+        </button>
 
         <a
           href="https://www.linkedin.com/in/davidh4/"
@@ -55,17 +52,38 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="footer-connect-link footer-link"
         >
-          <img src={`${publicUrl}/img/logo_in.svg`} alt="" className="footer-icon" aria-hidden="true" />
+          <span
+            className="footer-icon footer-icon-linkedin"
+            style={{
+              WebkitMaskImage: `url(${publicUrl}/img/logo_in.svg)`,
+              maskImage: `url(${publicUrl}/img/logo_in.svg)`,
+            }}
+            aria-hidden="true"
+          />
           LinkedIn
         </a>
 
         <a href="mailto:davidhervehd@gmail.com" className="footer-connect-link footer-link">
-          <img src={`${publicUrl}/img/email.svg`} alt="" className="footer-icon" aria-hidden="true" />
+          <span
+            className="footer-icon footer-icon-email"
+            style={{
+              WebkitMaskImage: `url(${publicUrl}/img/email.svg)`,
+              maskImage: `url(${publicUrl}/img/email.svg)`,
+            }}
+            aria-hidden="true"
+          />
           davidhervehd@gmail.com
         </a>
 
         <a href="tel:0763205555" className="footer-connect-link footer-link">
-          <img src={`${publicUrl}/img/telephon.svg`} alt="" className="footer-icon" aria-hidden="true" />
+          <span
+            className="footer-icon footer-icon-phone"
+            style={{
+              WebkitMaskImage: `url(${publicUrl}/img/telephon.svg)`,
+              maskImage: `url(${publicUrl}/img/telephon.svg)`,
+            }}
+            aria-hidden="true"
+          />
           0763205555
         </a>
       </div>
