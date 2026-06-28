@@ -46,12 +46,46 @@ const PROVIDER_SCREENSHOTS = [
   },
 ];
 
+const CONVERSATIONAL_SCREENSHOTS = [
+  {
+    src: 'Conversational_1.png',
+    alt: 'Conversational AI flow — step 1 of 3',
+  },
+  {
+    src: 'Conversational_2.png',
+    alt: 'Conversational AI flow — step 2 of 3',
+  },
+  {
+    src: 'Conversational_3.png',
+    alt: 'Conversational AI flow — step 3 of 3',
+  },
+];
+
+const VISUAL_BUILDER_SCREENSHOTS = [
+  {
+    src: 'Visual Builder_1.png',
+    alt: 'Visual builder — step 1 of 4',
+  },
+  {
+    src: 'Visual Builder_2.png',
+    alt: 'Visual builder — step 2 of 4',
+  },
+  {
+    src: 'Visual Builder_3.png',
+    alt: 'Visual builder — step 3 of 4',
+  },
+  {
+    src: 'Visual Builder_4.png',
+    alt: 'Visual builder — step 4 of 4',
+  },
+];
+
 const LIGHTBOX_TRANSITION_MS = 140;
 
-const getWrappedLightboxIndex = (current, direction) => {
+const getWrappedLightboxIndex = (current, direction, total) => {
   const next = current + direction;
-  if (next < 0) return PROVIDER_SCREENSHOTS.length - 1;
-  if (next >= PROVIDER_SCREENSHOTS.length) return 0;
+  if (next < 0) return total - 1;
+  if (next >= total) return 0;
   return next;
 };
 
@@ -60,29 +94,32 @@ const prefersReducedMotion = () =>
   && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export default function Vertriebsportal() {
-  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [lightbox, setLightbox] = useState(null);
   const [imageAnimClass, setImageAnimClass] = useState('vp-lightbox-image--visible');
   const lightboxAnimatingRef = useRef(false);
 
   const closeLightbox = useCallback(() => {
     lightboxAnimatingRef.current = false;
     setImageAnimClass('vp-lightbox-image--visible');
-    setLightboxIndex(null);
+    setLightbox(null);
   }, []);
 
-  const openLightbox = useCallback((index) => {
+  const openLightbox = useCallback((images, index) => {
     lightboxAnimatingRef.current = false;
     setImageAnimClass('vp-lightbox-image--visible');
-    setLightboxIndex(index);
+    setLightbox({ images, index });
   }, []);
 
   const navigateLightbox = useCallback((direction) => {
     if (lightboxAnimatingRef.current) return;
 
     if (prefersReducedMotion()) {
-      setLightboxIndex((prev) => {
+      setLightbox((prev) => {
         if (prev === null) return null;
-        return getWrappedLightboxIndex(prev, direction);
+        return {
+          ...prev,
+          index: getWrappedLightboxIndex(prev.index, direction, prev.images.length),
+        };
       });
       return;
     }
@@ -99,9 +136,12 @@ export default function Vertriebsportal() {
     setImageAnimClass(exitClass);
 
     window.setTimeout(() => {
-      setLightboxIndex((prev) => {
+      setLightbox((prev) => {
         if (prev === null) return null;
-        return getWrappedLightboxIndex(prev, direction);
+        return {
+          ...prev,
+          index: getWrappedLightboxIndex(prev.index, direction, prev.images.length),
+        };
       });
       setImageAnimClass(enterClass);
 
@@ -117,7 +157,7 @@ export default function Vertriebsportal() {
   }, []);
 
   useEffect(() => {
-    if (lightboxIndex === null) return undefined;
+    if (lightbox === null) return undefined;
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
@@ -136,9 +176,40 @@ export default function Vertriebsportal() {
       document.body.style.overflow = '';
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [lightboxIndex, closeLightbox, navigateLightbox]);
+  }, [lightbox, closeLightbox, navigateLightbox]);
 
-  const lightboxPortal = lightboxIndex !== null
+  const renderScreenshotGallery = (screenshots, ariaLabel, galleryClassName = '') => (
+    <div className="provider-screenshots-section">
+      <div className="provider-screenshots-shell">
+        <div
+          className={`provider-screenshots ${galleryClassName}`.trim()}
+          role="list"
+          aria-label={ariaLabel}
+        >
+          {screenshots.map((screenshot, index) => (
+            <button
+              type="button"
+              key={screenshot.src}
+              className="provider-screenshot-btn"
+              role="listitem"
+              aria-label={`View ${screenshot.alt}`}
+              onClick={() => openLightbox(screenshots, index)}
+            >
+              <img
+                src={`${process.env.PUBLIC_URL}/img/${screenshot.src}`}
+                alt={screenshot.alt}
+                className="provider-screenshot-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const lightboxPortal = lightbox !== null
     ? createPortal(
       <div
         className="vp-lightbox-overlay"
@@ -148,7 +219,7 @@ export default function Vertriebsportal() {
         onClick={closeLightbox}
       >
         <p className="vp-lightbox-counter" aria-live="polite">
-          {lightboxIndex + 1} / {PROVIDER_SCREENSHOTS.length}
+          {lightbox.index + 1} / {lightbox.images.length}
         </p>
         <button
           type="button"
@@ -174,8 +245,8 @@ export default function Vertriebsportal() {
           onClick={(event) => event.stopPropagation()}
         >
           <img
-            src={`${process.env.PUBLIC_URL}/img/${PROVIDER_SCREENSHOTS[lightboxIndex].src}`}
-            alt={PROVIDER_SCREENSHOTS[lightboxIndex].alt}
+            src={`${process.env.PUBLIC_URL}/img/${lightbox.images[lightbox.index].src}`}
+            alt={lightbox.images[lightbox.index].alt}
             className={`vp-lightbox-image ${imageAnimClass}`}
           />
         </figure>
@@ -366,30 +437,7 @@ export default function Vertriebsportal() {
 
         <div className="additional-text-box block">
           <p className="vp-flow-title">Provider Creation Flow</p>
-          <div className="provider-screenshots-section">
-            <div className="provider-screenshots-shell">
-              <div className="provider-screenshots" role="list" aria-label="Provider creation flow screenshots">
-                {PROVIDER_SCREENSHOTS.map((screenshot, index) => (
-                  <button
-                    type="button"
-                    key={screenshot.src}
-                    className="provider-screenshot-btn"
-                    role="listitem"
-                    aria-label={`View ${screenshot.alt}`}
-                    onClick={() => openLightbox(index)}
-                  >
-                    <img
-                      src={`${process.env.PUBLIC_URL}/img/${screenshot.src}`}
-                      alt={screenshot.alt}
-                      className="provider-screenshot-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+          {renderScreenshotGallery(PROVIDER_SCREENSHOTS, 'Provider creation flow screenshots')}
           <p className="vp-screenshot-caption">
             The Super Administrator prepares the business context that powers every AI-generated service.
           </p>
@@ -408,6 +456,310 @@ export default function Vertriebsportal() {
           </p>
           <p>
             The richer the business knowledge, the better the generated services become.
+          </p>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line" />
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quot_left_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark top-quotation"
+              />
+            </div>
+            <div className="quotation-text">
+              <em>
+                Business knowledge becomes the training data behind every generated service.
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quote_right_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark bottom-quotation"
+              />
+            </div>
+          </div>
+          <hr className="quotation-line" />
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">AI-Assisted Service Creation</p>
+          <p>
+            Once the business knowledge has been established, business users no longer need to understand the underlying CPQ architecture.
+          </p>
+          <p>
+            Instead, they simply describe the service they want to sell.
+          </p>
+          <p>
+            The AI understands the company&apos;s vocabulary, pricing strategy and business rules, then progressively transforms the conversation into a structured service definition.
+          </p>
+          <p>
+            Rather than configuring hundreds of technical parameters, users interact using natural language.
+          </p>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line" />
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quot_left_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark top-quotation"
+              />
+            </div>
+            <div className="quotation-text vp-quotation-text--service-model">
+              <em>
+                Business users describe what they want to sell.
+                <br />
+                The platform translates it into a
+                <br />
+                structured service model.
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quote_right_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark bottom-quotation"
+              />
+            </div>
+          </div>
+          <hr className="quotation-line" />
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="vp-flow-title">Conversational AI Flow</p>
+          {renderScreenshotGallery(
+            CONVERSATIONAL_SCREENSHOTS,
+            'Conversational AI flow screenshots',
+            'provider-screenshots--three',
+          )}
+          <p className="vp-screenshot-caption">
+            The AI transforms natural conversations into structured service definitions.
+          </p>
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">From Conversation to Configuration</p>
+          <p>
+            The conversation is not simply a chatbot.
+          </p>
+          <p>
+            Every answer enriches the service model in real time.
+          </p>
+          <p>
+            Business requirements are progressively translated into customer inputs, pricing parameters, configuration rules and reusable service structures.
+          </p>
+          <p>
+            Users focus on describing their business rather than configuring software.
+          </p>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line" />
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quot_left_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark top-quotation"
+              />
+            </div>
+            <div className="quotation-text">
+              <em>
+                The conversation becomes the interface.
+                <br />
+                The complexity stays behind the scenes.
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quote_right_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark bottom-quotation"
+              />
+            </div>
+          </div>
+          <hr className="quotation-line" />
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">Advanced Service Editing</p>
+          <p>
+            While AI covers the majority of service creation scenarios, some users require additional flexibility.
+          </p>
+          <p>
+            Complex pricing strategies, customer-specific conditions and advanced offer structures still need precise control.
+          </p>
+          <p>
+            Instead of exposing the underlying CPQ engine, I designed a visual abstraction layer based on reusable building blocks.
+          </p>
+          <p>
+            Each building block represents a business concept rather than a technical configuration.
+          </p>
+          <p>
+            This allows advanced users to refine AI-generated services while maintaining a simple and understandable interface.
+          </p>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line" />
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quot_left_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark top-quotation"
+              />
+            </div>
+            <div className="quotation-text">
+              <em>
+                Advanced control should never require understanding the underlying CPQ architecture.
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quote_right_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark bottom-quotation"
+              />
+            </div>
+          </div>
+          <hr className="quotation-line" />
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="vp-flow-title">Visual Builder</p>
+          {renderScreenshotGallery(VISUAL_BUILDER_SCREENSHOTS, 'Visual builder screenshots')}
+          <p className="vp-screenshot-caption">
+            Business-oriented building blocks replace traditional CPQ configuration.
+          </p>
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">A Visual Abstraction Layer</p>
+          <p>
+            Instead of editing technical rules directly, users manipulate visual components representing familiar business concepts.
+          </p>
+          <p>
+            Customer inputs, pricing logic, conditions and offer variants can all be combined visually.
+          </p>
+          <p>
+            The platform automatically manages the underlying dependencies and relationships.
+          </p>
+          <p>
+            This preserves the power of the CPQ engine while dramatically reducing cognitive complexity.
+          </p>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line" />
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quot_left_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark top-quotation"
+              />
+            </div>
+            <div className="quotation-text">
+              <em>
+                Users build services through business concepts—not technical configuration.
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quote_right_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark bottom-quotation"
+              />
+            </div>
+          </div>
+          <hr className="quotation-line" />
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">Outcome</p>
+          <p>
+            The project introduced three complementary abstraction layers.
+          </p>
+          <p className="vp-outcome-layer-title">Business Knowledge</p>
+          <p>
+            The platform first learns how the company operates.
+          </p>
+          <p className="vp-outcome-layer-title">AI-Assisted Creation</p>
+          <p>
+            Business users create services through conversation rather than configuration.
+          </p>
+          <p className="vp-outcome-layer-title">Visual Building Blocks</p>
+          <p>
+            Advanced users refine generated services using business-oriented components.
+          </p>
+          <p className="vp-outcome-conclusion">
+            Together, these workflows transform a technically complex CPQ engine into an accessible product that supports different user profiles without sacrificing flexibility.
+          </p>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line" />
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quot_left_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark top-quotation"
+              />
+            </div>
+            <div className="quotation-text">
+              <em>
+                Complex systems do not require complex experiences.
+                <br />
+                They require the right abstraction layer.
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/img/quote_right_vp.svg`}
+                alt=""
+                aria-hidden="true"
+                className="quotation-mark bottom-quotation"
+              />
+            </div>
+          </div>
+          <hr className="quotation-line" />
+        </div>
+
+        <div className="additional-text-box block vp-reflection-section">
+          <p className="title">Reflection</p>
+          <p>
+            This project reinforced one of the most important principles of product design.
+          </p>
+          <p>
+            Powerful technology should <strong>adapt to people</strong>—not the other way around.
+          </p>
+          <p>
+            By separating business knowledge management, AI-assisted creation and advanced editing into dedicated user experiences, I designed a platform that makes enterprise CPQ accessible to administrators, sales teams and service providers alike.
+          </p>
+          <p>
+            The result is more than a service builder.
+          </p>
+          <p>
+            It is an AI-powered ecosystem that enables organizations to create, manage and commercialize services at scale while keeping technical complexity hidden behind intuitive user experiences.
           </p>
         </div>
 
