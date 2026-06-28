@@ -4,7 +4,7 @@ import { useTransform, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import '../Styles_css/HomeContent.css';
 
-export default function Homecontent({ blockNumber, scrollY }) {
+export default function Homecontent({ blockNumber, scrollY, displayIndex }) {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [canHover, setCanHover] = useState(false);
@@ -19,32 +19,36 @@ export default function Homecontent({ blockNumber, scrollY }) {
   }, []);
 
   // Hooks for opacity and scale based on scroll position
+  const scrollIndex = displayIndex ?? blockNumber;
+
   const opacity = useTransform(
     scrollY,
-    [(blockNumber - 0.5) * 400, (blockNumber + 0.5) * 400],
+    [(scrollIndex - 0.5) * 400, (scrollIndex + 0.5) * 400],
     [0, 1]
   );
 
   const scale = useTransform(
     scrollY,
-    [(blockNumber - 0.5) * 400, (blockNumber + 0.5) * 400],
+    [(scrollIndex - 0.5) * 400, (scrollIndex + 0.5) * 400],
     [0.03, 1]
   );
 
   // Content configuration based on block number
-  let topRightText, largeText, subTitle, linkTo, imageSrc, isComingSoon;
+  let topRightText, category, largeText, subTitle, linkTo, imageSrc, isComingSoon;
   switch (blockNumber) {
     case 1:
       topRightText = 'Vertriebsportal';
-      largeText = '.01';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.01';
       subTitle = 'Simplifying complex sales processes';
       linkTo = '/vertriebsportal';
       imageSrc = '/img/visualcase_quatico.jpg';
       isComingSoon = false;
       break;
     case 2:
-      topRightText = 'Digital Strom';
-      largeText = '.02';
+      topRightText = 'Smart Home';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.02';
       subTitle = 'Making smart home control intuitive';
       linkTo = '/digital_strom';
       imageSrc = '/img/visualcase1.jpg';
@@ -52,7 +56,8 @@ export default function Homecontent({ blockNumber, scrollY }) {
       break;
     case 3:
       topRightText = 'eSmart';
-      largeText = '.03';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.03';
       subTitle = 'Make the energy tangible';
       linkTo = '/esmart';
       imageSrc = '/img/visualcase2.jpg';
@@ -60,22 +65,26 @@ export default function Homecontent({ blockNumber, scrollY }) {
       break;
     case 4:
       topRightText = 'Pet Health Data';
-      largeText = '.04';
-      subTitle = 'Smarter pet health experience';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.04';
+      subTitle = 'Smarter pet health experiences';
       linkTo = '/pet_health_data';
       imageSrc = '/img/visualcase3.jpg';
       isComingSoon = false;
       break;
     case 5:
+      // Temporarily hidden from portfolio — re-enable in portfolioCaseStudies.js
       topRightText = 'Meine Impfungen';
-      largeText = '.05';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.05';
       subTitle = 'Simplifying vaccination management';
       linkTo = '/meine_impfungen';
       imageSrc = '/img/visualcase4.jpg';
-      isComingSoon = true; // Mark this block as "Coming Soon"
+      isComingSoon = true;
       break;
     default:
       topRightText = '';
+      category = '';
       largeText = '';
       subTitle = '';
       linkTo = '/';
@@ -135,6 +144,7 @@ export default function Homecontent({ blockNumber, scrollY }) {
       <div className="text-and-button">
         <div className="top-right-text">
           <p>{topRightText}</p>
+          {category ? <p className="card-category">{category}</p> : null}
           <p className="sub-title">{subTitle}</p>
         </div>
         <div className="bottom-left-content">
@@ -163,5 +173,6 @@ export default function Homecontent({ blockNumber, scrollY }) {
 
 Homecontent.propTypes = {
   blockNumber: PropTypes.number.isRequired,
-  scrollY: PropTypes.object.isRequired, // Assuming this is the scroll position from framer-motion
+  scrollY: PropTypes.object.isRequired,
+  displayIndex: PropTypes.number,
 };

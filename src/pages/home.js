@@ -1,12 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import Herosection from '../Components/Herosection';
 import Homecontent from '../Components/Homecontent';
-import Footer from '../Components/Footer'; // Import the Footer component
+import Footer from '../Components/Footer';
 import { useScroll } from 'framer-motion';
+import { getActiveCaseStudies } from '../config/portfolioCaseStudies';
 
 export default function Home() {
   const targetRef = useRef(null);
-  const firstBlockRef = useRef(null); // Add a ref for the first content block
+  const firstBlockRef = useRef(null);
   const { scrollY } = useScroll({
     target: targetRef,
     offset: [0, 0],
@@ -22,33 +23,38 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="home-page">
       <section className="hero hero-shell">
         <div className="hero-content">
-          <Herosection scrollToRef={firstBlockRef} /> {/* Pass the ref as a prop */}
+          <Herosection scrollToRef={firstBlockRef} />
         </div>
       </section>
 
-      <div ref={targetRef} id="case-studies" className="home-content">
-        {/* Animated Div for Block 1 */}
-        <div ref={firstBlockRef}> {/* Attach the ref to the first block */}
-          <Homecontent blockNumber={1} scrollY={scrollY} />
-        </div>
+      <div
+        ref={targetRef}
+        id="case-studies"
+        className="home-content"
+        style={{ '--case-study-count': getActiveCaseStudies().length }}
+      >
+        {getActiveCaseStudies().map((study, index) => (
+          <div
+            key={study.key}
+            ref={index === 0 ? firstBlockRef : undefined}
+          >
+            <Homecontent
+              blockNumber={study.homeBlock}
+              scrollY={scrollY}
+              displayIndex={index + 1}
+            />
+          </div>
+        ))}
 
-        {/* Animated Div for Block 2 */}
-        <Homecontent blockNumber={2} scrollY={scrollY} />
-
-        {/* Animated Div for Block 3 */}
-        <Homecontent blockNumber={3} scrollY={scrollY} />
-
-        {/* Animated Div for Block 4 */}
-        <Homecontent blockNumber={4} scrollY={scrollY} />
-
-        {/* Animated Div for Block 5 */}
-        <Homecontent blockNumber={5} scrollY={scrollY} />
+        {/*
+          Temporarily hidden — re-enable in src/config/portfolioCaseStudies.js
+          <Homecontent blockNumber={5} scrollY={scrollY} displayIndex={5} />  Meine Impfungen
+        */}
       </div>
 
-      {/* Include the Footer component at the end of the page */}
       <Footer />
     </div>
   );

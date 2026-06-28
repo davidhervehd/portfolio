@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../Components/Footer'; // Adjust the path according to your project structure
 import BackButton from '../Components/BackButton'; // Import the BackButton component
+import CaseStudyIntro from '../Components/CaseStudyIntro';
 import '../Styles_css/eSmart.css'; // Adjust the path according to your project structure
 
 export default function DigitalStrom() {
@@ -10,11 +11,16 @@ export default function DigitalStrom() {
         <img src={`${process.env.PUBLIC_URL}/img/visualcase2.jpg`} alt="Digital Strom Header PetHealthData" className="header-image" />
       </header>
       <div className="content">
-        <div className="info-box-es">
-          <p className="titleboxinfo-es">Empowering Energy Efficiency with eSMART</p>
+        <CaseStudyIntro
+          boxClassName="info-box-es"
+          projectName="eSmart"
+          projectSubtitle="Make the energy tangible"
+          headline="Empowering Energy Efficiency with eSMART"
+          headlineClassName="titleboxinfo-es"
+        >
           <p className="textboxinfo">eSMART technology is a system that integrates various sensors and monitoring devices <strong>to collect real-time data on environmental parameters such as temperature, humidity, air quality, light levels</strong>, and more.  This data can be used for various applications such as building automation or energy management.</p>
           <p className="textboxinfo">In my role for their new application, "EVO," I was assigned the responsibility of identifying and implementing solutions that would increase the adoption of the <strong>innovative energy solution</strong>.</p>
-        </div>
+        </CaseStudyIntro>
         <div className="role-analysis-box-es">
           <div className="role-content">
             <div className="role-title"><span className="bold-text">My role:</span>

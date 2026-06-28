@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { isActiveCaseStudyRoute } from '../config/portfolioCaseStudies';
 import '../Styles_css/Nav.css';
 import '../Styles_css/NavUnderline.css';
 
@@ -15,7 +16,7 @@ const MOBILE_BREAKPOINT = 768;
 function getActiveKey(pathname, hash) {
   if (pathname === '/contact') return 'contact';
   if (pathname === '/about_me') return 'about';
-  if (['/vertriebsportal', '/digital_strom', '/esmart', '/pet_health_data'].includes(pathname)) return 'case-studies';
+  if (isActiveCaseStudyRoute(pathname)) return 'case-studies';
   if (pathname === '/home' && hash === '#case-studies') return 'case-studies';
   if (pathname === '/home') return 'home';
   return 'home';

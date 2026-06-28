@@ -14,6 +14,7 @@ import PetHealthData from './pages/petHealthData';
 import Contact from './pages/contact';
 
 import './Styles_css/App.css';
+import './Styles_css/caseStudyIntro.css';
 import './Styles_css/caseStudyQuotes.css';
 import './Styles_css/caseStudyMobile.css';
 import './Styles_css/Nav.css';

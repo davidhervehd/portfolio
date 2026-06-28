@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Footer from '../Components/Footer';
 import BackButton from '../Components/BackButton';
+import CaseStudyIntro from '../Components/CaseStudyIntro';
 import '../Styles_css/vertriebsportal.css';
 
 const ECOSYSTEM_CARDS = [
@@ -276,8 +277,13 @@ export default function Vertriebsportal() {
         />
       </header>
       <div className="content">
-        <div className="info-box-vp">
-          <p className="titleboxinfo-vp">Transforming complex services into scalable digital offerings</p>
+        <CaseStudyIntro
+          boxClassName="info-box-vp"
+          projectName="Vertriebsportal"
+          projectSubtitle="Simplifying complex sales processes"
+          headline="Transforming complex services into scalable digital offerings"
+          headlineClassName="titleboxinfo-vp"
+        >
           <p className="textboxinfo-vp">
             Vertriebsportal is a CPQ SaaS platform designed to help service providers structure, sell and manage complex services online.
           </p>
@@ -287,7 +293,7 @@ export default function Vertriebsportal() {
           <p className="textboxinfo-vp">
             My role focused on designing the abstraction layers that bridge user intent and system architecture through AI-assisted creation flows and visual building blocks.
           </p>
-        </div>
+        </CaseStudyIntro>
 
         <div className="role-analysis-box-vp">
           <div className="role-content">

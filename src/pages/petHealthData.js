@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../Components/Footer'; // Assurez-vous que le chemin est correct
 import BackButton from '../Components/BackButton'; // Assurez-vous que le chemin est correct
+import CaseStudyIntro from '../Components/CaseStudyIntro';
 import '../Styles_css/petHealthData.css'; // Assurez-vous que le chemin est correct
 
 export default function PetHealthData() {
@@ -14,12 +15,17 @@ export default function PetHealthData() {
         />
       </header>
       <div className="content">
-        <div className="info-box-phd">
-          <p className="titleboxinfo-PHD">Pet Health Data - An Ambitious Project</p>
+        <CaseStudyIntro
+          boxClassName="info-box-phd"
+          projectName="Pet Health Data"
+          projectSubtitle="Smarter pet health experiences"
+          headline="Pet Health Data - An Ambitious Project"
+          headlineClassName="titleboxinfo-PHD"
+        >
           <p className="textBoxInfo-PHD">
             <strong>With over 2 million dogs and cats in Switzerland</strong>, the health of our beloved faithful friends is becoming increasingly important and is now part of a global public health system, as animals can also be carriers of viruses in the population. In this context, we were contacted by the SVK (Swiss Association of Small Animal Medicine) <strong>to establish a simple and suitable medical monitoring tool for all pet owners as well as veterinarians.</strong>
           </p>
-        </div>
+        </CaseStudyIntro>
         <div className="role-analysis-box-phd">
           <div className="role-content">
             <div className="role-title">

@@ -88,6 +88,24 @@
     word-wrap: break-word;
   }
 
+  .case-study-page .case-study-project-name {
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+
+  .case-study-page .case-study-project-header {
+    padding-top: 1.5rem;
+  }
+
+  .case-study-page .case-study-project-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .case-study-page .case-study-project-category {
+    font-size: 0.8125rem;
+  }
+
   .case-study-page .title,
   .case-study-page .column-title,
   .case-study-page .role-title,

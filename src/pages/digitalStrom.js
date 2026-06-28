@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../Components/Footer';
 import BackButton from '../Components/BackButton'; // Import the BackButton component
+import CaseStudyIntro from '../Components/CaseStudyIntro';
 import '../Styles_css/digitalStrom.css';
 
 export default function DigitalStrom() {
@@ -14,11 +15,16 @@ export default function DigitalStrom() {
         />
       </header>
       <div className="content">
-        <div className="info-box-ds">
-          <p className="titleboxinfo-ds">Enhancing UX through Comprehensive Feedback Analysis</p>
+        <CaseStudyIntro
+          boxClassName="info-box-ds"
+          projectName="Digital Strom"
+          projectSubtitle="Making smart home control intuitive"
+          headline="Enhancing UX through Comprehensive Feedback Analysis"
+          headlineClassName="titleboxinfo-ds"
+        >
           <p className="texteboxinfo-ds">DigitalSTROM is a Swiss-based company that specializes in smart home technology. They offer solutions for controlling and automating various aspects of home systems such as lighting, heating, security, and more. I was in charge of relaunching the mobile app for iOS and Android.</p>
           <p className="texteboxinfo-ds">One aspect of my role involved <strong>consolidating user requirements</strong> by leveraging the network platform to gather valuable feedback.</p>
-        </div>
+        </CaseStudyIntro>
         
         {/* My role */}
         <div className="role-analysis-box">

@@ -1,10 +1,22 @@
 /* Updated HomeContent.css */
 
+.home-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
 .home-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  flex: 1;
+  /* 400px card + 50px gap; keeps section height proportional to visible cards */
+  min-height: calc((var(--case-study-count, 4) * 450px) + 4rem);
+  padding-bottom: 4rem;
+  box-sizing: border-box;
 }
 
 .content-block {
@@ -146,6 +158,19 @@ p.sub-title {
   margin-top: 12px;
 }
 
+p.card-category {
+  font-size: 14px;
+  font-weight: 500;
+  color: #888888;
+  margin: 10px 0 0;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.top-right-text:has(.card-category) .sub-title {
+  margin-top: 8px;
+}
+
 /* Additional styles for Coming Soon overlay */
 .coming-soon-overlay {
   position: absolute;
@@ -166,8 +191,9 @@ p.sub-title {
 
 @media (max-width: 768px) {
   .home-content {
-    padding: 0.5rem 1.25rem 0;
+    padding: 0.5rem 1.25rem 3rem;
     box-sizing: border-box;
+    min-height: calc((var(--case-study-count, 4) * 22rem) + 3rem);
   }
 
   .content-block {
@@ -211,6 +237,15 @@ p.sub-title {
     font-size: 0.95rem;
     margin-top: 0.5rem;
     line-height: 1.35;
+  }
+
+  p.card-category {
+    font-size: 0.8125rem;
+    margin-top: 0.35rem;
+  }
+
+  .top-right-text:has(.card-category) .sub-title {
+    margin-top: 0.35rem;
   }
 
   .bottom-left-content {
