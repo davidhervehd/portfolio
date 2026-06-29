@@ -636,10 +636,11 @@ footer {
 }
 
 .vp-lightbox-counter {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 10002;
     margin: 0;
     padding: 6px 14px;
     border-radius: 999px;
