@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { getActiveCaseStudyRoutes } from '../config/portfolioCaseStudies';
 import '../Styles_css/BackButton.css';
 
 function BackButton() {
@@ -13,15 +14,8 @@ function BackButton() {
   };
 
   const handleNextClick = () => {
-    // Determine the next route based on the current path
     const currentPath = location.pathname;
-
-    const routes = [
-      '/digital_strom',
-      '/esmart',
-      '/pet_health_data',
-      // '/meine_impfungen', // This route is excluded
-    ];
+    const routes = getActiveCaseStudyRoutes();
 
     const currentIndex = routes.indexOf(currentPath);
     const nextRoute = currentIndex === -1 || currentIndex === routes.length - 1

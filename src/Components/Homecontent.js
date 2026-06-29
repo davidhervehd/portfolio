@@ -1,68 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTransform, motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../Styles_css/HomeContent.css';
 
-export default function Homecontent({ blockNumber, scrollY }) {
-  // State to manage hover effect
+export default function Homecontent({ blockNumber, scrollY, displayIndex }) {
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const updateCanHover = () => setCanHover(mediaQuery.matches);
+
+    updateCanHover();
+    mediaQuery.addEventListener('change', updateCanHover);
+    return () => mediaQuery.removeEventListener('change', updateCanHover);
+  }, []);
 
   // Hooks for opacity and scale based on scroll position
+  const scrollIndex = displayIndex ?? blockNumber;
+
   const opacity = useTransform(
     scrollY,
-    [(blockNumber - 0.5) * 400, (blockNumber + 0.5) * 400],
+    [(scrollIndex - 0.5) * 400, (scrollIndex + 0.5) * 400],
     [0, 1]
   );
 
   const scale = useTransform(
     scrollY,
-    [(blockNumber - 0.5) * 400, (blockNumber + 0.5) * 400],
+    [(scrollIndex - 0.5) * 400, (scrollIndex + 0.5) * 400],
     [0.03, 1]
   );
 
   // Content configuration based on block number
-  let topRightText, largeText, subTitle, linkTo, isComingSoon;
+  let topRightText, category, largeText, subTitle, linkTo, imageSrc, isComingSoon;
   switch (blockNumber) {
     case 1:
-      topRightText = 'Digital Strom';
-      largeText = '.01';
-      subTitle = 'Thematic Analysis';
-      linkTo = '/digital_strom';
+      topRightText = 'Vertriebsportal';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.01';
+      subTitle = 'Simplifying complex sales processes';
+      linkTo = '/vertriebsportal';
+      imageSrc = '/img/visualcase_quatico.jpg';
       isComingSoon = false;
       break;
     case 2:
-      topRightText = 'eSmart';
-      largeText = '.02';
-      subTitle = 'Make the energy tangible';
-      linkTo = '/esmart';
+      topRightText = 'Smart Home';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.02';
+      subTitle = 'Making smart home control intuitive';
+      linkTo = '/digital_strom';
+      imageSrc = '/img/visualcase1.jpg';
       isComingSoon = false;
       break;
     case 3:
-      topRightText = 'Pet Health Data';
-      largeText = '.03';
-      subTitle = 'Design Thinking methodology';
-      linkTo = '/pet_health_data';
+      topRightText = 'eSmart';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.03';
+      subTitle = 'Make the energy tangible';
+      linkTo = '/esmart';
+      imageSrc = '/img/visualcase2.jpg';
       isComingSoon = false;
       break;
     case 4:
+      topRightText = 'Pet Health Data';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.04';
+      subTitle = 'Smarter pet health experiences';
+      linkTo = '/pet_health_data';
+      imageSrc = '/img/visualcase3.jpg';
+      isComingSoon = false;
+      break;
+    case 5:
+      // Temporarily hidden from portfolio — re-enable in portfolioCaseStudies.js
       topRightText = 'Meine Impfungen';
-      largeText = '.04';
-      subTitle = 'Customer journey Map';
+      category = '';
+      largeText = displayIndex != null ? `.0${displayIndex}` : '.05';
+      subTitle = 'Simplifying vaccination management';
       linkTo = '/meine_impfungen';
-      isComingSoon = true; // Mark this block as "Coming Soon"
+      imageSrc = '/img/visualcase4.jpg';
+      isComingSoon = true;
       break;
     default:
       topRightText = '';
+      category = '';
       largeText = '';
       subTitle = '';
       linkTo = '/';
+      imageSrc = '';
       isComingSoon = false;
   }
 
+  const handleCardClick = () => {
+    if (!isComingSoon) {
+      navigate(linkTo);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    if (canHover) setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (canHover) setIsHovered(false);
+  };
+
+  const handleTouchStart = () => {
+    setIsHovered(false);
+  };
+
   return (
     <motion.div
-      className="content-block"
+      className={`content-block${isHovered ? ' is-hovered' : ''}${isComingSoon ? ' is-coming-soon' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onClick={handleCardClick}
       style={{
         opacity,
         scale,
@@ -80,7 +134,7 @@ export default function Homecontent({ blockNumber, scrollY }) {
       {/* Image Container */}
       <div className="block-image-container">
         <img
-          src={`${process.env.PUBLIC_URL}/img/visualcase${blockNumber}.jpg`}
+          src={`${process.env.PUBLIC_URL}${imageSrc}`}
           alt={`Block ${blockNumber}`}
           className={isHovered ? 'hovered' : ''}
         />
@@ -90,6 +144,7 @@ export default function Homecontent({ blockNumber, scrollY }) {
       <div className="text-and-button">
         <div className="top-right-text">
           <p>{topRightText}</p>
+          {category ? <p className="card-category">{category}</p> : null}
           <p className="sub-title">{subTitle}</p>
         </div>
         <div className="bottom-left-content">
@@ -101,20 +156,13 @@ export default function Homecontent({ blockNumber, scrollY }) {
               <button
                 className="read-more-button"
                 disabled
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
               >
                 Read More
               </button>
             ) : (
-              <Link
-                to={linkTo}
-                className="read-more-button"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
+              <span className="read-more-button">
                 Read More
-              </Link>
+              </span>
             )}
           </div>
         </div>
@@ -125,5 +173,6 @@ export default function Homecontent({ blockNumber, scrollY }) {
 
 Homecontent.propTypes = {
   blockNumber: PropTypes.number.isRequired,
-  scrollY: PropTypes.object.isRequired, // Assuming this is the scroll position from framer-motion
+  scrollY: PropTypes.object.isRequired,
+  displayIndex: PropTypes.number,
 };

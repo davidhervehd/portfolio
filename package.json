@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "/Portfolio_HD",
+  "homepage": "https://davidhervehd.github.io/portfolio",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",

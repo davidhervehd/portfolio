@@ -18,14 +18,16 @@
   
   /* Additional styles for Hero section and other elements */
   .hero_about {
-    background-color: #ECB2CA; /* Background color for the hero section */
-    padding: 50px 0; /* Add some padding to the top and bottom */
+    background-color: #ECB2CA;
+    box-sizing: border-box;
+    position: relative;
+    min-height: 100vh;
+    padding: var(--navbar-height) 15px 0;
     display: flex;
-    justify-content: center; /* Center content horizontally */
+    justify-content: center;
     align-items: center;
-    margin-bottom: 3%;
-    min-height: 80vh; /* Adjusted to min-height to prevent fixed height issues */
-    width: 100%; /* Ensure full width of the hero section */
+    margin-bottom: 0;
+    width: 100%;
   }
   
   .hero-content_about {
@@ -36,6 +38,7 @@
     width: 100%; /* Allow it to scale within its max-width */
     margin: 0 auto; /* Center the content horizontally */
     padding: 0 15px; /* Add some spacing from the edges */
+    transform: translateY(-40px);
   }
   
   .hero-text_about {
@@ -72,14 +75,12 @@
     text-align: center;
     color: #5113A2;
     font-size: 18px;
-    margin-bottom: 20px;
     position: relative;
-    width: max-content; 
-    left: 37px; /* Center alignment adjustment */
-    margin-top: 0px;
+    width: max-content;
+    left: 37px;
+    margin-top: 0;
     margin-right: auto;
-    margin-bottom: 0px;
-
+    margin-bottom: 28px;
   }
   
   .welcome-text-h2_about {
@@ -99,74 +100,125 @@
   
   .title_about {
     font-size: 2.5em;
-    margin: 10px 0; /* Add some margin for spacing */
+    margin: 0 0 28px;
+  }
+
+  .about-page .hero-text_about .subtext {
+    max-width: 38ch;
+    margin: 0;
+    line-height: 1.45;
   }
   
   .btn-about-me_2 {
-    background-color: #5113A2; /* Button color */
+    background-color: var(--color-primary);
     display: inline-block;
     padding: 12px 22px;
-    
-    color: #fff; /* Button text color is white */
+    border: none;
+    color: #fff;
     text-decoration: none;
     font-weight: 300;
-    border-radius: 5px; /* Rounded corners */
-    margin-top: 50px; /* Add a 50px top margin to move the button down */
+    font-family: inherit;
     font-size: 20px;
-    transition: background-color 0.5s ease;
+    cursor: pointer;
+    border-radius: var(--button-radius);
+    margin-top: 56px;
   }
-  
-  .btn-about-me_2:hover {
-    background-color: #6a29c0; /* Hover effect color */
+
+  .btn-about-me_2:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
   
   /* Scroll Down Button */
-  .wrapper2 {
-    height: 100vh;
+  .hero_about .wrapper2 {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    right: 0;
+    height: auto;
     text-align: center;
+    pointer-events: none;
+  }
+
+  .hero_about .wrapper2 .scroll_down {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 0 auto;
+    pointer-events: auto;
   }
   
 
   .about-block {
-    background-color: #5113A2; /* Background color of the block */
-    padding: 40px; /* Padding for the block */
+    background-color: #fff;
+    padding: 56px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px auto; /* Margin to center the block and add space around */
-    max-width: 1080px; /* Maximum width for the block */
-    border-radius: 10px; /* Rounded corners */
+    margin: 48px auto 72px;
+    max-width: 1080px;
+    border-radius: 24px;
+    box-shadow:
+      0 4px 24px rgba(81, 19, 162, 0.07),
+      0 1px 6px rgba(0, 0, 0, 0.04);
   }
   
   .about-block-content {
     display: flex;
-    align-items: center;
-    width: 100%; /* Full width for internal content */
+    align-items: flex-start;
+    width: 100%;
   }
   
   .about-image {
-    flex: 0 0 20%; /* Reduce the image width to 20% of the block */
-    padding-right: 40px; /* Increase space between image and text */
+    flex: 0 0 auto;
+    padding-right: 48px;
   }
   
   .about-image img {
-    width: 100%; /* Image should fill its container */
-    border-radius: 10px; /* Rounded corners for the image */
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .about-page .about-block .about-image img.about-portrait {
+    width: 170px;
+    max-width: 170px;
+    min-width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
   }
   
   .about-text {
-    flex: 1; /* Take up the remaining space for the text */
-    color: white; /* Text color */
+    flex: 1;
+    color: #3B247C;
   }
   
   .about-text h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 24px;
+    line-height: 1.25;
   }
   
   .about-text p {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
+    margin: 0 0 26px;
+  }
+
+  .about-text p + p {
+    margin-top: 0;
+  }
+
+  .about-text strong {
+    font-weight: 700;
+  }
+
+  .about-text p:last-child {
+    margin-bottom: 0;
   }
   
 
@@ -180,69 +232,1096 @@
   }
 
 
-/* Styling for the testimonial section */
-.testimonial-section {
-  display: grid; /* Use grid layout */
-  grid-template-columns: repeat(2, 1fr); /* Two columns layout */
-  gap: 20px; /* Spacing between blocks */
-  padding: 40px; /* Padding around the section */
-  margin: 40px auto; /* Center the section horizontally */
-  max-width: 1080px; /* Max width for the section */
+/* Testimonials — horizontal carousel (desktop default; mobile overrides in @media below) */
+.about-page .testimonial-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 40px auto;
+  padding: 0 0 32px;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
-.testimonial-link {
-  text-decoration: none;
+.about-page .testimonial-carousel-shell {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.about-page .testimonial-carousel-fade {
+  display: none;
+}
+
+.about-page .testimonial-carousel-viewport {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 40px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  box-sizing: border-box;
+  cursor: grab;
+  user-select: none;
+}
+
+.about-page .testimonial-carousel-viewport.is-dragging,
+.about-page .testimonial-carousel-viewport.is-dragging .testimonial-card,
+.about-page .testimonial-carousel-viewport.is-dragging .testimonial-block {
+  cursor: grabbing;
+}
+
+.about-page .testimonial-carousel-viewport.is-dragging {
+  scroll-snap-type: none;
+}
+
+.about-page .testimonial-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.about-page .testimonial-carousel-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  padding: 12px 40px 4px;
+  box-sizing: border-box;
+}
+
+.about-page .testimonial-slide {
+  flex: 0 0 460px;
+  width: 460px;
+  max-width: 460px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+}
+
+.about-page .testimonial-card {
+  display: block;
+  height: 100%;
+  color: inherit;
+  cursor: grab;
+}
+
+.about-page .testimonial-block {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow:
+    0 4px 24px rgba(81, 19, 162, 0.07),
+    0 1px 6px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.about-page .testimonial-block:hover {
+  box-shadow:
+    0 6px 28px rgba(81, 19, 162, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.about-page .testimonial-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0;
+}
+
+.about-page .testimonial-image {
+  margin-right: 0;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.about-page .testimonial-image img {
+  width: 72px;
+  max-width: 72px;
+  min-width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-page .testimonial-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
   color: inherit;
 }
 
-.testimonial-block {
-  background-color: #5113A2; /* Background color of the block */
-  padding: 20px;
-  border-radius: 8px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and transform */
+.about-page .testimonial-info strong {
+  font-size: 1.05em;
+  margin-bottom: 4px;
+  display: block;
+  color: #5113A2;
 }
 
-.testimonial-block:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow effect on hover */
-  transform: translateY(-5px); /* Slight lift effect on hover */
-}
-
-.testimonial-header {
-  display: flex;
-  align-items: center; /* Align items vertically in the center */
-  margin-bottom: 10px; /* Space between header and quote */
-}
-
-.testimonial-image {
-  margin-right: 15px; /* Space between image and text */
-}
-
-.testimonial-image img {
-  width: 90px; /* Fixed width for the image */
-  height: 90px; /* Fixed height for the image */
-  border-radius: 50%; /* Make the image circular */
-}
-
-.testimonial-info {
-  display: flex;
-  flex-direction: column; /* Stack name and job description */
-  color: white;
-}
-
-.testimonial-info strong {
-  font-size: 1.1em;
-  margin-bottom: 5px;
-}
-
-.job-description {
+.about-page .job-description {
   font-size: 0.9em;
-  color: #ffffff; /* Lighter text color for job description */
-  margin-top: 0px;
+  color: #6b6b6b;
+  margin: 0;
 }
 
-.testimonial-quote {
+.about-page .testimonial-quote {
   font-size: 0.9em;
   line-height: 1.5;
-  color: white; /* Text color */
-  margin-top: 2px;
+  color: #333333;
+  margin-top: 14px;
+  text-align: left;
+}
+
+.about-page .testimonial-carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 0 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-page .testimonial-carousel-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(81, 19, 162, 0.22);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.about-page .testimonial-carousel-dot--active {
+  background-color: #5113A2;
+  transform: scale(1.2);
+}
+
+.about-page .testimonial-block,
+.about-page .testimonial-info,
+.about-page .testimonial-quote {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@media (min-width: 769px) {
+  .about-page .testimonial-section {
+    overflow: visible;
+    padding-bottom: 40px;
+  }
+
+  .about-page .testimonial-carousel-shell {
+    position: relative;
+    overflow: visible;
+    padding: 12px 0;
+  }
+
+  .about-page .testimonial-carousel-viewport {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-padding-inline: 72px;
+    padding-block: 32px;
+  }
+
+  .about-page .testimonial-carousel-track {
+    padding: 12px 72px 4px;
+  }
+
+  .about-page .testimonial-slide {
+    margin-block: 0;
+  }
+
+  .about-page .testimonial-card {
+    display: block;
+    padding: 6px 8px;
+    margin: -6px -8px;
+  }
+
+  .about-page .testimonial-carousel-fade {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .about-page .testimonial-carousel-fade--left {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.45) 28%,
+      rgba(255, 255, 255, 0.12) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .about-page .testimonial-carousel-fade--right {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.45) 28%,
+      rgba(255, 255, 255, 0.12) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
+.about-page .block,
+.about-page .block2 {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.about-page .about-expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 24px;
+  max-width: 960px;
+  margin: 24px auto 0;
+}
+
+.about-page .about-expertise-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  padding: 48px 40px;
+  border: none;
+  border-radius: 24px;
+  background-color: #fff;
+  box-sizing: border-box;
+  text-align: left;
+  box-shadow:
+    0 4px 24px rgba(81, 19, 162, 0.07),
+    0 1px 6px rgba(0, 0, 0, 0.04);
+}
+
+.about-page .about-expertise-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 38px;
+  border-radius: 50%;
+  background-color: #5113A2;
+  flex-shrink: 0;
+}
+
+.about-page .about-expertise-icon img {
+  width: 27px;
+  height: 27px;
+  display: block;
+  object-fit: contain;
+}
+
+.about-page .about-expertise-card-title {
+  margin: 0 0 16px;
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: inherit;
+  text-align: left;
+}
+
+.about-page .about-expertise-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  text-align: left;
+}
+
+.about-page .about-expertise-list li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.about-page .about-expertise-list li:last-child {
+  margin-bottom: 0;
+}
+
+.about-page .about-expertise-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #5113A2;
+}
+
+.about-page .about-software-skills-block {
+  margin-top: 56px;
+  padding-top: 0;
+}
+
+.about-page .about-software-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.about-page .about-software-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background-color: #F3EEFF;
+  color: #5113A2;
+  border: none;
+  font-size: inherit;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.about-page .about-section-separator {
+  width: 100%;
+  max-width: 1000px;
+  height: 0;
+  border: 0;
+  border-top: 1px solid #d3d3d3;
+  margin: 40px auto 20px;
+  box-sizing: border-box;
+}
+
+.about-page .about-section-separator--before-testimonials {
+  margin-top: 90px;
+}
+
+.about-page .about-beyond-design-wrapper .about-hobbies-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 12px auto 0;
+  padding: 0 0 32px;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.about-page .about-hobbies-carousel-shell {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.about-page .about-hobbies-carousel-fade {
+  display: none;
+}
+
+.about-page .about-hobbies-carousel-viewport {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 40px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  box-sizing: border-box;
+  cursor: grab;
+  user-select: none;
+}
+
+.about-page .about-hobbies-carousel-viewport.is-dragging,
+.about-page .about-hobbies-carousel-viewport.is-dragging .about-hobbies-card,
+.about-page .about-hobbies-carousel-viewport.is-dragging .about-hobby-card {
+  cursor: grabbing;
+}
+
+.about-page .about-hobbies-carousel-viewport.is-dragging {
+  scroll-snap-type: none;
+}
+
+.about-page .about-hobbies-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.about-page .about-hobbies-carousel-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding: 12px 40px 4px;
+  box-sizing: border-box;
+}
+
+.about-page .about-hobbies-slide {
+  flex: 0 0 240px;
+  width: 240px;
+  max-width: 240px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+}
+
+.about-page .about-hobbies-card {
+  display: block;
+  height: 100%;
+  cursor: grab;
+}
+
+.about-page .about-hobby-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 24px 20px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  box-shadow:
+    0 4px 24px rgba(81, 19, 162, 0.07),
+    0 1px 6px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-page .about-hobbies-card:hover .about-hobby-card {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 32px rgba(81, 19, 162, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.about-page .about-hobby-card-title {
+  margin: 0 0 14px;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #3B247C;
+}
+
+.about-page .about-hobby-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 64px;
+  margin-bottom: 14px;
+}
+
+.about-page .about-hobby-card-icon img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+}
+
+.about-page .about-hobby-card-description {
+  margin: 0;
+  font-size: 0.92em;
+  line-height: 1.45;
+  color: #6b6b6b;
+}
+
+.about-page .about-hobbies-carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 0 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-page .about-hobbies-carousel-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(81, 19, 162, 0.22);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.about-page .about-hobbies-carousel-dot--active {
+  background-color: #5113A2;
+  transform: scale(1.2);
+}
+
+.about-page .about-hobby-card,
+.about-page .about-hobby-card-description {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@media (min-width: 769px) {
+  .about-page .about-hobbies-section {
+    overflow: visible;
+    padding-bottom: 40px;
+  }
+
+  .about-page .about-hobbies-carousel-shell {
+    position: relative;
+    overflow: visible;
+    padding: 12px 0;
+  }
+
+  .about-page .about-hobbies-carousel-viewport {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-padding-inline: 72px;
+    padding-block: 16px;
+  }
+
+  .about-page .about-hobbies-carousel-track {
+    padding: 12px 72px 4px;
+  }
+
+  .about-page .about-hobbies-card {
+    display: block;
+    padding: 4px 6px;
+    margin: -4px -6px;
+  }
+
+  .about-page .about-hobbies-carousel-fade {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .about-page .about-hobbies-carousel-fade--left {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.45) 28%,
+      rgba(255, 255, 255, 0.12) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .about-page .about-hobbies-carousel-fade--right {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.45) 28%,
+      rgba(255, 255, 255, 0.12) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
+.about-page .about-testimonials-wrapper .testimonial-section {
+  margin-top: 12px;
+}
+
+.about-page .quotation-box {
+  background-color: white;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.about-page .quotation {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: auto auto;
+  column-gap: 1.25rem;
+  row-gap: 0.25rem;
+  width: 100%;
+  position: relative;
+  align-items: start;
+}
+
+.about-page .quotation-mark-container {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.about-page .quotation-mark-container.top-container {
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.about-page .quotation-mark-container.bottom-container {
+  grid-column: 3;
+  grid-row: 2;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.about-page .quotation-text {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  font-size: 2em;
+}
+
+.about-page .quotation-mark {
+  width: 1.45em;
+  max-width: 1.45em;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.about-page .quotation-line {
+  border: 0;
+  border-top: 1px solid #d3d3d3;
+  margin: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .about-page img:not(.footer-icon):not(.quotation-mark):not(.about-portrait),
+  .about-page .theme_anal {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .about-page .quotation-box,
+  .about-page .additional-text-box,
+  .about-page .about-block,
+  .about-page .testimonial-section,
+  .about-page .about-section-separator,
+  .about-page .white-space {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about-page .quotation-box,
+  .about-page .additional-text-box {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: var(--mobile-gutter, 20px);
+    padding-right: var(--mobile-gutter, 20px);
+  }
+
+  .about-page .quotation {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    grid-template-rows: auto auto;
+    column-gap: 0.75rem;
+    row-gap: 0.25rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .about-page .quotation-mark-container {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .about-page .quotation-mark-container.top-container {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .about-page .quotation-mark-container.bottom-container {
+    grid-column: 3;
+    grid-row: 2;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .about-page .quotation-text {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: center;
+    flex: none;
+    margin: 0;
+    min-width: 0;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .about-page .quotation-mark {
+    width: 1.1rem;
+    max-width: 1.1rem;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .about-page .title,
+  .about-page .about-text h2,
+  .about-page .title_about,
+  .about-page h1,
+  .about-page h2 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .about-page .title {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .about-page p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .about-page .additional-text-box {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .about-page .about-expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .about-page .about-expertise-card {
+    padding: 36px 28px;
+  }
+
+  .about-page .about-expertise-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-page .about-expertise-icon {
+    margin-bottom: 38px;
+  }
+
+  .about-page .about-expertise-list li {
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .about-page .about-software-skills-block {
+    margin-top: 48px;
+  }
+
+  .about-page .about-software-chips {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .about-page .about-software-chip {
+    white-space: normal;
+  }
+
+  .about-page .about-beyond-design-wrapper .about-hobbies-section {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 8px;
+    padding: 8px 0 24px;
+    max-width: 100%;
+  }
+
+  .about-page .about-hobbies-carousel-viewport {
+    scroll-padding-inline: 20px;
+  }
+
+  .about-page .about-hobbies-carousel-track {
+    gap: 14px;
+    padding: 0 20px 4px;
+  }
+
+  .about-page .about-hobbies-slide {
+    flex: 0 0 min(72vw, 260px);
+    width: min(72vw, 260px);
+    max-width: min(72vw, 260px);
+  }
+
+  .about-page .about-hobby-card {
+    padding: 22px 18px;
+  }
+
+  .about-page .about-hobbies-card:hover .about-hobby-card {
+    transform: none;
+    box-shadow:
+      0 4px 24px rgba(81, 19, 162, 0.07),
+      0 1px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .about-page .about-hobby-card-icon {
+    min-height: 56px;
+    margin-bottom: 12px;
+  }
+
+  .about-page .about-hobby-card-icon img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .about-page .about-hobbies-carousel-dots {
+    margin-top: 4px;
+    padding: 0 var(--mobile-gutter, 20px);
+  }
+
+  .about-page .about-section-separator--before-testimonials {
+    margin-top: 64px;
+  }
+
+  .about-page .about-testimonials-wrapper .testimonial-section {
+    margin-top: 8px;
+  }
+
+  .about-page .about-section-separator {
+    width: calc(100% - (2 * var(--mobile-gutter, 20px)));
+    max-width: calc(100% - (2 * var(--mobile-gutter, 20px)));
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+
+  .about-page .about-text h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-page .about-text p {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-page .about-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hero_about {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: var(--navbar-height) var(--mobile-gutter, 20px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .hero-content_about {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: none;
+    min-height: 0;
+    padding: 0 0 0.75rem;
+    width: 100%;
+    gap: 0.25rem;
+    transform: translateY(-2.5rem);
+  }
+
+  .about-page .hero-text_about {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    text-align: left;
+    flex: none;
+  }
+
+  .about-page .welcome-text_about {
+    text-align: left;
+    width: max-content;
+    max-width: 100%;
+    left: 0;
+    padding-left: 34px;
+    margin-bottom: 1.125rem;
+    font-size: 0.72rem;
+    color: #5113A2;
+  }
+
+  .about-page .welcome-text-h2_about {
+    font-weight: 400;
+    margin: 0;
+    text-align: left;
+  }
+
+  .about-page .welcome-text_about::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 26px;
+    height: 2px;
+    background-color: #5113A2;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .about-page .title_about {
+    text-align: left;
+    max-width: 100%;
+    margin-bottom: 1.125rem;
+  }
+
+  .about-page .hero-text_about .subtext {
+    text-align: left;
+    max-width: 34ch;
+  }
+
+  .hero_about .wrapper2 {
+    bottom: 1rem;
+  }
+
+  .title_about {
+    font-size: 1.75rem;
+  }
+
+  .btn-about-me_2 {
+    margin-top: 1.75rem;
+  }
+
+  .hero-image-container_about {
+    flex: none;
+    max-width: 100%;
+    margin-right: 0;
+    margin-top: calc(0.375rem + 10px);
+    margin-bottom: 0;
+    width: 100%;
+    align-items: center;
+  }
+
+  .hero-image_about {
+    width: min(95%, 350px);
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .about-page .about-block {
+    width: calc(100% - (2 * var(--mobile-gutter, 20px)));
+    max-width: calc(100% - (2 * var(--mobile-gutter, 20px)));
+    margin: 40px auto 56px;
+    padding: 36px;
+  }
+
+  .about-block-content {
+    flex-direction: column;
+  }
+
+  .about-page .about-image {
+    flex: none;
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .about-page .about-block .about-block-content .about-image img.about-portrait {
+    width: 170px;
+    max-width: 170px;
+    min-width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .about-page .testimonial-section {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding: 8px 0 24px;
+    max-width: 100%;
+  }
+
+  .about-page .testimonial-carousel-viewport {
+    scroll-padding-inline: 20px;
+  }
+
+  .about-page .testimonial-carousel-track {
+    gap: 18px;
+    padding: 0 20px 4px;
+  }
+
+  .about-page .testimonial-slide {
+    flex: 0 0 72vw;
+    width: 72vw;
+    max-width: 72vw;
+  }
+
+  .about-page .testimonial-block {
+    padding: 16px;
+  }
+
+  .about-page .testimonial-block:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .about-page .testimonial-image {
+    margin-bottom: 10px;
+  }
+
+  .about-page .testimonial-image img {
+    width: 68px;
+    max-width: 68px;
+    min-width: 68px;
+    height: 68px;
+  }
+
+  .about-page .testimonial-quote {
+    margin-top: 12px;
+    font-size: 0.85em;
+  }
+
+  .about-page .testimonial-carousel-dots {
+    margin-top: 4px;
+    padding: 0 var(--mobile-gutter, 20px);
+  }
 }

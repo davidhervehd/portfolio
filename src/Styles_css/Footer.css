@@ -1,38 +1,151 @@
 .footer-container {
   display: flex;
-  height: 300px;
+  justify-content: center;
+  min-height: 300px;
   background-color: #9771e8;
-  margin-top: 20px; /* Adjust the margin-top value as needed */
+  margin-top: 20px;
+  padding: 48px 2rem 2rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 5rem;
+  margin-left: 1.75rem;
 }
 
 .footer-item {
   flex: 1;
   display: flex;
-  flex-direction: column; /* Set flex direction to column */
-  align-items: center; /* Center the items */
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   color: #ffffff;
   font-size: 18px;
-  padding: 10px; /* Add padding for better spacing */
+  font-weight: 300;
+  gap: 10px;
 }
 
 .footer-item p {
-  margin: 0; /* Remove default margin for paragraphs */
-  text-align: left; /* Left-justify the text within paragraphs */
-  font-weight: normal; /* Set font weight to normal for regular text */
+  margin: 0;
+  text-align: left;
+  font-weight: 300;
+  width: 100%;
 }
 
-.footer-item p:first-child {
-  font-weight: bold; /* Set font weight to bold for the first paragraph */
+.footer-item p.footer-heading {
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  width: 100%;
+  text-align: left;
 }
 
-.footer-item img {
-  border-radius: 50%; /* Ensure the image remains round */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add a smooth transition effect for transform and shadow */
+.footer-item p.footer-tags {
+  font-size: 15px;
+  font-weight: 200;
+  opacity: 0.8;
 }
 
-/* Add hover effect directly on the image */
-.footer-item img:hover {
-  transform: scale(1.1); /* Slightly enlarge the image on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Apply a shadow effect around the circular image */
+.footer-item p.footer-bottom {
+  margin-top: 1.5rem;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.75;
+  color: #ffffff;
+}
+
+.footer-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+  flex-shrink: 0;
+  background-color: #ffffff;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: background-color 0.22s ease;
+}
+
+.footer-icon-linkedin {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-connect-item,
+.footer-connect-link,
+.footer-menu-link {
+  width: 100%;
+}
+
+.footer-cv-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.footer-connect-link,
+.footer-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 300;
+  transition: color 0.22s ease, transform 0.22s ease;
+}
+
+.footer-link:hover {
+  transform: translateX(4px);
+  color: var(--color-primary);
+}
+
+.footer-link:hover .footer-icon {
+  background-color: var(--color-primary);
+}
+
+.footer-item-menu .footer-menu-link {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    min-height: auto;
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .footer-item {
+    width: 100%;
+    flex: none;
+  }
+
+  .footer-connect-item,
+  .footer-connect-link,
+  .footer-menu-link {
+    max-width: 100%;
+  }
+
+  .footer-item p.footer-bottom {
+    margin-top: 1.25rem;
+    line-height: 1.45;
+  }
 }

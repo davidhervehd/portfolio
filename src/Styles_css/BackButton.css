@@ -1,46 +1,47 @@
 .back-button {
   position: fixed;
-  bottom: 20px; /* Distance from the bottom of the viewport */
-  left: 20px; /* Distance from the left side of the viewport */
-  background-color: #5113a2;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: var(--button-radius);
   padding: 10px 20px;
   font-size: 16px;
+  font-family: inherit;
   cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Ensures the button stays above other content, including the footer */
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1000;
   opacity: 0;
-  transform: translateY(-20px); /* Start position: slightly above */
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .next-button {
   position: fixed;
-  bottom: 20px; /* Distance from the bottom of the viewport */
-  right: 20px; /* Adjust distance from the right side of the viewport */
-  background-color: #5113a2;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: var(--button-radius);
   padding: 10px 20px;
   font-size: 16px;
+  font-family: inherit;
   cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Ensures the button stays above other content, including the footer */
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1000;
   opacity: 0;
-  transform: translateY(-20px); /* Start position: slightly above */
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .back-button.visible,
 .next-button.visible {
   opacity: 1;
-  transform: translateY(0); /* Normal position when visible */
+  transform: translateY(0);
 }
 
-.back-button:hover,
-.next-button:hover {
-  background-color: #6a29c0;
+.back-button:focus-visible,
+.next-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }

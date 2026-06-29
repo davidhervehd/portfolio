@@ -4,7 +4,7 @@ import Footer from '../Components/Footer'; // Adjust the path according to your 
 
 export default function MeineImpfungen() {
   return (
-    <div>
+    <div className="case-study-page">
       <h1>Meine Impfungen</h1>
       <p>Details about the Meine Impfungen case study...</p>
       <Footer />

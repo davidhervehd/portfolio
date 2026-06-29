@@ -1,46 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import Footer from '../Components/Footer'; // Assurez-vous que le chemin est correct
 import BackButton from '../Components/BackButton'; // Assurez-vous que le chemin est correct
+import CaseStudyIntro from '../Components/CaseStudyIntro';
 import '../Styles_css/petHealthData.css'; // Assurez-vous que le chemin est correct
 
 export default function PetHealthData() {
-  const blockRefs = useRef([]); // Utilisation de useRef pour stocker les références des éléments
-
-  useEffect(() => {
-    const handleScroll = () => {
-      blockRefs.current.forEach((block) => {
-        if (block) {
-          const rect = block.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-
-          // Calculer le progrès de défilement
-          const start = windowHeight * 0.75; // Commencer à 75% de la hauteur de la fenêtre
-          const end = windowHeight * 0.25;   // Finir à 25% de la hauteur de la fenêtre
-
-          // Calculer le progrès de l'animation (0 lorsque l'élément commence à apparaître, 1 quand complètement visible)
-          let progress = 1 - (rect.top - end) / (start - end);
-          progress = Math.max(0, Math.min(1, progress)); // S'assurer que le progrès est entre 0 et 1
-
-          // Appliquer l'animation basée sur le défilement
-          block.style.transform = `scale(${0.5 + progress * 0.5})`; // Scaler de 0.5 à 1
-          block.style.opacity = progress; // Faire apparaître de 0 à 1
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll); // Ajout de l'écouteur de l'événement scroll
-
-    // Initialiser l'animation quand le composant est monté
-    handleScroll();
-
-    // Nettoyage de l'écouteur d'événement lors du démontage du composant
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []); // Le tableau de dépendances vide signifie que cet effet ne s'exécute qu'une fois après le montage
-
   return (
-    <div className="main-content">
+    <div className="main-content case-study-page">
       <header>
         <img
           src={`${process.env.PUBLIC_URL}/img/visualcase3.jpg`}
@@ -49,12 +15,17 @@ export default function PetHealthData() {
         />
       </header>
       <div className="content">
-        <div className="info-box-phd">
-          <p className="titleboxinfo-PHD">Pet Health Data - An Ambitious Project</p>
+        <CaseStudyIntro
+          boxClassName="info-box-phd"
+          projectName="Pet Health Data"
+          projectSubtitle="Smarter pet health experiences"
+          headline="Pet Health Data - An Ambitious Project"
+          headlineClassName="titleboxinfo-PHD"
+        >
           <p className="textBoxInfo-PHD">
             <strong>With over 2 million dogs and cats in Switzerland</strong>, the health of our beloved faithful friends is becoming increasingly important and is now part of a global public health system, as animals can also be carriers of viruses in the population. In this context, we were contacted by the SVK (Swiss Association of Small Animal Medicine) <strong>to establish a simple and suitable medical monitoring tool for all pet owners as well as veterinarians.</strong>
           </p>
-        </div>
+        </CaseStudyIntro>
         <div className="role-analysis-box-phd">
           <div className="role-content">
             <div className="role-title">
@@ -85,8 +56,8 @@ export default function PetHealthData() {
 
         {/* Start animations from here */}
         {/* Quotation_1 */}
-        <div className="over-title block2" ref={(el) => blockRefs.current.push(el)}>THE DISCOVERY/UNDERSTAND</div>
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="over-title block2">THE DISCOVERY/UNDERSTAND</div>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -106,14 +77,14 @@ export default function PetHealthData() {
         </div>
 
         {/* Additional text box with image */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p className="title">. Strategic Alignment through Research and Clarity Workshops</p>
           <p>Our research delved into the functionalities of the app, conducted through extensive questionnaires across numerous practices. While this provided a solid foundation, prioritization was essential to shape the project and ensure alignment among stakeholders. To achieve this, we organized workshops to establish a "Clarity Canvas", fostering cohesion in our strategic directions.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/clarity_canvas.png`} alt="Clarity Canvas"/>
         </div>
 
         {/* Quotation_2 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -133,14 +104,14 @@ export default function PetHealthData() {
         </div>
 
            {/* Additional text box with image */}
-           <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+           <div className="additional-text-box block">
           <p className="title">. Expectations and motivations of pet owners</p>
           <p>Additionally, understanding the expectations and motivations of pet owners was crucial. Collaborating with the product manager, we conducted a questionnaire with approximately twenty owners to grasp the "Job To Be Done" and outline the user's mental model. This questionnaire, featuring both open and closed questions, yielded valuable insights.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/mental_model.png`} alt="Clarity Canvas"/>
         </div>
 
         {/* Quotation_3 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -159,14 +130,14 @@ export default function PetHealthData() {
         </div>
 
         {/* Additional text box with image */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p>Utilizing this data, I meticulously developed 4 <strong>"User Personas"</strong>, which were then enriched through user interviews conducted via video conference. The aim was to reinforce the importance of <strong>key behavioral considerations</strong> in creating effective personas. With this qualitative data foundation firmly in place, we were well-positioned to formulate hypotheses and proceed with confidence.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/persona.png`} alt="User Personas"/>
         </div>
 
         {/* Quotation_4 */}
-        <div className="over-title block2" ref={(el) => blockRefs.current.push(el)}>DEFINE</div>
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="over-title block2">DEFINE</div>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -186,14 +157,14 @@ export default function PetHealthData() {
         </div>
 
         {/* Additional text box with image */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p className="title">. The validation/consolidation phase</p>
           <p>This phase was aimed at allowing us to verify the assumptions made in the first phase. To do so, we conducted contextual inquiries directly in the veterinary practices. We were able to observe both types of users in one place. The idea was to validate the directions taken and solidify our users' mental model, thus refining our scenarios and storyboards.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/scenario.png`} alt="Scenario"/>
         </div>
 
         {/* Quotation_5 */}
-        <div className="quotation-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="quotation-box block">
           <hr className="quotation-line"/>
           <div className="quotation">
             <div className="quotation-mark-container top-container">
@@ -213,23 +184,119 @@ export default function PetHealthData() {
         </div>
 
         {/* Additional text box with image */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p className="title">. Defining Taxonomy: Classifying and Organizing!</p>
           <p>The difficulty in this exercise was to find a vocabulary that simply describes specific concepts that are understandable for pet owners and acceptable for veterinarians. Therefore, I chose the "Card Sorting" method to group "Post-its" into families that represented the content of the site.</p>
           <p>The written topics were based on the workshops conducted with stakeholders, as well as the data collected during user interviews. Participants from both sides then had to assemble the topics into groups and assign a name to each group. Experience showed that Pet owners could classify the topics into groups quite well, but had difficulty naming certain groups, especially those related to medical prevention.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/architecture.png`} alt="Architecture"/>
         </div>
 
-        {/* Continue applying the same logic for all remaining elements */}
-
-        {/* Additional text box with image */}
-        <div className="additional-text-box block" ref={(el) => blockRefs.current.push(el)}>
+        <div className="additional-text-box block">
           <p className="title">. Defining the main users Flows</p>
           <p>When collecting information, we also prioritized specific tasks and defined the "Red Routes". Red Routes are the main features of the app and what the user expects in the app (based on their mental model). This completed the architecture of the application and created the "Product Backlog" (list of completed tasks) for the development team.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/user_flow.png`} alt="User Flow"/>
         </div>
 
-        {/* Continue applying the same logic for all elements that should have animations */}
+        <div className="over-title block2">IDEATION</div>
+        <div className="quotation-box block">
+          <hr className="quotation-line"/>
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quot_left_blue.svg`} alt="Left Quote" className="quotation-mark top-quotation" />
+            </div>
+            <div className="quotation-text">
+              <em>Sketches give you an idea of the structure<br />
+              and visual hierarchy of your design.<br />
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quote_right_blue.svg`} alt="Right Quote" className="quotation-mark bottom-quotation" />
+            </div>
+          </div>
+          <hr className="quotation-line"/>
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">. Sketches to generate ideas quickly.</p>
+          <p>Sketches are an important phase as they force you, despite their lack of precision, to consider the visual hierarchy, the number of UI elements to be placed on the page, or even the number of screens needed to achieve a specific user task flow. It also allows for concrete feedback and validation of the best ideas with stakeholders.</p>
+          <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/sketching.png`} alt="Sketching"/>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line"/>
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quot_left_blue.svg`} alt="Left Quote" className="quotation-mark top-quotation" />
+            </div>
+            <div className="quotation-text">
+              <em>Wireframing allows for the implementation<br />
+              of the entire navigation structure.<br />
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quote_right_blue.svg`} alt="Right Quote" className="quotation-mark bottom-quotation" />
+            </div>
+          </div>
+          <hr className="quotation-line"/>
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">. Wireframing the navigation structure</p>
+          <p>The "Wireframing" phase is a crucial stage of the project, marking the final step before creating the "High Fidelity Prototype." Wireframing involves constructing the entire navigation structure, offering a precise overview of the application. In implementing the wireframe, the approach was to utilize an existing library. For our project, developers opted for Angular to develop the application, benefiting from its excellent library for wireframe development.</p>
+          <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/wireframing.png`} alt="Wireframing"/>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line"/>
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quot_left_blue.svg`} alt="Left Quote" className="quotation-mark top-quotation" />
+            </div>
+            <div className="quotation-text">
+              <em>At this point, there should be<br />
+              no more surprises!<br />
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quote_right_blue.svg`} alt="Right Quote" className="quotation-mark bottom-quotation" />
+            </div>
+          </div>
+          <hr className="quotation-line"/>
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">. High Fidelity Prototype and design system</p>
+          <p>After validating the artistic direction with the client (including fonts, colors, and logos), only the completion of the "High Fidelity Prototype" remained. At this stage, there should be no surprises, as it's about bringing the project to life and infusing the application with emotional depth. I also developed the design system, encompassing all UI elements such as buttons, checkboxes, and steppers, aligning them with the artistic decisions made.</p>
+          <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/hifi.png`} alt="High Fidelity Prototype"/>
+        </div>
+
+        <div className="quotation-box block">
+          <hr className="quotation-line"/>
+          <div className="quotation">
+            <div className="quotation-mark-container top-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quot_left_blue.svg`} alt="Left Quote" className="quotation-mark top-quotation" />
+            </div>
+            <div className="quotation-text">
+              <em>It's akin to an architect handing over<br />
+              blueprints to construction engineers<br />
+              </em>
+            </div>
+            <div className="quotation-mark-container bottom-container">
+              <img src={`${process.env.PUBLIC_URL}/img/quote_right_blue.svg`} alt="Right Quote" className="quotation-mark bottom-quotation" />
+            </div>
+          </div>
+          <hr className="quotation-line"/>
+        </div>
+
+        <div className="additional-text-box block">
+          <p className="title">. Developer handoff and deliverables</p>
+          <p>It is of utmost importance to always collaborate closely with developers! Indeed, decisions regarding UX/UI design have a significant impact on application development timelines. Certain solutions will entail longer or shorter development times.</p>
+          <p>Moreover, handing over templates and user flows to the development team is crucial. To use an analogy, it's akin to an architect handing over blueprints to construction engineers. The plans must be precise and clear to ensure the proper execution of the work.</p>
+          <p><em>All deliverables are available for viewing upon request. Please feel free to inquire for further details.</em></p>
+          <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/final_template.png`} alt="Final template"/>
+        </div>
+
+        <div className="white-space"></div>
 
       </div>
 
