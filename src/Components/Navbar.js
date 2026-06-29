@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { isActiveCaseStudyRoute } from '../config/portfolioCaseStudies';
+import { CONTACT_MAILTO } from '../config/contactMailto';
 import '../Styles_css/Nav.css';
 import '../Styles_css/NavUnderline.css';
 
@@ -8,13 +9,12 @@ const NAV_ITEMS = [
   { key: 'home', label: 'Home', to: '/home' },
   { key: 'case-studies', label: 'Case Studies', to: '/home#case-studies', hash: 'case-studies' },
   { key: 'about', label: 'About', to: '/about_me' },
-  { key: 'contact', label: 'Contact', to: '/contact' },
+  { key: 'contact', label: 'Contact', href: CONTACT_MAILTO },
 ];
 
 const MOBILE_BREAKPOINT = 768;
 
 function getActiveKey(pathname, hash) {
-  if (pathname === '/contact') return 'contact';
   if (pathname === '/about_me') return 'about';
   if (isActiveCaseStudyRoute(pathname)) return 'case-studies';
   if (pathname === '/home' && hash === '#case-studies') return 'case-studies';
@@ -111,6 +111,10 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   };
 
+  const handleContactClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   const handleLinkClick = (item) => {
     updateUnderline(item.key);
     setMobileMenuOpen(false);
@@ -147,17 +151,27 @@ export default function Navbar() {
         <ul>
           {NAV_ITEMS.map((item) => (
             <li key={item.key}>
-              <Link
-                ref={(el) => { linkRefs.current[item.key] = el; }}
-                to={item.to}
-                className={`nav-link ${activeKey === item.key ? 'active' : ''}`}
-                onClick={(e) => {
-                  if (item.hash) handleCaseStudiesClick(e);
-                  else handleLinkClick(item);
-                }}
-              >
-                {item.label}
-              </Link>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  className="nav-link"
+                  onClick={handleContactClick}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  ref={(el) => { linkRefs.current[item.key] = el; }}
+                  to={item.to}
+                  className={`nav-link ${activeKey === item.key ? 'active' : ''}`}
+                  onClick={(e) => {
+                    if (item.hash) handleCaseStudiesClick(e);
+                    else handleLinkClick(item);
+                  }}
+                >
+                  {item.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

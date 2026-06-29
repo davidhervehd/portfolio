@@ -11,18 +11,23 @@ export default function Herosection_about() {
         <div className="hero-content_about">
           <div className="hero-text_about">
             <div className="welcome-text_about">
-              <h2 className="welcome-text-h2_about">Nice to meet you!</h2>
+              <h2 className="welcome-text-h2_about">Nice to meet you :)</h2>
             </div>
-            <h1 className='title_about'>So, you wanna learn more about me?</h1>
-            <p className="subtext">Interested in learning more about me?</p>
-            <p className="subtext">Just scroll down the page or download my CV. Thanks!</p>
+            <h1 className="title_about">
+              The designer
+              <br />
+              behind the products.
+            </h1>
+            <p className="subtext">
+              Discover my background, experience and design philosophy. Or download my CV to learn more.
+            </p>
 
             <button
               type="button"
               className="btn-about-me_2"
               onClick={openCvModal}
             >
-              Download my CV here
+              Download my CV
             </button>
           </div>
           

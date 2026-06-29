@@ -10,7 +10,7 @@
   position: fixed; /* Fix the menu at the top of the viewport */
   top: 0; /* Position it at the top */
   width: 100%; /* Make it full width */
-  z-index: 2; /* Ensure the menu is above other content */
+  z-index: 1000; /* Stay above page content, carousels, and card shadows */
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for transform and opacity */
 }
@@ -159,7 +159,7 @@
     pointer-events: none;
     transform: translateY(12px);
     transition: opacity 280ms ease, visibility 280ms ease, transform 280ms ease;
-    z-index: 999;
+    z-index: 1001;
     box-shadow: none;
   }
 
@@ -206,12 +206,12 @@
   .nav.nav-mobile-open {
     transform: translateY(0);
     opacity: 1;
-    z-index: 1000;
+    z-index: 1002;
   }
 
   .nav.nav-mobile-open .site-title,
   .nav.nav-mobile-open .nav-hamburger {
     position: relative;
-    z-index: 1001;
+    z-index: 1003;
   }
 }

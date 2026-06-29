@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { CONTACT_MAILTO } from '../config/contactMailto';
 
 export default function Contact() {
   return (
@@ -13,9 +14,9 @@ export default function Contact() {
       <NavLink to="/about_me" className="active">
         About me
       </NavLink>
-      <NavLink to="/contact" className="active">
+      <a href={CONTACT_MAILTO} className="active">
         Contact
-      </NavLink>
+      </a>
     </section>
   );
 }

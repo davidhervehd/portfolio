@@ -156,9 +156,9 @@ export default function AboutTestimonials() {
   };
 
   return (
-    <div className="block">
+    <div className="block about-testimonials-wrapper">
       <div className="additional-text-box block">
-        <p className="title">. Testimonials</p>
+        <p className="title">Testimonials</p>
       </div>
 
       <section className="testimonial-section" aria-label="Testimonials">

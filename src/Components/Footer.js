@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCvModal } from '../context/CvModalContext';
+import { CONTACT_EMAIL, CONTACT_MAILTO } from '../config/contactMailto';
 import '../Styles_css/Footer.css';
 
 const publicUrl = process.env.PUBLIC_URL;
@@ -63,7 +64,7 @@ export default function Footer() {
           LinkedIn
         </a>
 
-        <a href="mailto:davidhervehd@gmail.com" className="footer-connect-link footer-link">
+        <a href={CONTACT_MAILTO} className="footer-connect-link footer-link">
           <span
             className="footer-icon footer-icon-email"
             style={{
@@ -72,7 +73,7 @@ export default function Footer() {
             }}
             aria-hidden="true"
           />
-          davidhervehd@gmail.com
+          {CONTACT_EMAIL}
         </a>
 
         <a href="tel:0763205555" className="footer-connect-link footer-link">
@@ -99,7 +100,7 @@ export default function Footer() {
           Case Studies
         </Link>
         <Link to="/about_me" className="footer-menu-link footer-link">About</Link>
-        <Link to="/contact" className="footer-menu-link footer-link">Contact</Link>
+        <a href={CONTACT_MAILTO} className="footer-menu-link footer-link">Contact</a>
       </div>
       </div>
     </footer>
