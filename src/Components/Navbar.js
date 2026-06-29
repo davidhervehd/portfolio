@@ -13,6 +13,7 @@ const NAV_ITEMS = [
 ];
 
 const MOBILE_BREAKPOINT = 768;
+const MOBILE_TOP_SCROLL_THRESHOLD = 10;
 
 function getActiveKey(pathname, hash) {
   if (pathname === '/about_me') return 'about';
@@ -86,7 +87,14 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY = Math.max(0, window.scrollY);
+      const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+
+      if (isMobile && currentScrollY <= MOBILE_TOP_SCROLL_THRESHOLD) {
+        setIsVisible(true);
+        setLastScrollY(currentScrollY);
+        return;
+      }
 
       if (currentScrollY > lastScrollY) {
         setIsVisible(false);
@@ -97,7 +105,7 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
