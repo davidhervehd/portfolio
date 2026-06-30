@@ -378,21 +378,21 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .ecosystem-cards-section {
-        --ecosystem-card-gap: 12px;
-        --ecosystem-card-width: 206px;
+    /* Shared mobile carousel gutter — ecosystem cards + screenshot galleries */
+    .ecosystem-cards-section,
+    .provider-screenshots-section {
         width: calc(100% + (var(--mobile-gutter) * 2));
         max-width: calc(100% + (var(--mobile-gutter) * 2));
         margin-left: calc(-1 * var(--mobile-gutter));
         margin-right: calc(-1 * var(--mobile-gutter));
-        padding: 1.25rem var(--mobile-gutter);
-        border-radius: 0;
+        padding-inline: var(--mobile-gutter);
+        box-sizing: border-box;
         overflow-x: hidden;
         overflow-y: visible;
-        box-sizing: border-box;
     }
 
-    .ecosystem-cards-shell {
+    .ecosystem-cards-shell,
+    .provider-screenshots-shell {
         overflow: hidden;
         width: 100%;
         min-height: 0;
@@ -400,11 +400,8 @@ footer {
         box-sizing: border-box;
     }
 
-    .ecosystem-cards {
-        display: flex;
-        justify-content: flex-start;
-        gap: var(--ecosystem-card-gap);
-        max-width: none;
+    .ecosystem-cards,
+    .provider-screenshots {
         overflow-x: auto;
         overflow-y: visible;
         scroll-snap-type: x mandatory;
@@ -417,8 +414,23 @@ footer {
         box-sizing: border-box;
     }
 
-    .ecosystem-cards::-webkit-scrollbar {
+    .ecosystem-cards::-webkit-scrollbar,
+    .provider-screenshots::-webkit-scrollbar {
         display: none;
+    }
+
+    .ecosystem-cards-section {
+        --ecosystem-card-gap: 12px;
+        --ecosystem-card-width: 206px;
+        padding-block: 1.25rem;
+        border-radius: 0;
+    }
+
+    .ecosystem-cards {
+        display: flex;
+        justify-content: flex-start;
+        gap: var(--ecosystem-card-gap);
+        max-width: none;
     }
 
     .ecosystem-card {
@@ -448,6 +460,35 @@ footer {
     .ecosystem-card-image,
     .ecosystem-cards:hover .ecosystem-card:hover .ecosystem-card-image {
         filter: none;
+    }
+
+    .provider-screenshots-section {
+        padding-block: 0;
+    }
+
+    .provider-screenshots {
+        display: flex;
+        justify-content: flex-start;
+        gap: 12px;
+        max-width: none;
+    }
+
+    .provider-screenshot-btn {
+        flex: 0 0 min(82vw, 280px);
+        width: min(82vw, 280px);
+        max-width: min(82vw, 280px);
+        min-width: min(82vw, 280px);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        transform: none;
+    }
+
+    .provider-screenshot-btn:hover {
+        transform: none;
+    }
+
+    .provider-screenshot-btn:hover .provider-screenshot-image {
+        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
     }
 }
 
@@ -737,51 +778,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .provider-screenshots-section {
-        width: calc(100% + (var(--mobile-gutter) * 2));
-        max-width: calc(100% + (var(--mobile-gutter) * 2));
-        margin-left: calc(-1 * var(--mobile-gutter));
-        padding: 0;
-    }
-
-    .provider-screenshots-shell {
-        overflow: hidden;
-        width: 100%;
-    }
-
-    .provider-screenshots {
-        justify-content: flex-start;
-        gap: 12px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding: 0 var(--mobile-gutter) 0.25rem;
-    }
-
-    .provider-screenshots::-webkit-scrollbar {
-        display: none;
-    }
-
-    .provider-screenshot-btn {
-        flex: 0 0 min(82vw, 280px);
-        width: min(82vw, 280px);
-        max-width: min(82vw, 280px);
-        min-width: min(82vw, 280px);
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-        transform: none;
-    }
-
-    .provider-screenshot-btn:hover {
-        transform: none;
-    }
-
-    .provider-screenshot-btn:hover .provider-screenshot-image {
-        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
-    }
-
     .vp-lightbox-overlay {
         padding: 16px 56px;
     }
