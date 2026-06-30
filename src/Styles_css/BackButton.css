@@ -12,8 +12,9 @@
   cursor: pointer;
   z-index: 1000;
   opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .next-button {
@@ -30,13 +31,15 @@
   cursor: pointer;
   z-index: 1000;
   opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .back-button.visible,
 .next-button.visible {
   opacity: 1;
+  pointer-events: auto;
   transform: translateY(0);
 }
 

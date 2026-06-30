@@ -1,16 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getActiveCaseStudyRoutes } from '../config/portfolioCaseStudies';
 import '../Styles_css/BackButton.css';
 
+const SCROLL_DEBOUNCE_MS = 150;
+const VISIBLE_DURATION_MS = 2500;
+
 function BackButton() {
   const navigate = useNavigate();
-  const location = useLocation(); // Get the current location
-  const [isVisible, setIsVisible] = useState(false);
-  const [bottomOffset, setBottomOffset] = useState(20); // Start with 20px offset from bottom
+  const location = useLocation();
+  const [showFloatingNav, setShowFloatingNav] = useState(false);
+  const [bottomOffset, setBottomOffset] = useState(20);
+  const debounceTimerRef = useRef(null);
+  const hideTimerRef = useRef(null);
+
+  const clearTimers = useCallback(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+      debounceTimerRef.current = null;
+    }
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = null;
+    }
+  }, []);
+
+  const updateBottomOffset = useCallback(() => {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const footer = document.querySelector('footer');
+    const footerHeight = footer?.offsetHeight ?? 0;
+    const distanceFromBottom = documentHeight - scrollPosition - windowHeight;
+
+    if (distanceFromBottom < footerHeight + 20) {
+      setBottomOffset(footerHeight + 20 - distanceFromBottom);
+    } else {
+      setBottomOffset(20);
+    }
+  }, []);
 
   const handleBackClick = () => {
-    navigate('/home'); // Navigate to the Home page
+    navigate('/home');
   };
 
   const handleNextClick = () => {
@@ -19,57 +50,54 @@ function BackButton() {
 
     const currentIndex = routes.indexOf(currentPath);
     const nextRoute = currentIndex === -1 || currentIndex === routes.length - 1
-      ? routes[0] // Go back to the first route if we're at the end
-      : routes[currentIndex + 1]; // Otherwise, go to the next route
+      ? routes[0]
+      : routes[currentIndex + 1];
 
     navigate(nextRoute);
   };
 
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    const footerHeight = document.querySelector('footer').offsetHeight;
-    const threshold = 200; // Adjust this value to set when the button should appear
-
-    // Calculate the distance from the bottom of the page
-    const distanceFromBottom = documentHeight - scrollPosition - windowHeight;
-
-    if (scrollPosition > threshold) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-
-    // Adjust the bottom offset if the button is about to overlap with the footer
-    if (distanceFromBottom < footerHeight + 20) {
-      setBottomOffset(footerHeight + 20 - distanceFromBottom);
-    } else {
-      setBottomOffset(20);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      updateBottomOffset();
+      setShowFloatingNav(false);
+      clearTimers();
+
+      debounceTimerRef.current = setTimeout(() => {
+        setShowFloatingNav(true);
+        hideTimerRef.current = setTimeout(() => {
+          setShowFloatingNav(false);
+        }, VISIBLE_DURATION_MS);
+      }, SCROLL_DEBOUNCE_MS);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimers();
     };
-  }, []);
+  }, [clearTimers, updateBottomOffset]);
 
   return (
     <>
       <button
-        className={`back-button ${isVisible ? 'visible' : ''}`}
+        type="button"
+        className={`back-button${showFloatingNav ? ' visible' : ''}`}
         onClick={handleBackClick}
-        style={{ bottom: bottomOffset }} // Dynamically adjust the bottom offset
+        style={{ bottom: bottomOffset }}
+        aria-hidden={!showFloatingNav}
+        tabIndex={showFloatingNav ? 0 : -1}
       >
         Home
       </button>
 
       <button
-        className={`next-button ${isVisible ? 'visible' : ''}`}
+        type="button"
+        className={`next-button${showFloatingNav ? ' visible' : ''}`}
         onClick={handleNextClick}
-        style={{ bottom: bottomOffset, right: '20px' }} // Dynamically adjust the bottom offset
+        style={{ bottom: bottomOffset, right: '20px' }}
+        aria-hidden={!showFloatingNav}
+        tabIndex={showFloatingNav ? 0 : -1}
       >
         Next Use Case
       </button>
@@ -77,4 +105,4 @@ function BackButton() {
   );
 }
 
-export default BackButton; // Keep the original export name
+export default BackButton;
