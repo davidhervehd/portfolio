@@ -79,8 +79,12 @@ header {
         height: 52px;
     }
 
-    .info-box-vp .case-study-project-subtitle {
-        margin-bottom: 8px;
+    .case-study-page .info-box-vp .case-study-project-subtitle {
+        margin-bottom: 0;
+    }
+
+    .case-study-page .info-box-vp .titleboxinfo-vp {
+        margin-top: -22px;
     }
 }
 
