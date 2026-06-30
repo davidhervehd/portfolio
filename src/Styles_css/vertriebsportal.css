@@ -381,11 +381,12 @@ footer {
     /* Shared mobile carousel gutter — ecosystem cards + screenshot galleries */
     .ecosystem-cards-section,
     .provider-screenshots-section {
+        --carousel-scroll-end-gap: 6px;
         width: calc(100% + (var(--mobile-gutter) * 2));
         max-width: calc(100% + (var(--mobile-gutter) * 2));
         margin-left: calc(-1 * var(--mobile-gutter));
         margin-right: calc(-1 * var(--mobile-gutter));
-        padding-inline: var(--mobile-gutter);
+        padding-inline: 0;
         box-sizing: border-box;
         overflow-x: hidden;
         overflow-y: visible;
@@ -406,10 +407,10 @@ footer {
         overflow-y: visible;
         scroll-snap-type: x mandatory;
         scroll-padding-inline-start: 0;
-        scroll-padding-inline-end: var(--mobile-gutter);
+        scroll-padding-inline-end: var(--carousel-scroll-end-gap);
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 0 0 0.25rem;
+        padding: 0 var(--carousel-scroll-end-gap) 0.25rem var(--mobile-gutter);
         margin: 0;
         box-sizing: border-box;
     }
