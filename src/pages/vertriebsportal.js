@@ -7,23 +7,23 @@ import '../Styles_css/vertriebsportal.css';
 
 const ECOSYSTEM_CARDS = [
   {
-    src: 'Card_Ecosystem_1.svg',
+    src: 'Card_Ecosystem_1.png',
     alt: 'Product ecosystem overview showing how different user roles interact with the Vertriebsportal platform',
   },
   {
-    src: 'Card_Ecosystem_2.svg',
+    src: 'Card_Ecosystem_2.png',
     alt: 'Business administration workflow within the Vertriebsportal product ecosystem',
   },
   {
-    src: 'Card_Ecosystem_3.svg',
+    src: 'Card_Ecosystem_3.png',
     alt: 'AI-assisted service creation workflow within the Vertriebsportal product ecosystem',
   },
   {
-    src: 'Card_Ecosystem_4.svg',
+    src: 'Card_Ecosystem_4.png',
     alt: 'Advanced manual editing workflow within the Vertriebsportal product ecosystem',
   },
   {
-    src: 'Card_Ecosystem_5.svg',
+    src: 'Card_Ecosystem_5.png',
     alt: 'Connected ecosystem view showing how complementary workflows build on each other',
   },
 ];
