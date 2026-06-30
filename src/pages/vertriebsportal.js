@@ -283,6 +283,8 @@ export default function Vertriebsportal() {
           projectSubtitle="Simplifying complex sales processes"
           headline="Transforming complex services into scalable digital offerings"
           headlineClassName="titleboxinfo-vp"
+          logoSrc={`${process.env.PUBLIC_URL}/img/Logo_vertriebsportal.svg`}
+          logoAlt="Vertriebsportal"
         >
           <p className="textboxinfo-vp">
             Vertriebsportal is a CPQ SaaS platform designed to help service providers structure, sell and manage complex services online.

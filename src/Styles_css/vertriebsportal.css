@@ -45,6 +45,45 @@ header {
     text-align: left;
 }
 
+.info-box-vp .case-study-project-header--with-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.info-box-vp .case-study-project-logo {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    display: block;
+    object-fit: contain;
+}
+
+.info-box-vp .case-study-project-header-text {
+    min-width: 0;
+}
+
+.info-box-vp .case-study-project-subtitle {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+    .info-box-vp .case-study-project-header--with-logo {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .info-box-vp .case-study-project-logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    .info-box-vp .case-study-project-subtitle {
+        margin-bottom: 8px;
+    }
+}
+
 .titleboxinfo-vp {
     font-weight: 600;
     margin-bottom: 10px;
