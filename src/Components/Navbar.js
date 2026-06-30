@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { isActiveCaseStudyRoute } from '../config/portfolioCaseStudies';
 import { CONTACT_MAILTO } from '../config/contactMailto';
+import { trackEvent } from '../utils/analytics';
 import '../Styles_css/Nav.css';
 import '../Styles_css/NavUnderline.css';
 
@@ -120,6 +121,7 @@ export default function Navbar() {
   };
 
   const handleContactClick = () => {
+    trackEvent('Contact Email');
     setMobileMenuOpen(false);
   };
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTransform, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { getCaseStudyTrackingName } from '../config/portfolioCaseStudies';
+import { trackCaseStudyClick } from '../utils/analytics';
 import '../Styles_css/HomeContent.css';
 
 export default function Homecontent({ blockNumber, scrollY, displayIndex }) {
@@ -94,6 +96,7 @@ export default function Homecontent({ blockNumber, scrollY, displayIndex }) {
 
   const handleCardClick = () => {
     if (!isComingSoon) {
+      trackCaseStudyClick(getCaseStudyTrackingName(linkTo));
       navigate(linkTo);
     }
   };

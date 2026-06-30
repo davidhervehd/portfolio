@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getActiveCaseStudyRoutes } from '../config/portfolioCaseStudies';
+import { getActiveCaseStudyRoutes, getCaseStudyTrackingName } from '../config/portfolioCaseStudies';
+import { trackEvent, trackNextUseCase } from '../utils/analytics';
 import '../Styles_css/BackButton.css';
 
 const SCROLL_DEBOUNCE_MS = 150;
@@ -41,11 +42,14 @@ function BackButton() {
   }, []);
 
   const handleBackClick = () => {
+    trackEvent('Floating Nav - Home');
     navigate('/home');
   };
 
   const handleNextClick = () => {
     const currentPath = location.pathname;
+    trackNextUseCase(getCaseStudyTrackingName(currentPath));
+
     const routes = getActiveCaseStudyRoutes();
 
     const currentIndex = routes.indexOf(currentPath);

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCvModal } from '../context/CvModalContext';
 import { CONTACT_EMAIL, CONTACT_MAILTO } from '../config/contactMailto';
+import { trackEvent } from '../utils/analytics';
 import '../Styles_css/Footer.css';
 
 const publicUrl = process.env.PUBLIC_URL;
@@ -52,6 +53,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="footer-connect-link footer-link"
+          onClick={() => trackEvent('Open LinkedIn')}
         >
           <span
             className="footer-icon footer-icon-linkedin"
@@ -64,7 +66,11 @@ export default function Footer() {
           LinkedIn
         </a>
 
-        <a href={CONTACT_MAILTO} className="footer-connect-link footer-link">
+        <a
+          href={CONTACT_MAILTO}
+          className="footer-connect-link footer-link"
+          onClick={() => trackEvent('Contact Email')}
+        >
           <span
             className="footer-icon footer-icon-email"
             style={{
@@ -100,7 +106,13 @@ export default function Footer() {
           Case Studies
         </Link>
         <Link to="/about_me" className="footer-menu-link footer-link">About</Link>
-        <a href={CONTACT_MAILTO} className="footer-menu-link footer-link">Contact</a>
+        <a
+          href={CONTACT_MAILTO}
+          className="footer-menu-link footer-link"
+          onClick={() => trackEvent('Contact Email')}
+        >
+          Contact
+        </a>
       </div>
       </div>
     </footer>

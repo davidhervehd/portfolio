@@ -1,12 +1,16 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import CvDownloadModal from '../Components/CvDownloadModal';
+import { trackEvent } from '../utils/analytics';
 
 const CvModalContext = createContext(null);
 
 export function CvModalProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openCvModal = useCallback(() => setIsOpen(true), []);
+  const openCvModal = useCallback(() => {
+    trackEvent('Download CV');
+    setIsOpen(true);
+  }, []);
   const closeCvModal = useCallback(() => setIsOpen(false), []);
 
   const value = useMemo(

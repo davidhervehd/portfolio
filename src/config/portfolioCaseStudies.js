@@ -6,24 +6,28 @@ export const PORTFOLIO_CASE_STUDIES = [
   {
     key: 'vertriebsportal',
     route: '/vertriebsportal',
+    trackingName: 'Vertriebsportal',
     homeBlock: 1,
     enabled: true,
   },
   {
     key: 'smart-home',
     route: '/digital_strom',
+    trackingName: 'Smart Home',
     homeBlock: 2,
     enabled: true,
   },
   {
     key: 'esmart',
     route: '/esmart',
+    trackingName: 'eSmart',
     homeBlock: 3,
     enabled: true,
   },
   {
     key: 'clarioforms',
     route: '/pet_health_data',
+    trackingName: 'ClarioForms',
     homeBlock: 4,
     enabled: true,
   },
@@ -43,3 +47,8 @@ export const getActiveCaseStudyRoutes = () =>
 
 export const isActiveCaseStudyRoute = (pathname) =>
   getActiveCaseStudyRoutes().includes(pathname);
+
+export const getCaseStudyTrackingName = (routeOrPathname) => {
+  const study = PORTFOLIO_CASE_STUDIES.find((item) => item.route === routeOrPathname);
+  return study?.trackingName ?? null;
+};
