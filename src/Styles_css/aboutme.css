@@ -727,9 +727,10 @@
   margin-bottom: 14px;
 }
 
-.about-page .about-hobby-card-icon img {
+.about-page .about-hobby-card-icon img.about-hobby-card-icon-img {
   width: 64px;
   height: 64px;
+  max-width: 64px;
   object-fit: contain;
   display: block;
 }
@@ -919,7 +920,7 @@
     width: 100%;
   }
 
-  .about-page img:not(.footer-icon):not(.quotation-mark):not(.about-portrait):not(.about-expertise-icon-img),
+  .about-page img:not(.footer-icon):not(.quotation-mark):not(.about-portrait):not(.about-expertise-icon-img):not(.about-hobby-card-icon-img),
   .about-page .theme_anal {
     width: 100%;
     max-width: 100%;
@@ -1112,9 +1113,13 @@
     margin-bottom: 12px;
   }
 
-  .about-page .about-hobby-card-icon img {
+  .about-page .about-hobby-card-icon img.about-hobby-card-icon-img {
     width: 39px;
     height: 39px;
+    max-width: 39px;
+    max-height: 39px;
+    min-width: 0;
+    object-fit: contain;
   }
 
   .about-page .about-hobby-card-title {

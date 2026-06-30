@@ -47,7 +47,11 @@ function HobbyCard({ card }) {
       <article className="about-hobby-card">
         <h3 className="about-hobby-card-title">{card.title}</h3>
         <div className="about-hobby-card-icon" aria-hidden="true">
-          <img src={`${publicUrl}/img/${card.icon}`} alt="" />
+          <img
+            className="about-hobby-card-icon-img"
+            src={`${publicUrl}/img/${card.icon}`}
+            alt=""
+          />
         </div>
         <p className="about-hobby-card-description">{card.description}</p>
       </article>
