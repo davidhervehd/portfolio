@@ -1040,13 +1040,16 @@
   }
 
   .about-page .about-expertise-icon {
+    align-self: flex-start;
+    width: 66px;
+    height: 66px;
     margin-bottom: 38px;
   }
 
   .about-page .about-expertise-icon img.about-expertise-icon-img {
-    width: 20px;
-    height: 20px;
-    max-width: 20px;
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
     min-width: 0;
     flex-shrink: 0;
     object-fit: contain;
