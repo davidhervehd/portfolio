@@ -1080,25 +1080,43 @@
     margin-top: 8px;
     padding: 8px 0 24px;
     max-width: 100%;
+    overflow: visible;
+  }
+
+  .about-page .about-beyond-design-wrapper {
+    overflow: visible;
+  }
+
+  .about-page .about-hobbies-carousel-shell {
+    overflow: visible;
   }
 
   .about-page .about-hobbies-carousel-viewport {
     scroll-padding-inline: 20px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding-bottom: 8px;
   }
 
   .about-page .about-hobbies-carousel-track {
     gap: 14px;
-    padding: 0 20px 4px;
+    padding: 12px 20px 32px;
   }
 
   .about-page .about-hobbies-slide {
     flex: 0 0 min(72vw, 260px);
     width: min(72vw, 260px);
     max-width: min(72vw, 260px);
+    overflow: visible;
+  }
+
+  .about-page .about-hobbies-card {
+    overflow: visible;
   }
 
   .about-page .about-hobby-card {
     padding: 22px 18px;
+    overflow: visible;
   }
 
   .about-page .about-hobbies-card:hover .about-hobby-card {
@@ -1109,15 +1127,15 @@
   }
 
   .about-page .about-hobby-card-icon {
-    min-height: 40px;
+    min-height: 46px;
     margin-bottom: 12px;
   }
 
   .about-page .about-hobby-card-icon img.about-hobby-card-icon-img {
-    width: 39px;
-    height: 39px;
-    max-width: 39px;
-    max-height: 39px;
+    width: 46px;
+    height: 46px;
+    max-width: 46px;
+    max-height: 46px;
     min-width: 0;
     object-fit: contain;
   }
