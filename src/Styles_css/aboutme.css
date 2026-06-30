@@ -1042,6 +1042,11 @@
     margin-bottom: 38px;
   }
 
+  .about-page .about-expertise-icon img {
+    width: 20px;
+    height: 20px;
+  }
+
   .about-page .about-expertise-list li {
     line-height: 1.6;
     margin-bottom: 10px;
