@@ -526,9 +526,10 @@
   flex-shrink: 0;
 }
 
-.about-page .about-expertise-icon img {
+.about-page .about-expertise-icon img.about-expertise-icon-img {
   width: 27px;
   height: 27px;
+  max-width: 27px;
   display: block;
   object-fit: contain;
 }
@@ -918,7 +919,7 @@
     width: 100%;
   }
 
-  .about-page img:not(.footer-icon):not(.quotation-mark):not(.about-portrait),
+  .about-page img:not(.footer-icon):not(.quotation-mark):not(.about-portrait):not(.about-expertise-icon-img),
   .about-page .theme_anal {
     width: 100%;
     max-width: 100%;
@@ -1042,9 +1043,13 @@
     margin-bottom: 38px;
   }
 
-  .about-page .about-expertise-icon img {
+  .about-page .about-expertise-icon img.about-expertise-icon-img {
     width: 20px;
     height: 20px;
+    max-width: 20px;
+    min-width: 0;
+    flex-shrink: 0;
+    object-fit: contain;
   }
 
   .about-page .about-expertise-list li {

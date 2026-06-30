@@ -61,7 +61,11 @@ export default function AboutSkills() {
           {CORE_EXPERTISE.map((card) => (
             <article className="about-expertise-card" key={card.id}>
               <div className="about-expertise-icon" aria-hidden="true">
-                <img src={`${publicUrl}/img/${card.iconSrc}`} alt="" />
+                <img
+                  className="about-expertise-icon-img"
+                  src={`${publicUrl}/img/${card.iconSrc}`}
+                  alt=""
+                />
               </div>
               <h3 className="about-expertise-card-title">{card.title}</h3>
               <ul className="about-expertise-list">
