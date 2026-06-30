@@ -80,11 +80,11 @@ header {
     }
 
     .case-study-page .info-box-vp .case-study-project-subtitle {
-        margin-bottom: 0;
+        margin-bottom: 18px;
     }
 
     .case-study-page .info-box-vp .titleboxinfo-vp {
-        margin-top: -22px;
+        margin-top: 0;
     }
 }
 
