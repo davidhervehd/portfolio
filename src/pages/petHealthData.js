@@ -21,6 +21,8 @@ export default function PetHealthData() {
           projectSubtitle="Smarter pet health experiences"
           headline="Pet Health Data - An Ambitious Project"
           headlineClassName="titleboxinfo-PHD"
+          logoSrc={`${process.env.PUBLIC_URL}/img/Logo_PHD.svg`}
+          logoAlt="Pet Health Data"
         >
           <p className="textBoxInfo-PHD">
             <strong>With over 2 million dogs and cats in Switzerland</strong>, the health of our beloved faithful friends is becoming increasingly important and is now part of a global public health system, as animals can also be carriers of viruses in the population. In this context, we were contacted by the SVK (Swiss Association of Small Animal Medicine) <strong>to establish a simple and suitable medical monitoring tool for all pet owners as well as veterinarians.</strong>

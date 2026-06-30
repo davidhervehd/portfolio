@@ -28,3 +28,47 @@
   line-height: 1.5;
   max-width: 100%;
 }
+
+/* Logo header layout — shared across all case study intro cards */
+.case-study-project-header--with-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.case-study-project-logo {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+
+.case-study-project-header-text {
+  min-width: 0;
+}
+
+.case-study-page .case-study-project-header--with-logo .case-study-project-subtitle {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .case-study-project-header--with-logo {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .case-study-project-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .case-study-page .case-study-project-header--with-logo .case-study-project-subtitle {
+    margin-bottom: 18px;
+  }
+
+  .case-study-page .case-study-project-header--with-logo + [class*='titleboxinfo'] {
+    margin-top: 0;
+  }
+}

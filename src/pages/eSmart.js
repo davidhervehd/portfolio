@@ -17,6 +17,8 @@ export default function DigitalStrom() {
           projectSubtitle="Make the energy tangible"
           headline="Empowering Energy Efficiency with eSMART"
           headlineClassName="titleboxinfo-es"
+          logoSrc={`${process.env.PUBLIC_URL}/img/Logo_eSmart.svg`}
+          logoAlt="eSmart"
         >
           <p className="textboxinfo">eSMART technology is a system that integrates various sensors and monitoring devices <strong>to collect real-time data on environmental parameters such as temperature, humidity, air quality, light levels</strong>, and more.  This data can be used for various applications such as building automation or energy management.</p>
           <p className="textboxinfo">In my role for their new application, "EVO," I was assigned the responsibility of identifying and implementing solutions that would increase the adoption of the <strong>innovative energy solution</strong>.</p>

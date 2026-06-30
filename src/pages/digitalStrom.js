@@ -21,6 +21,8 @@ export default function DigitalStrom() {
           projectSubtitle="Making smart home control intuitive"
           headline="Enhancing UX through Comprehensive Feedback Analysis"
           headlineClassName="titleboxinfo-ds"
+          logoSrc={`${process.env.PUBLIC_URL}/img/Logo_DigitalStrom.svg`}
+          logoAlt="Digital Strom"
         >
           <p className="texteboxinfo-ds">DigitalSTROM is a Swiss-based company that specializes in smart home technology. They offer solutions for controlling and automating various aspects of home systems such as lighting, heating, security, and more. I was in charge of relaunching the mobile app for iOS and Android.</p>
           <p className="texteboxinfo-ds">One aspect of my role involved <strong>consolidating user requirements</strong> by leveraging the network platform to gather valuable feedback.</p>
