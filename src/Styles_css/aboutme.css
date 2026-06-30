@@ -1108,13 +1108,23 @@
   }
 
   .about-page .about-hobby-card-icon {
-    min-height: 56px;
+    min-height: 40px;
     margin-bottom: 12px;
   }
 
   .about-page .about-hobby-card-icon img {
-    width: 56px;
-    height: 56px;
+    width: 39px;
+    height: 39px;
+  }
+
+  .about-page .about-hobby-card-title {
+    font-size: 1.12em;
+    margin-bottom: 14px;
+  }
+
+  .about-page .about-hobby-card-description {
+    font-size: 1.03em;
+    line-height: 1.45;
   }
 
   .about-page .about-hobbies-carousel-dots {
