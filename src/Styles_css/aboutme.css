@@ -1145,11 +1145,13 @@
   .hero_about {
     box-sizing: border-box;
     min-height: 100vh;
-    padding: var(--navbar-height) var(--mobile-gutter, 20px) 0;
+    min-height: 100dvh;
+    padding: var(--navbar-height) var(--mobile-gutter, 20px)
+      calc(3.5rem + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .hero-content_about {
@@ -1159,10 +1161,10 @@
     justify-content: flex-start;
     flex: none;
     min-height: 0;
-    padding: 0 0 0.75rem;
+    padding: 0.875rem 0 0.75rem;
     width: 100%;
     gap: 0.25rem;
-    transform: translateY(-2.5rem);
+    transform: none;
   }
 
   .about-page .hero-text_about {
@@ -1178,7 +1180,8 @@
     width: max-content;
     max-width: 100%;
     left: 0;
-    padding-left: 34px;
+    padding-left: 0;
+    margin-top: 0;
     margin-bottom: 1.125rem;
     font-size: 0.72rem;
     color: #5113A2;
@@ -1191,15 +1194,8 @@
   }
 
   .about-page .welcome-text_about::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 26px;
-    height: 2px;
-    background-color: #5113A2;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    display: none;
+    content: none;
   }
 
   .about-page .title_about {
