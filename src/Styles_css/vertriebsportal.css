@@ -381,7 +381,6 @@ footer {
     /* Shared mobile carousel gutter — ecosystem cards + screenshot galleries */
     .ecosystem-cards-section,
     .provider-screenshots-section {
-        --carousel-scroll-end-gap: 6px;
         width: calc(100% + (var(--mobile-gutter) * 2));
         max-width: calc(100% + (var(--mobile-gutter) * 2));
         margin-left: calc(-1 * var(--mobile-gutter));
@@ -394,7 +393,7 @@ footer {
 
     .ecosystem-cards-shell,
     .provider-screenshots-shell {
-        overflow: hidden;
+        overflow: visible;
         width: 100%;
         min-height: 0;
         padding: 4px 0;
@@ -403,14 +402,16 @@ footer {
 
     .ecosystem-cards,
     .provider-screenshots {
+        display: flex;
+        flex-wrap: nowrap;
         overflow-x: auto;
         overflow-y: visible;
         scroll-snap-type: x mandatory;
-        scroll-padding-inline-start: 0;
-        scroll-padding-inline-end: var(--carousel-scroll-end-gap);
+        scroll-padding-inline-start: var(--mobile-gutter);
+        scroll-padding-inline-end: 0;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 0 var(--carousel-scroll-end-gap) 0.25rem var(--mobile-gutter);
+        padding: 0 0 0.25rem var(--mobile-gutter);
         margin: 0;
         box-sizing: border-box;
     }
@@ -428,14 +429,13 @@ footer {
     }
 
     .ecosystem-cards {
-        display: flex;
         justify-content: flex-start;
         gap: var(--ecosystem-card-gap);
         max-width: none;
     }
 
     .ecosystem-card {
-        flex: 0 0 var(--ecosystem-card-width);
+        flex: 0 0 auto;
         width: var(--ecosystem-card-width);
         max-width: var(--ecosystem-card-width);
         min-width: var(--ecosystem-card-width);
@@ -468,8 +468,6 @@ footer {
     }
 
     .provider-screenshots {
-        display: flex;
-        flex-wrap: nowrap;
         justify-content: flex-start;
         align-items: flex-start;
         gap: 12px;
@@ -479,7 +477,7 @@ footer {
 
     .provider-screenshot-btn,
     .provider-screenshots--three .provider-screenshot-btn {
-        flex: 0 0 min(82vw, 280px);
+        flex: 0 0 auto;
         width: min(82vw, 280px);
         max-width: none;
         min-width: min(82vw, 280px);
