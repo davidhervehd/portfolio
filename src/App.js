@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './Components/Navbar';
 import ScrollToTop from './Components/ScrollToTop';
 import BackButton from './Components/BackButton';
+import { isActiveCaseStudyRoute } from './config/portfolioCaseStudies';
 import { CvModalProvider } from './context/CvModalContext';
 
 import Home from './pages/home';
@@ -41,7 +42,7 @@ function App() {
           <Route path="/contact" element={<PageFade><Contact /></PageFade>} />
         </Routes>
       </AnimatePresence>
-      {location.pathname !== '/home' && <BackButton />}
+      {isActiveCaseStudyRoute(location.pathname) && <BackButton />}
     </div>
     </CvModalProvider>
   );
