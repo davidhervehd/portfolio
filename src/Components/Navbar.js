@@ -9,18 +9,72 @@ import '../Styles_css/NavUnderline.css';
 const NAV_ITEMS = [
   { key: 'home', label: 'Home', to: '/home' },
   { key: 'case-studies', label: 'Case Studies', to: '/home#case-studies', hash: 'case-studies' },
-  { key: 'about', label: 'About', to: '/about_me' },
+  { key: 'about', label: 'About Me', to: '/about_me' },
   { key: 'contact', label: 'Contact', href: CONTACT_MAILTO },
 ];
 
 const MOBILE_BREAKPOINT = 768;
 const MOBILE_TOP_SCROLL_THRESHOLD = 10;
+const HOME_TOP_SCROLL_THRESHOLD = 200;
+const HOME_SECTION_TRIGGER_PX = 100;
+
+function normalizePathname(pathname) {
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    return pathname.slice(0, -1);
+  }
+  return pathname;
+}
+
+function isHomePathname(pathname) {
+  const normalized = normalizePathname(pathname);
+  return normalized === '/' || normalized === '/home' || normalized === '/portfolio';
+}
+
+function isOnHomePage(pathname) {
+  if (isHomePathname(pathname)) return true;
+  if (
+    pathname === '/about_me'
+    || pathname === '/contact'
+    || isActiveCaseStudyRoute(pathname)
+  ) {
+    return false;
+  }
+  return typeof document !== 'undefined' && !!document.getElementById('home-hero');
+}
+
+function getHomeScrollSection() {
+  const caseStudies = document.getElementById('case-studies');
+  if (!caseStudies) return null;
+
+  if (window.scrollY < HOME_TOP_SCROLL_THRESHOLD) {
+    return 'home';
+  }
+
+  const caseTop = caseStudies.getBoundingClientRect().top;
+  return caseTop <= HOME_SECTION_TRIGGER_PX ? 'case-studies' : 'home';
+}
+
+function clearCaseStudiesHash() {
+  window.history.replaceState(
+    null,
+    '',
+    `${window.location.pathname}${window.location.search}`,
+  );
+}
+
+function setCaseStudiesHash() {
+  window.history.replaceState(
+    null,
+    '',
+    `${window.location.pathname}${window.location.search}#case-studies`,
+  );
+}
 
 function getActiveKey(pathname, hash) {
   if (pathname === '/about_me') return 'about';
   if (isActiveCaseStudyRoute(pathname)) return 'case-studies';
-  if (pathname === '/home' && hash === '#case-studies') return 'case-studies';
-  if (pathname === '/home') return 'home';
+  if (isHomePathname(pathname) && hash === '#case-studies') return 'case-studies';
+  if (isHomePathname(pathname)) return 'home';
   return 'home';
 }
 
@@ -32,8 +86,13 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [homeScrollSection, setHomeScrollSection] = useState(null);
 
-  const activeKey = getActiveKey(location.pathname, location.hash);
+  const routeActiveKey = getActiveKey(location.pathname, location.hash);
+  const onHomePage = isOnHomePage(location.pathname);
+  const activeKey = onHomePage && homeScrollSection
+    ? homeScrollSection
+    : routeActiveKey;
 
   const updateUnderline = (key) => {
     if (window.innerWidth <= MOBILE_BREAKPOINT) return;
@@ -65,6 +124,80 @@ export default function Navbar() {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname, location.hash]);
+
+  useLayoutEffect(() => {
+    if (!isOnHomePage(location.pathname)) {
+      setHomeScrollSection(null);
+      return;
+    }
+
+    const nextSection = getHomeScrollSection();
+    if (nextSection) {
+      setHomeScrollSection(nextSection);
+    }
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    if (!isOnHomePage(location.pathname)) {
+      setHomeScrollSection(null);
+      return undefined;
+    }
+
+    let cancelled = false;
+    let rafId;
+    let observer;
+    let syncHomeSection;
+
+    const attachScrollSpy = () => {
+      const hero = document.getElementById('home-hero');
+      const caseStudies = document.getElementById('case-studies');
+
+      if (!hero || !caseStudies) {
+        if (!cancelled) {
+          rafId = window.requestAnimationFrame(attachScrollSpy);
+        }
+        return;
+      }
+
+      syncHomeSection = () => {
+        if (!isOnHomePage(location.pathname)) return;
+
+        const nextSection = getHomeScrollSection();
+        if (!nextSection) return;
+
+        setHomeScrollSection((current) => (current === nextSection ? current : nextSection));
+
+        if (nextSection === 'home' && window.location.hash === '#case-studies') {
+          clearCaseStudiesHash();
+        }
+      };
+
+      syncHomeSection();
+
+      observer = new IntersectionObserver(
+        syncHomeSection,
+        {
+          root: null,
+          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+        },
+      );
+
+      observer.observe(hero);
+      observer.observe(caseStudies);
+      window.addEventListener('scroll', syncHomeSection, { passive: true });
+    };
+
+    attachScrollSpy();
+
+    return () => {
+      cancelled = true;
+      if (rafId) window.cancelAnimationFrame(rafId);
+      observer?.disconnect();
+      if (syncHomeSection) {
+        window.removeEventListener('scroll', syncHomeSection);
+      }
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
@@ -110,23 +243,37 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const handleHomeClick = (e) => {
+    if (isOnHomePage(location.pathname)) {
+      e.preventDefault();
+      if (location.hash) {
+        clearCaseStudiesHash();
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+    setHomeScrollSection('home');
+    updateUnderline('home');
+    setMobileMenuOpen(false);
+  };
+
   const handleCaseStudiesClick = (e) => {
-    if (location.pathname === '/home') {
+    if (isOnHomePage(location.pathname)) {
       e.preventDefault();
       document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' });
-      window.history.replaceState(null, '', `${location.pathname}#case-studies`);
+      setCaseStudiesHash();
     }
+    setHomeScrollSection('case-studies');
     updateUnderline('case-studies');
+    setMobileMenuOpen(false);
+  };
+
+  const handleAboutClick = () => {
+    updateUnderline('about');
     setMobileMenuOpen(false);
   };
 
   const handleContactClick = () => {
     trackEvent('Contact Email');
-    setMobileMenuOpen(false);
-  };
-
-  const handleLinkClick = (item) => {
-    updateUnderline(item.key);
     setMobileMenuOpen(false);
   };
 
@@ -175,8 +322,9 @@ export default function Navbar() {
                   to={item.to}
                   className={`nav-link ${activeKey === item.key ? 'active' : ''}`}
                   onClick={(e) => {
-                    if (item.hash) handleCaseStudiesClick(e);
-                    else handleLinkClick(item);
+                    if (item.key === 'home') handleHomeClick(e);
+                    else if (item.hash) handleCaseStudiesClick(e);
+                    else if (item.key === 'about') handleAboutClick();
                   }}
                 >
                   {item.label}

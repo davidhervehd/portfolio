@@ -229,7 +229,7 @@ export default function DigitalStrom() {
           <p>The high-fidelity screens are now ready, <strong>allowing us to move forward with usability testing and gather detailed feedback from users</strong>. With these polished prototypes, we can also begin collaborating with developers to ensure a smooth transition to the final product implementation.</p>
           <div className="white-space"></div>
         </div>
-        
+
         {/* Add the BackButton component at the bottom */}
         <BackButton />
 

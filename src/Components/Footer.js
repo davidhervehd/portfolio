@@ -105,7 +105,7 @@ export default function Footer() {
         >
           Case Studies
         </Link>
-        <Link to="/about_me" className="footer-menu-link footer-link">About</Link>
+        <Link to="/about_me" className="footer-menu-link footer-link">About Me</Link>
         <a
           href={CONTACT_MAILTO}
           className="footer-menu-link footer-link"

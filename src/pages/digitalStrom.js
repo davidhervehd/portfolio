@@ -1,6 +1,5 @@
 import React from 'react';
 import Footer from '../Components/Footer';
-import BackButton from '../Components/BackButton'; // Import the BackButton component
 import CaseStudyIntro from '../Components/CaseStudyIntro';
 import '../Styles_css/digitalStrom.css';
 

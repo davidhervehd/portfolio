@@ -10,8 +10,14 @@ export const trackCaseStudyClick = (studyName) => {
   }
 };
 
-export const trackNextUseCase = (currentStudyName) => {
-  if (currentStudyName) {
-    trackEvent(`Next Use Case - ${currentStudyName}`);
+export const trackNextUseCase = (targetStudyName) => {
+  if (targetStudyName) {
+    trackEvent(`Next Use Case - ${targetStudyName}`);
+  }
+};
+
+export const trackPreviousUseCase = (targetStudyName) => {
+  if (targetStudyName) {
+    trackEvent(`Previous Use Case - ${targetStudyName}`);
   }
 };
