@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React from 'react';
+import AboutCarouselDots from './AboutCarouselDots';
+import { useAboutCarousel } from '../hooks/useAboutCarousel';
 
 const publicUrl = process.env.PUBLIC_URL;
 
@@ -60,102 +62,19 @@ function HobbyCard({ card }) {
 }
 
 export default function AboutBeyondDesign() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const scrollRef = useRef(null);
-  const dragState = useRef({
-    isDragging: false,
-    startX: 0,
-    scrollLeft: 0,
+  const {
+    scrollRef,
+    isDragging,
+    activePageIndex,
+    pageCount,
+    goToPage,
+    handleMouseDown,
+    stopDragging,
+  } = useAboutCarousel({
+    totalSlides: HOBBY_CARDS.length,
+    slideSelector: '.about-hobbies-slide',
+    trackSelector: '.about-hobbies-carousel-track',
   });
-
-  const updateActiveIndex = useCallback(() => {
-    const viewport = scrollRef.current;
-    if (!viewport) return;
-
-    const slides = viewport.querySelectorAll('.about-hobbies-slide');
-    if (!slides.length) return;
-
-    const scrollLeft = viewport.scrollLeft;
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-
-    slides.forEach((slide, index) => {
-      const distance = Math.abs(slide.offsetLeft - scrollLeft);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    setActiveIndex(closestIndex);
-  }, []);
-
-  useEffect(() => {
-    const viewport = scrollRef.current;
-    if (!viewport) return undefined;
-
-    viewport.addEventListener('scroll', updateActiveIndex, { passive: true });
-    window.addEventListener('resize', updateActiveIndex);
-
-    return () => {
-      viewport.removeEventListener('scroll', updateActiveIndex);
-      window.removeEventListener('resize', updateActiveIndex);
-    };
-  }, [updateActiveIndex]);
-
-  const stopDragging = useCallback(() => {
-    if (!dragState.current.isDragging) return;
-    dragState.current.isDragging = false;
-    setIsDragging(false);
-  }, []);
-
-  const handleMouseDown = (event) => {
-    if (event.button !== 0) return;
-
-    const viewport = scrollRef.current;
-    if (!viewport) return;
-
-    dragState.current = {
-      isDragging: true,
-      startX: event.pageX,
-      scrollLeft: viewport.scrollLeft,
-    };
-    setIsDragging(true);
-    event.preventDefault();
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      if (!dragState.current.isDragging) return;
-
-      const viewport = scrollRef.current;
-      if (!viewport) return;
-
-      const deltaX = event.pageX - dragState.current.startX;
-      viewport.scrollLeft = dragState.current.scrollLeft - deltaX;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', stopDragging);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', stopDragging);
-    };
-  }, [stopDragging]);
-
-  const goToSlide = (index) => {
-    const viewport = scrollRef.current;
-    const slide = viewport?.querySelectorAll('.about-hobbies-slide')[index];
-    if (!viewport || !slide) return;
-
-    viewport.scrollTo({
-      left: slide.offsetLeft,
-      behavior: 'smooth',
-    });
-    setActiveIndex(index);
-  };
 
   return (
     <div className="block about-beyond-design-wrapper">
@@ -183,21 +102,14 @@ export default function AboutBeyondDesign() {
           </div>
         </div>
 
-        <div className="about-hobbies-carousel-dots" role="tablist" aria-label="Beyond Design slides">
-          {HOBBY_CARDS.map((card, index) => (
-            <button
-              key={card.id}
-              type="button"
-              className={`about-hobbies-carousel-dot${
-                index === activeIndex ? ' about-hobbies-carousel-dot--active' : ''
-              }`}
-              onClick={() => goToSlide(index)}
-              aria-label={`Go to ${card.title}`}
-              aria-selected={index === activeIndex}
-              role="tab"
-            />
-          ))}
-        </div>
+        <AboutCarouselDots
+          pageCount={pageCount}
+          activePageIndex={activePageIndex}
+          onGoToPage={goToPage}
+          classPrefix="about-hobbies-carousel"
+          ariaLabel="Beyond Design slides"
+          getPageAriaLabel={(pageIndex) => `Go to Beyond Design page ${pageIndex + 1}`}
+        />
       </section>
     </div>
   );

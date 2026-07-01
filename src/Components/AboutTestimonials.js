@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React from 'react';
+import AboutCarouselDots from './AboutCarouselDots';
+import { useAboutCarousel } from '../hooks/useAboutCarousel';
 
 const testimonials = [
   {
@@ -58,102 +60,19 @@ function TestimonialCard({ testimonial }) {
 }
 
 export default function AboutTestimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const scrollRef = useRef(null);
-  const dragState = useRef({
-    isDragging: false,
-    startX: 0,
-    scrollLeft: 0,
+  const {
+    scrollRef,
+    isDragging,
+    activePageIndex,
+    pageCount,
+    goToPage,
+    handleMouseDown,
+    stopDragging,
+  } = useAboutCarousel({
+    totalSlides: testimonials.length,
+    slideSelector: '.testimonial-slide',
+    trackSelector: '.testimonial-carousel-track',
   });
-
-  const updateActiveIndex = useCallback(() => {
-    const viewport = scrollRef.current;
-    if (!viewport) return;
-
-    const slides = viewport.querySelectorAll('.testimonial-slide');
-    if (!slides.length) return;
-
-    const scrollLeft = viewport.scrollLeft;
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-
-    slides.forEach((slide, index) => {
-      const distance = Math.abs(slide.offsetLeft - scrollLeft);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    setActiveIndex(closestIndex);
-  }, []);
-
-  useEffect(() => {
-    const viewport = scrollRef.current;
-    if (!viewport) return undefined;
-
-    viewport.addEventListener('scroll', updateActiveIndex, { passive: true });
-    window.addEventListener('resize', updateActiveIndex);
-
-    return () => {
-      viewport.removeEventListener('scroll', updateActiveIndex);
-      window.removeEventListener('resize', updateActiveIndex);
-    };
-  }, [updateActiveIndex]);
-
-  const stopDragging = useCallback(() => {
-    if (!dragState.current.isDragging) return;
-    dragState.current.isDragging = false;
-    setIsDragging(false);
-  }, []);
-
-  const handleMouseDown = (event) => {
-    if (event.button !== 0) return;
-
-    const viewport = scrollRef.current;
-    if (!viewport) return;
-
-    dragState.current = {
-      isDragging: true,
-      startX: event.pageX,
-      scrollLeft: viewport.scrollLeft,
-    };
-    setIsDragging(true);
-    event.preventDefault();
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      if (!dragState.current.isDragging) return;
-
-      const viewport = scrollRef.current;
-      if (!viewport) return;
-
-      const deltaX = event.pageX - dragState.current.startX;
-      viewport.scrollLeft = dragState.current.scrollLeft - deltaX;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', stopDragging);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', stopDragging);
-    };
-  }, [stopDragging]);
-
-  const goToSlide = (index) => {
-    const viewport = scrollRef.current;
-    const slide = viewport?.querySelectorAll('.testimonial-slide')[index];
-    if (!viewport || !slide) return;
-
-    viewport.scrollTo({
-      left: slide.offsetLeft,
-      behavior: 'smooth',
-    });
-    setActiveIndex(index);
-  };
 
   return (
     <div className="block about-testimonials-wrapper">
@@ -181,21 +100,14 @@ export default function AboutTestimonials() {
           </div>
         </div>
 
-        <div className="testimonial-carousel-dots" role="tablist" aria-label="Testimonial slides">
-          {testimonials.map((testimonial, index) => (
-            <button
-              key={testimonial.id}
-              type="button"
-              className={`testimonial-carousel-dot${
-                index === activeIndex ? ' testimonial-carousel-dot--active' : ''
-              }`}
-              onClick={() => goToSlide(index)}
-              aria-label={`Go to testimonial ${index + 1}`}
-              aria-selected={index === activeIndex}
-              role="tab"
-            />
-          ))}
-        </div>
+        <AboutCarouselDots
+          pageCount={pageCount}
+          activePageIndex={activePageIndex}
+          onGoToPage={goToPage}
+          classPrefix="testimonial-carousel"
+          ariaLabel="Testimonial slides"
+          getPageAriaLabel={(pageIndex) => `Go to testimonial page ${pageIndex + 1}`}
+        />
       </section>
     </div>
   );
