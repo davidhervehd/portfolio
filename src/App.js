@@ -48,12 +48,14 @@ function App() {
   );
 }
 
+const PAGE_FADE_EASING = 'easeInOut';
+
 const PageFade = ({ children }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.5 }}
+    exit={{ opacity: 0, transition: { duration: 0.18, ease: PAGE_FADE_EASING } }}
+    transition={{ duration: 0.22, ease: PAGE_FADE_EASING }}
   >
     {children}
   </motion.div>

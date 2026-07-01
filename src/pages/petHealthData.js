@@ -80,7 +80,7 @@ export default function PetHealthData() {
 
         {/* Additional text box with image */}
         <div className="additional-text-box block">
-          <p className="title">. Strategic Alignment through Research and Clarity Workshops</p>
+          <p className="title">Strategic Alignment through Research and Clarity Workshops</p>
           <p>Our research delved into the functionalities of the app, conducted through extensive questionnaires across numerous practices. While this provided a solid foundation, prioritization was essential to shape the project and ensure alignment among stakeholders. To achieve this, we organized workshops to establish a "Clarity Canvas", fostering cohesion in our strategic directions.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/clarity_canvas.png`} alt="Clarity Canvas"/>
         </div>
@@ -107,7 +107,7 @@ export default function PetHealthData() {
 
            {/* Additional text box with image */}
            <div className="additional-text-box block">
-          <p className="title">. Expectations and motivations of pet owners</p>
+          <p className="title">Expectations and motivations of pet owners</p>
           <p>Additionally, understanding the expectations and motivations of pet owners was crucial. Collaborating with the product manager, we conducted a questionnaire with approximately twenty owners to grasp the "Job To Be Done" and outline the user's mental model. This questionnaire, featuring both open and closed questions, yielded valuable insights.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/mental_model.png`} alt="Clarity Canvas"/>
         </div>
@@ -160,7 +160,7 @@ export default function PetHealthData() {
 
         {/* Additional text box with image */}
         <div className="additional-text-box block">
-          <p className="title">. The validation/consolidation phase</p>
+          <p className="title">The validation/consolidation phase</p>
           <p>This phase was aimed at allowing us to verify the assumptions made in the first phase. To do so, we conducted contextual inquiries directly in the veterinary practices. We were able to observe both types of users in one place. The idea was to validate the directions taken and solidify our users' mental model, thus refining our scenarios and storyboards.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/scenario.png`} alt="Scenario"/>
         </div>
@@ -187,14 +187,14 @@ export default function PetHealthData() {
 
         {/* Additional text box with image */}
         <div className="additional-text-box block">
-          <p className="title">. Defining Taxonomy: Classifying and Organizing!</p>
+          <p className="title">Defining Taxonomy: Classifying and Organizing!</p>
           <p>The difficulty in this exercise was to find a vocabulary that simply describes specific concepts that are understandable for pet owners and acceptable for veterinarians. Therefore, I chose the "Card Sorting" method to group "Post-its" into families that represented the content of the site.</p>
           <p>The written topics were based on the workshops conducted with stakeholders, as well as the data collected during user interviews. Participants from both sides then had to assemble the topics into groups and assign a name to each group. Experience showed that Pet owners could classify the topics into groups quite well, but had difficulty naming certain groups, especially those related to medical prevention.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/architecture.png`} alt="Architecture"/>
         </div>
 
         <div className="additional-text-box block">
-          <p className="title">. Defining the main users Flows</p>
+          <p className="title">Defining the main users Flows</p>
           <p>When collecting information, we also prioritized specific tasks and defined the "Red Routes". Red Routes are the main features of the app and what the user expects in the app (based on their mental model). This completed the architecture of the application and created the "Product Backlog" (list of completed tasks) for the development team.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/user_flow.png`} alt="User Flow"/>
         </div>
@@ -219,7 +219,7 @@ export default function PetHealthData() {
         </div>
 
         <div className="additional-text-box block">
-          <p className="title">. Sketches to generate ideas quickly.</p>
+          <p className="title">Sketches to generate ideas quickly.</p>
           <p>Sketches are an important phase as they force you, despite their lack of precision, to consider the visual hierarchy, the number of UI elements to be placed on the page, or even the number of screens needed to achieve a specific user task flow. It also allows for concrete feedback and validation of the best ideas with stakeholders.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/sketching.png`} alt="Sketching"/>
         </div>
@@ -243,7 +243,7 @@ export default function PetHealthData() {
         </div>
 
         <div className="additional-text-box block">
-          <p className="title">. Wireframing the navigation structure</p>
+          <p className="title">Wireframing the navigation structure</p>
           <p>The "Wireframing" phase is a crucial stage of the project, marking the final step before creating the "High Fidelity Prototype." Wireframing involves constructing the entire navigation structure, offering a precise overview of the application. In implementing the wireframe, the approach was to utilize an existing library. For our project, developers opted for Angular to develop the application, benefiting from its excellent library for wireframe development.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/wireframing.png`} alt="Wireframing"/>
         </div>
@@ -267,7 +267,7 @@ export default function PetHealthData() {
         </div>
 
         <div className="additional-text-box block">
-          <p className="title">. High Fidelity Prototype and design system</p>
+          <p className="title">High Fidelity Prototype and design system</p>
           <p>After validating the artistic direction with the client (including fonts, colors, and logos), only the completion of the "High Fidelity Prototype" remained. At this stage, there should be no surprises, as it's about bringing the project to life and infusing the application with emotional depth. I also developed the design system, encompassing all UI elements such as buttons, checkboxes, and steppers, aligning them with the artistic decisions made.</p>
           <img className="theme_anal" src={`${process.env.PUBLIC_URL}/img/hifi.png`} alt="High Fidelity Prototype"/>
         </div>
@@ -291,7 +291,7 @@ export default function PetHealthData() {
         </div>
 
         <div className="additional-text-box block">
-          <p className="title">. Developer handoff and deliverables</p>
+          <p className="title">Developer handoff and deliverables</p>
           <p>It is of utmost importance to always collaborate closely with developers! Indeed, decisions regarding UX/UI design have a significant impact on application development timelines. Certain solutions will entail longer or shorter development times.</p>
           <p>Moreover, handing over templates and user flows to the development team is crucial. To use an analogy, it's akin to an architect handing over blueprints to construction engineers. The plans must be precise and clear to ensure the proper execution of the work.</p>
           <p><em>All deliverables are available for viewing upon request. Please feel free to inquire for further details.</em></p>

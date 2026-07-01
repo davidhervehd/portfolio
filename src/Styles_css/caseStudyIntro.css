@@ -50,7 +50,8 @@
 }
 
 .case-study-page .case-study-project-header--with-logo .case-study-project-subtitle {
-  margin-bottom: 8px;
+  margin-top: -4px;
+  margin-bottom: 12px;
 }
 
 @media (max-width: 768px) {
@@ -65,7 +66,8 @@
   }
 
   .case-study-page .case-study-project-header--with-logo .case-study-project-subtitle {
-    margin-bottom: 18px;
+    margin-top: -4px;
+    margin-bottom: 22px;
   }
 
   .case-study-page .case-study-project-header--with-logo + [class*='titleboxinfo'] {
