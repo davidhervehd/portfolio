@@ -3,6 +3,7 @@ import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './Components/Navbar';
 import ScrollToTop from './Components/ScrollToTop';
+import UmamiAnalytics from './Components/UmamiAnalytics';
 import BackButton from './Components/BackButton';
 import { isActiveCaseStudyRoute } from './config/portfolioCaseStudies';
 import { CvModalProvider } from './context/CvModalContext';
@@ -28,6 +29,7 @@ function App() {
   return (
     <CvModalProvider>
     <div className="essai">
+      <UmamiAnalytics />
       <ScrollToTop />
       <Navbar />
       <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
