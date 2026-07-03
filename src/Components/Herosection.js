@@ -14,7 +14,7 @@ export default function Herosection({ scrollToRef }) { // Accept the ref as a pr
           <div className="welcome-text">
             <h2 className="welcome-text-h2">Product Design Portfolio</h2>
           </div>
-        <h1>Transforming complexity<br />into intuitive<br />digital products</h1>
+        <h1>Transforming complexity<br />into intuitive digital products</h1>
           <p className="subtext">Designing digital experiences people<br />understand, trust and enjoy using.</p>
           <p className="subtext subtext-light">SaaS • Smart Home • Digital Health</p>
           <button onClick={handleScrollToPortfolio} className="btn-about-me">
