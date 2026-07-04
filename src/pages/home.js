@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Herosection from '../Components/Herosection';
 import Homecontent from '../Components/Homecontent';
+import CaseStudiesSectionHeading from '../Components/CaseStudiesSectionHeading';
 import Footer from '../Components/Footer';
 import { useScroll } from 'framer-motion';
 import { getActiveCaseStudies } from '../config/portfolioCaseStudies';
@@ -42,6 +43,7 @@ export default function Home() {
         className="home-content"
         style={{ '--case-study-count': getActiveCaseStudies().length }}
       >
+        <CaseStudiesSectionHeading scrollY={scrollY} />
         {getActiveCaseStudies().map((study, index) => (
           <div
             key={study.key}

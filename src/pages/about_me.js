@@ -4,6 +4,7 @@ import Herosection_about from '../Components/Herosection_about'; // Import the H
 import AboutTestimonials from '../Components/AboutTestimonials';
 import AboutSkills from '../Components/AboutSkills';
 import AboutBeyondDesign from '../Components/AboutBeyondDesign';
+import StaticSectionHeading from '../Components/StaticSectionHeading';
 import '../Styles_css/aboutme.css';
 
 export default function AboutMe() {
@@ -11,6 +12,9 @@ export default function AboutMe() {
     <div className="about-page">
       {/* Hero section for the About Me page */}
       <Herosection_about />
+      <div className="about-page-section-intro">
+        <StaticSectionHeading title="About Me" />
+      </div>
       {/* New Block Section */}
       <section className="about-block block">
         <div className="about-block-content">

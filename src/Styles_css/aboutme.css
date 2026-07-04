@@ -163,6 +163,17 @@
       0 4px 24px rgba(81, 19, 162, 0.07),
       0 1px 6px rgba(0, 0, 0, 0.04);
   }
+
+  .about-page-section-intro {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .about-page .about-page-section-intro + .about-block {
+    margin-top: 0;
+  }
   
   .about-block-content {
     display: flex;
@@ -193,7 +204,7 @@
   
   .about-text {
     flex: 1;
-    color: #3B247C;
+    color: #5113A2;
   }
   
   .about-text h2 {
@@ -244,6 +255,10 @@
   box-sizing: border-box;
   position: relative;
   z-index: 1;
+}
+
+.about-page .additional-text-box > .title {
+  color: #5113A2;
 }
 
 .about-page .testimonial-carousel-shell {
@@ -310,10 +325,11 @@
 
 .about-page .testimonial-block {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 24px;
   height: 100%;
   box-sizing: border-box;
+  color: #5113A2;
   box-shadow:
     0 4px 24px rgba(81, 19, 162, 0.07),
     0 1px 6px rgba(0, 0, 0, 0.04);
@@ -362,19 +378,19 @@
   font-size: 1.05em;
   margin-bottom: 4px;
   display: block;
-  color: #5113A2;
+  color: inherit;
 }
 
 .about-page .job-description {
   font-size: 0.9em;
-  color: #6b6b6b;
+  color: inherit;
   margin: 0;
 }
 
 .about-page .testimonial-quote {
   font-size: 0.9em;
-  line-height: 1.5;
-  color: #333333;
+  line-height: 1.65;
+  color: inherit;
   margin-top: 14px;
   text-align: left;
 }
@@ -508,9 +524,20 @@
   background-color: #fff;
   box-sizing: border-box;
   text-align: left;
+  color: #5113A2;
   box-shadow:
     0 4px 24px rgba(81, 19, 162, 0.07),
     0 1px 6px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-page .about-expertise-card:hover {
+    box-shadow:
+      0 6px 28px rgba(81, 19, 162, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
 }
 
 .about-page .about-expertise-icon {
@@ -701,6 +728,7 @@
     0 1px 6px rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #5113A2;
 }
 
 .about-page .about-hobbies-card:hover .about-hobby-card {
@@ -715,7 +743,7 @@
   font-size: 1em;
   font-weight: 600;
   line-height: 1.25;
-  color: #3B247C;
+  color: inherit;
 }
 
 .about-page .about-hobby-card-icon {
@@ -739,7 +767,7 @@
   margin: 0;
   font-size: 0.92em;
   line-height: 1.45;
-  color: #6b6b6b;
+  color: inherit;
 }
 
 .about-page .about-hobbies-carousel-dots {
@@ -1290,6 +1318,17 @@
     padding: 36px;
   }
 
+  .about-page-section-intro {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .about-page .about-page-section-intro + .about-block {
+    margin-top: 0;
+  }
+
   .about-block-content {
     flex-direction: column;
   }
@@ -1355,7 +1394,7 @@
   }
 
   .about-page .testimonial-block {
-    padding: 16px;
+    padding: 26px;
   }
 
   .about-page .testimonial-block:hover {
@@ -1379,6 +1418,7 @@
   .about-page .testimonial-quote {
     margin-top: 12px;
     font-size: 0.85em;
+    line-height: 1.65;
   }
 
   .about-page .testimonial-carousel-dots {
