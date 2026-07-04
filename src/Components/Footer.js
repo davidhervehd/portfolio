@@ -7,6 +7,21 @@ import '../Styles_css/Footer.css';
 
 const publicUrl = process.env.PUBLIC_URL;
 
+function FooterIcon({ iconFile }) {
+  const iconUrl = `${publicUrl}/img/${iconFile}`;
+
+  return (
+    <span
+      className="footer-icon"
+      style={{
+        WebkitMaskImage: `url("${iconUrl}")`,
+        maskImage: `url("${iconUrl}")`,
+      }}
+      aria-hidden="true"
+    />
+  );
+}
+
 export default function Footer() {
   const location = useLocation();
   const { openCvModal } = useCvModal();
@@ -97,20 +112,28 @@ export default function Footer() {
 
       <div className="footer-item footer-item-menu">
         <p className="footer-heading">Menu</p>
-        <Link to="/home" className="footer-menu-link footer-link">Home</Link>
+        <Link to="/home" className="footer-connect-link footer-menu-link footer-link">
+          <FooterIcon iconFile="house-icon 1.svg" />
+          Home
+        </Link>
         <Link
           to="/home#case-studies"
-          className="footer-menu-link footer-link"
+          className="footer-connect-link footer-menu-link footer-link"
           onClick={handleCaseStudiesClick}
         >
+          <FooterIcon iconFile="folder-open.svg" />
           Case Studies
         </Link>
-        <Link to="/about_me" className="footer-menu-link footer-link">About Me</Link>
+        <Link to="/about_me" className="footer-connect-link footer-menu-link footer-link">
+          <FooterIcon iconFile="user-icon.svg" />
+          About Me
+        </Link>
         <a
           href={CONTACT_MAILTO}
-          className="footer-menu-link footer-link"
+          className="footer-connect-link footer-menu-link footer-link"
           onClick={() => trackEvent('Contact Email')}
         >
+          <FooterIcon iconFile="handshake-icon.svg" />
           Contact
         </a>
       </div>
