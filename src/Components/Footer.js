@@ -41,7 +41,6 @@ export default function Footer() {
         <p className="footer-heading">David Hervé</p>
         <p>Senior Product Designer (UX/UI)</p>
         <p className="footer-tags">SaaS • Smart Home • Digital Health</p>
-        <p className="footer-bottom">© 2026 David Hervé · Senior Product Designer (UX/UI)</p>
       </div>
 
       <div className="footer-item footer-item-center">
@@ -137,6 +136,8 @@ export default function Footer() {
           Contact
         </a>
       </div>
+
+      <p className="footer-bottom">© 2026 David Hervé · Senior Product Designer (UX/UI)</p>
       </div>
     </footer>
   );
