@@ -287,7 +287,8 @@ export default function Navbar() {
         <div className="site-title-primary">
           <span className="site-title-name">David Hervé</span>
           <span className="site-title-separator" aria-hidden="true">|</span>
-          <span className="site-title-role">Senior Product Designer (UX/UI)</span>
+          <span className="site-title-role site-title-role--desktop">Senior Product Designer (UX/UI)</span>
+          <span className="site-title-role site-title-role--mobile">Senior Product Designer</span>
         </div>
         <div className="site-title-location">
           <img
