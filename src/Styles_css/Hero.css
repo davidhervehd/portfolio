@@ -403,13 +403,14 @@ button.scroll_down:before {
     width: 100%;
     height: auto;
     justify-content: center;
+    margin-top: -5px;
     animation: ombreAnimationMobile 3s ease-in-out infinite;
   }
 
   .shadow img {
     display: block;
-    width: 68%;
-    max-width: 96px;
+    width: 80%;
+    max-width: 113px;
     height: auto;
     margin: 0 auto;
     opacity: 0.82;
