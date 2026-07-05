@@ -257,11 +257,16 @@ button.scroll_down:before {
     padding: var(--navbar-height) 0 0;
     margin-bottom: 2.5rem;
     display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .hero-shell > .hero-content {
     width: 100%;
+    max-width: 100%;
     padding: 0 var(--mobile-gutter);
+    overflow-x: hidden;
   }
 
   .hero-shell .hero {
@@ -276,14 +281,19 @@ button.scroll_down:before {
     justify-content: flex-start;
     align-items: stretch;
     box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .hero-shell .hero > .hero-content {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    max-width: 100%;
     padding: 1.125rem 0 0;
     gap: 0.625rem;
+    overflow-x: hidden;
   }
 
   .hero-text {
@@ -348,10 +358,12 @@ button.scroll_down:before {
   .hero-image-container {
     order: 2;
     width: 100%;
+    max-width: 100%;
     margin-top: 0.625rem;
     margin-bottom: 0;
     transform: translateY(-6px);
     align-items: center;
+    overflow-x: hidden;
   }
 
   .hero-image {
@@ -368,6 +380,7 @@ button.scroll_down:before {
   .image-container {
     position: relative;
     width: min(52%, 200px);
+    max-width: 100%;
     margin: 0.15rem auto 0;
     padding-right: 0;
     justify-content: center;

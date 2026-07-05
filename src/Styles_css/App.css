@@ -27,6 +27,18 @@ html, body {
         --mobile-gutter: 20px;
         --navbar-height: 64px;
     }
+
+    html,
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    #root,
+    .essai {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
 }
 
 #root {
