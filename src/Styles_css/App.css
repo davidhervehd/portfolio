@@ -30,14 +30,8 @@ html, body {
 
     html,
     body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-
-    #root,
-    .essai {
-        overflow-x: hidden;
-        max-width: 100%;
+        overflow-x: clip;
+        width: 100%;
     }
 }
 
