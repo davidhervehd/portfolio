@@ -409,8 +409,8 @@ button.scroll_down:before {
 
   .shadow img {
     display: block;
-    width: 80%;
-    max-width: 113px;
+    width: 90%;
+    max-width: 128px;
     height: auto;
     margin: 0 auto;
     opacity: 0.82;
@@ -445,5 +445,15 @@ button.scroll_down:before {
     right: auto;
     margin: 0 auto;
     pointer-events: auto;
+    width: 25px;
+    height: 41px;
+    border-radius: 16px;
+  }
+
+  .hero-shell .hero .wrapper .scroll_down:before {
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
   }
 }

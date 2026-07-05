@@ -1287,6 +1287,19 @@
     bottom: 1rem;
   }
 
+  .hero_about .wrapper2 .scroll_down {
+    width: 25px;
+    height: 41px;
+    border-radius: 16px;
+  }
+
+  .hero_about .wrapper2 .scroll_down:before {
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+  }
+
   .title_about {
     font-size: 1.75rem;
   }
