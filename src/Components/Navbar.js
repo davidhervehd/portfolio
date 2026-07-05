@@ -284,8 +284,20 @@ export default function Navbar() {
   return (
     <nav className={`nav ${isVisible ? 'visible' : 'hidden'}${mobileMenuOpen ? ' nav-mobile-open' : ''}`}>
       <Link to="/home" className="site-title" onClick={() => setMobileMenuOpen(false)}>
-        <span className="site-title-name">David Hervé</span>
-        <span className="site-title-role">Senior Product Designer (UX/UI)</span>
+        <div className="site-title-primary">
+          <span className="site-title-name">David Hervé</span>
+          <span className="site-title-separator" aria-hidden="true">|</span>
+          <span className="site-title-role">Senior Product Designer (UX/UI)</span>
+        </div>
+        <div className="site-title-location">
+          <img
+            src={`${process.env.PUBLIC_URL}/img/Icon-pin.svg`}
+            alt=""
+            aria-hidden="true"
+            className="site-title-location-icon"
+          />
+          <span>Based in Zurich, Switzerland</span>
+        </div>
       </Link>
 
       <button
