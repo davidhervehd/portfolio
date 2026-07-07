@@ -20,7 +20,7 @@ export default function CaseStudiesSectionHeading({ scrollY }) {
   const titleX = useTransform(scrollY, titleRange, [60, 0]);
 
   return (
-    <div className="section-heading">
+    <div className="section-heading" id="case-studies-heading">
       <motion.div
         className="section-heading-line"
         aria-hidden="true"

@@ -7,6 +7,7 @@ import Footer from '../Components/Footer';
 import { useScroll } from 'framer-motion';
 import { getActiveCaseStudies } from '../config/portfolioCaseStudies';
 import { shouldScrollToCaseStudies } from '../Components/ScrollToTop';
+import { scrollToCaseStudiesSection } from '../utils/scrollToCaseStudies';
 
 export default function Home() {
   const location = useLocation();
@@ -23,7 +24,7 @@ export default function Home() {
     }
 
     const timer = window.setTimeout(() => {
-      document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' });
+      scrollToCaseStudiesSection('smooth');
     }, 100);
 
     return () => window.clearTimeout(timer);

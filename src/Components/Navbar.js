@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { isActiveCaseStudyRoute } from '../config/portfolioCaseStudies';
 import { CONTACT_MAILTO } from '../config/contactMailto';
 import { trackEvent } from '../utils/analytics';
+import { scrollToCaseStudiesSection } from '../utils/scrollToCaseStudies';
 import '../Styles_css/Nav.css';
 import '../Styles_css/NavUnderline.css';
 
@@ -257,14 +258,35 @@ export default function Navbar() {
   };
 
   const handleCaseStudiesClick = (e) => {
-    if (isOnHomePage(location.pathname)) {
+    const onHome = isOnHomePage(location.pathname);
+    const shouldDeferScroll = mobileMenuOpen;
+
+    if (onHome) {
       e.preventDefault();
-      document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' });
-      setCaseStudiesHash();
     }
+
+    setMobileMenuOpen(false);
     setHomeScrollSection('case-studies');
     updateUnderline('case-studies');
-    setMobileMenuOpen(false);
+
+    if (!onHome) {
+      return;
+    }
+
+    const performScroll = () => {
+      scrollToCaseStudiesSection('smooth');
+      setCaseStudiesHash();
+    };
+
+    if (shouldDeferScroll) {
+      // Mobile menu sets body overflow:hidden; defer scroll until it is restored.
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(performScroll);
+      });
+      return;
+    }
+
+    performScroll();
   };
 
   const handleAboutClick = () => {
