@@ -208,6 +208,28 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   useEffect(() => {
+    const restoreBodyScroll = () => {
+      if (!mobileMenuOpen) {
+        document.body.style.overflow = '';
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        restoreBodyScroll();
+      }
+    };
+
+    window.addEventListener('pageshow', restoreBodyScroll);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('pageshow', restoreBodyScroll);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
     if (!mobileMenuOpen) return undefined;
 
     const handleEscape = (event) => {

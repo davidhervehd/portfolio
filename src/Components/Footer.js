@@ -1,11 +1,19 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCvModal } from '../context/CvModalContext';
 import { CONTACT_EMAIL, CONTACT_MAILTO } from '../config/contactMailto';
 import { trackEvent } from '../utils/analytics';
+import { scrollToCaseStudiesSection } from '../utils/scrollToCaseStudies';
 import '../Styles_css/Footer.css';
 
 const publicUrl = process.env.PUBLIC_URL;
+
+function isHomePath(pathname) {
+  const normalized = pathname.length > 1 && pathname.endsWith('/')
+    ? pathname.slice(0, -1)
+    : pathname;
+  return normalized === '/' || normalized === '/home';
+}
 
 function FooterIcon({ iconFile }) {
   const iconUrl = `${publicUrl}/img/${iconFile}`;
@@ -24,13 +32,34 @@ function FooterIcon({ iconFile }) {
 
 export default function Footer() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { openCvModal } = useCvModal();
 
-  const handleCaseStudiesClick = (e) => {
-    if (location.pathname === '/home') {
+  const handleFooterHomeClick = (e) => {
+    if (isHomePath(location.pathname)) {
       e.preventDefault();
-      document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' });
-      window.history.replaceState(null, '', `${location.pathname}#case-studies`);
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      return;
+    }
+
+    e.preventDefault();
+    navigate('/home');
+  };
+
+  const handleFooterAboutClick = (e) => {
+    e.preventDefault();
+    navigate('/about_me');
+  };
+
+  const handleCaseStudiesClick = (e) => {
+    if (isHomePath(location.pathname)) {
+      e.preventDefault();
+      scrollToCaseStudiesSection('smooth');
+      window.history.replaceState(
+        null,
+        '',
+        `${location.pathname}${location.search}#case-studies`,
+      );
     }
   };
 
@@ -41,24 +70,26 @@ export default function Footer() {
         <p className="footer-heading">David Hervé</p>
         <p>Senior Product Designer (UX/UI)</p>
         <p className="footer-tags">SaaS • Smart Home • Digital Health</p>
+        <div className="footer-location">
+          <img
+            src={`${publicUrl}/img/Icon-pin.svg`}
+            alt=""
+            aria-hidden="true"
+            className="footer-location-icon"
+          />
+          <span>Based in Zurich, Switzerland</span>
+        </div>
       </div>
 
       <div className="footer-item footer-item-center">
-        <p className="footer-heading">Let&apos;s Connect</p>
+        <p className="footer-heading">Get in Touch</p>
 
         <button
           type="button"
           className="footer-connect-link footer-link footer-cv-trigger"
           onClick={openCvModal}
         >
-          <span
-            className="footer-icon footer-icon-download"
-            style={{
-              WebkitMaskImage: `url(${publicUrl}/img/download.svg)`,
-              maskImage: `url(${publicUrl}/img/download.svg)`,
-            }}
-            aria-hidden="true"
-          />
+          <FooterIcon iconFile="download.svg" />
           Download CV
         </button>
 
@@ -69,49 +100,32 @@ export default function Footer() {
           className="footer-connect-link footer-link"
           onClick={() => trackEvent('Open LinkedIn')}
         >
-          <span
-            className="footer-icon footer-icon-linkedin"
-            style={{
-              WebkitMaskImage: `url(${publicUrl}/img/logo_in.svg)`,
-              maskImage: `url(${publicUrl}/img/logo_in.svg)`,
-            }}
-            aria-hidden="true"
-          />
+          <FooterIcon iconFile="logo_in.svg" />
           LinkedIn
         </a>
 
         <a
           href={CONTACT_MAILTO}
           className="footer-connect-link footer-link"
-          onClick={() => trackEvent('Contact Email')}
+          data-umami-event="Contact Email"
         >
-          <span
-            className="footer-icon footer-icon-email"
-            style={{
-              WebkitMaskImage: `url(${publicUrl}/img/email.svg)`,
-              maskImage: `url(${publicUrl}/img/email.svg)`,
-            }}
-            aria-hidden="true"
-          />
+          <FooterIcon iconFile="email.svg" />
           {CONTACT_EMAIL}
         </a>
 
-        <a href="tel:0763205555" className="footer-connect-link footer-link">
-          <span
-            className="footer-icon footer-icon-phone"
-            style={{
-              WebkitMaskImage: `url(${publicUrl}/img/telephon.svg)`,
-              maskImage: `url(${publicUrl}/img/telephon.svg)`,
-            }}
-            aria-hidden="true"
-          />
-          0763205555
+        <a href="tel:+41763205555" className="footer-connect-link footer-link">
+          <FooterIcon iconFile="telephon.svg" />
+          +41 76 320 55 55
         </a>
       </div>
 
       <div className="footer-item footer-item-menu">
         <p className="footer-heading">Menu</p>
-        <Link to="/home" className="footer-connect-link footer-menu-link footer-link">
+        <Link
+          to="/home"
+          className="footer-connect-link footer-menu-link footer-link"
+          onClick={handleFooterHomeClick}
+        >
           <FooterIcon iconFile="house-icon 1.svg" />
           Home
         </Link>
@@ -123,14 +137,18 @@ export default function Footer() {
           <FooterIcon iconFile="folder-open.svg" />
           Case Studies
         </Link>
-        <Link to="/about_me" className="footer-connect-link footer-menu-link footer-link">
+        <Link
+          to="/about_me"
+          className="footer-connect-link footer-menu-link footer-link"
+          onClick={handleFooterAboutClick}
+        >
           <FooterIcon iconFile="user-icon.svg" />
           About Me
         </Link>
         <a
           href={CONTACT_MAILTO}
           className="footer-connect-link footer-menu-link footer-link"
-          onClick={() => trackEvent('Contact Email')}
+          data-umami-event="Contact Email"
         >
           <FooterIcon iconFile="handshake-icon.svg" />
           Contact

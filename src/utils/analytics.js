@@ -23,8 +23,12 @@ export const removeUmamiScript = () => {
 export const trackEvent = (eventName) => {
   if (isPortfolioOwner()) return;
 
-  if (typeof window !== 'undefined' && window.umami) {
-    window.umami.track(eventName);
+  try {
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track(eventName);
+    }
+  } catch {
+    // Tracking must never block navigation or external links.
   }
 };
 
