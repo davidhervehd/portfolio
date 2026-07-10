@@ -39,17 +39,18 @@ const CORE_EXPERTISE = [
 
 const SOFTWARE_TOOLS = [
   'Figma',
-  'Cursor',
-  'Visual Studio Code',
-  'React',
-  'HTML/CSS',
-  'GitHub',
-  'Miro',
-  'Jira',
-  'Photoshop',
-  'Illustrator',
-  'After Effects',
   'Adobe XD',
+  'Illustrator',
+  'Photoshop',
+  'React',
+  'Motion (Framer)',
+  'Storybook',
+  'HTML5',
+  'CSS3',
+  'JavaScript',
+  'After Effects',
+  'Cursor',
+  'Claude',
 ];
 
 export default function AboutSkills() {
