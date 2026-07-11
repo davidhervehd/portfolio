@@ -228,7 +228,14 @@
   }
 
   .footer-location-icon {
-    width: 11px;
-    height: 11px;
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    max-width: 15px;
+    min-height: 15px;
+    max-height: 15px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
   }
 }

@@ -958,7 +958,7 @@
     width: 100%;
   }
 
-  .about-page img:not(.footer-icon):not(.quotation-mark):not(.about-portrait):not(.about-expertise-icon-img):not(.about-hobby-card-icon-img),
+  .about-page img:not(.footer-icon):not(.footer-location-icon):not(.quotation-mark):not(.about-portrait):not(.about-expertise-icon-img):not(.about-hobby-card-icon-img),
   .about-page .theme_anal {
     width: 100%;
     max-width: 100%;
